@@ -2,6 +2,19 @@
 
 It's a web application for managing bootcamps.
 
+## Stack:
+- Java 11
+- Spring Boot Web
+- Spring Boot Data JPA
+- Spring Boot Security
+- Spring Boot Dev Tools
+- MySQL
+- Thymeleaf
+- Bootstrap
+- Log4j
+- HTML
+- CSS
+
 ---
 
 ## MySQL local DB configuration
@@ -29,4 +42,4 @@ Spring Boot Security out of the box gives you a Login page with authentification
 - URL to login: `http://localhost:8080/` / `http://localhost:8080/login`
 - URL to logout: `http://localhost:8080/logout`
 - username: `user`
-- password: (after you run Spring Boot Application, password will be generated and printed in the console. Look for code line: `Using generated security password: db70d73b-9b2f-4933-b284-db9bf525ec46`, code will be different each time. Whitelabel Error Page indicates taht authentification was successful.)
+- password: (after you run Spring Boot Application, password will be generated and printed in the console. Look for code line: `Using generated security password: db70d73b-9b2f-4933-b284-db9bf525ec46`, password will be different each time. Whitelabel Error Page indicates that authentification was successful.)
