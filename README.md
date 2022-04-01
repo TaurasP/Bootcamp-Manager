@@ -8,6 +8,7 @@ It's a web application for managing bootcamps.
 
 Make changes locally on `application.properties` file (*src/main/resources/application.properties*):
 
+- Create a new database locally called `bootcamp`
 - Change port (value instead of `8889`)
 - Change username (value instead of `root`)
 - Change password (value instead of `root`)
