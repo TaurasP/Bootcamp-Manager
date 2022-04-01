@@ -26,5 +26,7 @@ spring.datasource.password=root
 ## Spring Boot Security
 
 Spring Boot Security out of the box gives you a Login page with authentification. Authentification can be checked by entering:
+- URL to login: `http://localhost:8080/` / `http://localhost:8080/login`
+- URL to logout: `http://localhost:8080/logout`
 - username: `user`
-- password: (when you run Spring Boot Application, password will be generated and printed in the console: `Using generated security password: db70d73b-9b2f-4933-b284-db9bf525ec46`. Whitelabel Error Page indicates taht authentification was successful.)
+- password: (after you run Spring Boot Application, password will be generated and printed in the console. Look for code line: `Using generated security password: db70d73b-9b2f-4933-b284-db9bf525ec46`, code will be different each time. Whitelabel Error Page indicates taht authentification was successful.)
