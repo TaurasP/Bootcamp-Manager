@@ -20,3 +20,11 @@ spring.datasource.password=root
 ```
 
 **Please do not push these changes to GIT.**
+
+---
+
+## Spring Boot Security
+
+Spring Boot Security out of the box gives you a Login page with authentification. Authentification can be checked by entering:
+- username: `user`
+- password: (when you run Spring Boot Application, password will be generated and printed in the console: `Using generated security password: db70d73b-9b2f-4933-b284-db9bf525ec46`. Whitelabel Error Page indicates taht authentification was successful.)
