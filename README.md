@@ -2,7 +2,10 @@
 
 It's a web application for managing bootcamps.
 
-## Stack:
+---
+
+## Stack
+
 - Java 11
 - Maven
 - Spring Boot Web
@@ -15,9 +18,9 @@ It's a web application for managing bootcamps.
 - JUnit
 - Log4j
 - Lombok
-- HTML
-- CSS
 - JS
+- CSS
+- HTML
 
 ---
 
@@ -51,6 +54,14 @@ spring.datasource.password=root
 ```
 
 **Please do not push these changes to GIT.**
+
+---
+
+## Spring Boot DevTools
+
+Please make 2 changes in Intellij IDEA Preferences to make Spring Boot DevTools working:
+- `Preferences/Compiler/Build Project automatically`(tick this checkbox)
+- `Preferences/Advanced Settings/Allow auto-make to start even if developed application is currently running` (tick this checkbox under Compiler separator)
 
 ---
 
