@@ -4,6 +4,7 @@ It's a web application for managing bootcamps.
 
 ## Stack:
 - Java 11
+- Maven
 - Spring Boot Web
 - Spring Boot Data JPA
 - Spring Boot Security
@@ -11,9 +12,26 @@ It's a web application for managing bootcamps.
 - MySQL
 - Thymeleaf
 - Bootstrap
+- JUnit
 - Log4j
+- Lombok
 - HTML
 - CSS
+- JS
+
+---
+
+## UML Use Case Diagram
+
+- [UML Use Case Diagram](https://drive.google.com/file/d/1eRUpW3hdi2KLrTivJaAsVuUPQJUQfOD-/view?usp=sharing)
+
+---
+
+## UI prototypes
+
+- [ADMIN prototype](https://drive.google.com/file/d/1d2NyOrZ2WMDcww2ioYTxg_9lY8-HGfIw/view?usp=sharing)
+- [LECTURER prototype](https://drive.google.com/file/d/1Y0YNEjnWQB8fD4N7Thf8SiOwKnxWXqeO/view?usp=sharing)
+- [STUDENT prototype](https://drive.google.com/file/d/1lPl_bx7ggvmbotvgcN-p42WIf-ktes3d/view?usp=sharing)
 
 ---
 
