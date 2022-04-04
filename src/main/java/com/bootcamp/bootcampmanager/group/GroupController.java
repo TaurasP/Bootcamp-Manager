@@ -7,6 +7,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class GroupController {
 
-    @Autowired
-    private GroupService groupService;
+    /*@Autowired
+    private GroupService groupService;*/
 }
