@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "Projects")
+@Table (name = "projects")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,7 +25,7 @@ public class Project {
     @Column(nullable = false, length = 100)
     private Date dateTo;
 
-    @OneToOne(mappedBy = "project")
-    private Group group;
+    /*@OneToOne(mappedBy = "project")
+    private Group group;*/
 
 }
