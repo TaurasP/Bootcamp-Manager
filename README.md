@@ -59,7 +59,24 @@ spring.datasource.username=root
 spring.datasource.password=root
 ```
 
-**Please do not push these changes to GIT.**
+> Please do not push these changes to GIT
+> 
+> `aplication.properties` file added to `.gitignore` file 
+
+---
+
+## Testing authentication
+
+- Add `admin`, `lecturer` or `student` data to DB
+
+> `enabled` field: 
+> 
+> `1` - user will have access to the system
+> 
+> `0` - user will not have access to the system
+
+- Go to `http://localhost:8080/login` or `http://localhost:8080/`
+- Enter `email` and `password`
 
 ---
 
@@ -71,10 +88,13 @@ Please make 2 changes in Intellij IDEA Preferences to make Spring Boot DevTools 
 
 ---
 
-## Spring Boot Security
+~~## Spring Boot Security~~
 
-Spring Boot Security out of the box gives you a Login page with authentification. Authentification can be checked by entering:
-- URL to login: `http://localhost:8080/` / `http://localhost:8080/login`
-- URL to logout: `http://localhost:8080/logout`
-- username: `user`
-- password: (after you run Spring Boot Application, password will be generated and printed in the console. Look for code line: `Using generated security password: db70d73b-9b2f-4933-b284-db9bf525ec46`, password will be different each time. Whitelabel Error Page indicates that authentification was successful.)
+~~Spring Boot Security out of the box gives you a Login page with authentification. Authentification can be checked by entering:~~
+~~- URL to login: `http://localhost:8080/` / `http://localhost:8080/login`~~
+~~- URL to logout: `http://localhost:8080/logout`~~
+~~- username: `user`~~
+~~- password: (after you run Spring Boot Application, password will be generated and printed in the console. Look for code line: `Using generated security password: db70d73b-9b2f-4933-b284-db9bf525ec46`, password will be different each time. Whitelabel Error Page indicates that authentification was successful.)~~
+
+---
+
