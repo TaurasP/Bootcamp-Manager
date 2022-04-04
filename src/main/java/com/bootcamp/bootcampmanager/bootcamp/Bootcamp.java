@@ -1,23 +1,26 @@
-package com.bootcamp.bootcampmanager.project;
+package com.bootcamp.bootcampmanager.bootcamp;
 
-import com.bootcamp.bootcampmanager.group.Group;
+import com.bootcamp.bootcampmanager.student.Student;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table (name = "projects")
+@Table(name = "bootcamps")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Project {
-
+public class Bootcamp {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private Date dateFrom;
@@ -25,8 +28,6 @@ public class Project {
     @Column(nullable = false)
     private Date dateTo;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_id", referencedColumnName = "id")
-    private Group group;
-
+    @OneToMany(mappedBy = "bootcamp")
+    private List<Student> students;
 }

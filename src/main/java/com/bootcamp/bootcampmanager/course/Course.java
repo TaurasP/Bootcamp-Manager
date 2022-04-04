@@ -1,7 +1,6 @@
-package com.bootcamp.bootcampmanager.Course;
+package com.bootcamp.bootcampmanager.course;
 
-import com.bootcamp.bootcampmanager.Task.Task;
-import lombok.Data;
+import com.bootcamp.bootcampmanager.task.Task;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,12 +17,13 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
-    String name;
-    Date dateFrom;
-    Date dateTo;
-    boolean IsCompleted;
-    /*@OneToMany(targetEntity = Task.class,mappedBy = "course")
-    List<Task> tasks;*/
+    private long id;
+    private String name;
+    private Date dateFrom;
+    private Date dateTo;
+    private boolean IsCompleted;
+
+    @OneToMany(mappedBy = "course")
+    private List<Task> tasks;
 
 }

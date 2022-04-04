@@ -1,8 +1,6 @@
-package com.bootcamp.bootcampmanager.Link;
+package com.bootcamp.bootcampmanager.link;
 
-import com.bootcamp.bootcampmanager.Course.Course;
-import com.bootcamp.bootcampmanager.Task.Task;
-import lombok.Data;
+import com.bootcamp.bootcampmanager.task.Task;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +16,11 @@ public class Link {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    private long id;
+
+    private String url;
+
     @ManyToOne
     @JoinColumn(name="task_id",nullable = false)
     private Task task;
-    String url;
 }
