@@ -1,5 +1,6 @@
-package com.bootcamp.bootcampmanager.Model;
+package com.bootcamp.bootcampmanager.Task;
 
+import com.bootcamp.bootcampmanager.Link.Link;
 import lombok.Data;
 
 import javax.persistence.Entity;
