@@ -1,12 +1,18 @@
 package com.bootcamp.bootcampmanager.project;
 
 import com.bootcamp.bootcampmanager.group.Group;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table (name = "Projects")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Project {
 
     @Id
@@ -22,35 +28,4 @@ public class Project {
     @OneToOne(mappedBy = "project")
     private Group group;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Date getDateFrom() {
-        return dateFrom;
-    }
-
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
-    }
-
-    public Date getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
 }
