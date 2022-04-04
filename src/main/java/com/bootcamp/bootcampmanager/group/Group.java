@@ -1,4 +1,7 @@
-package com.bootcamp.bootcampmanager.model;
+package com.bootcamp.bootcampmanager.group;
+
+import com.bootcamp.bootcampmanager.project.Project;
+import com.bootcamp.bootcampmanager.student.Student;
 
 import javax.persistence.*;
 import java.util.ArrayList;

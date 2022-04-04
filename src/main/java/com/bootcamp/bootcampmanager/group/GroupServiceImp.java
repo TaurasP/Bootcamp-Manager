@@ -1,6 +1,6 @@
-package com.bootcamp.bootcampmanager.service;
+package com.bootcamp.bootcampmanager.group;
 
-import com.bootcamp.bootcampmanager.repository.GroupRepository;
+import com.bootcamp.bootcampmanager.group.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

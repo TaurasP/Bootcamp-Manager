@@ -1,4 +1,6 @@
-package com.bootcamp.bootcampmanager.model;
+package com.bootcamp.bootcampmanager.project;
+
+import com.bootcamp.bootcampmanager.group.Group;
 
 import javax.persistence.*;
 import java.util.Date;

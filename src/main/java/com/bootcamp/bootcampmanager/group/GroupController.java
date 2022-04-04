@@ -1,6 +1,6 @@
-package com.bootcamp.bootcampmanager.controller;
+package com.bootcamp.bootcampmanager.group;
 
-import com.bootcamp.bootcampmanager.service.GroupService;
+import com.bootcamp.bootcampmanager.group.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
