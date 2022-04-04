@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "groups")
+@Table(name = "myGroups")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,17 +23,14 @@ public class Group {
     private long id;
 
     @Column(nullable = false, length = 300)
+
     private String name;
 
     /*@OneToMany(mappedBy = "group") //targetEntity = Group.class, cascade = CascadeType.ALL, orphanRemoval = true
     private List<Student> students = new ArrayList<>();*/
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "group_project",
-            joinColumns =
-                    { @JoinColumn(name = "group_id", referencedColumnName = "id") },
-            inverseJoinColumns =
-                    { @JoinColumn(name = "project_id", referencedColumnName = "id") })
-    private Project project;*/
-    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Project project;
+
 }
