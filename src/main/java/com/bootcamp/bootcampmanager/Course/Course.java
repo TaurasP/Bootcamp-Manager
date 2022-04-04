@@ -3,10 +3,7 @@ package com.bootcamp.bootcampmanager.Course;
 import com.bootcamp.bootcampmanager.Task.Task;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
@@ -20,6 +17,7 @@ public class Course {
     Date dateFrom;
     Date dateTo;
     boolean IsCompleted;
+    @OneToMany(targetEntity = Task.class,mappedBy = "course")
     List<Task> tasks;
 
 }
