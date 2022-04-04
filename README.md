@@ -24,9 +24,15 @@ It's a web application for managing bootcamps.
 
 ---
 
-## UML Use Case Diagram
+## UML use case diagram
 
 - [UML Use Case Diagram](https://drive.google.com/file/d/1eRUpW3hdi2KLrTivJaAsVuUPQJUQfOD-/view?usp=sharing)
+
+---
+
+## DB diagram
+
+- [DB diagram](https://drive.google.com/file/d/1T20BFAoDww8ZI9-7hZ4Ugren5qwBBcWn/view?usp=sharing)
 
 ---
 
@@ -60,7 +66,7 @@ spring.datasource.password=root
 ## Spring Boot DevTools
 
 Please make 2 changes in Intellij IDEA Preferences to make Spring Boot DevTools working:
-- `Preferences/Compiler/Build Project automatically`(tick this checkbox)
+- `Preferences/Build, Execution, Deployment/Compiler/Build Project automatically`(tick this checkbox)
 - `Preferences/Advanced Settings/Allow auto-make to start even if developed application is currently running` (tick this checkbox under Compiler separator)
 
 ---
