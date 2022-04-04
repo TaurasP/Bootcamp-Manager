@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "projects")
+@Table(name = "projects")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,13 +19,16 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private Date dateFrom;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private Date dateTo;
 
-    @OneToOne(mappedBy = "project")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+
     private Group group;
 
 }

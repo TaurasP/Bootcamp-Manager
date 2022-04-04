@@ -1,6 +1,5 @@
 package com.bootcamp.bootcampmanager.group;
 
-import com.bootcamp.bootcampmanager.Task.Task;
 import com.bootcamp.bootcampmanager.project.Project;
 import com.bootcamp.bootcampmanager.student.Student;
 import lombok.Getter;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,11 +24,12 @@ public class Group {
 
     private String name;
 
-    /*@OneToMany(mappedBy = "group") //targetEntity = Group.class, cascade = CascadeType.ALL, orphanRemoval = true
-    private List<Student> students = new ArrayList<>();*/
+    @OneToMany(mappedBy = "group") //targetEntity = Group.class, cascade = CascadeType.ALL, orphanRemoval = true
+    private List<Student> students;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Project project;
+    
 
 }
