@@ -19,4 +19,20 @@ public class GroupServiceImp implements GroupService{
     public List<Group> getAllGroups(){
         return groupRepository.findAll();
     }
+
+    @Override
+    public void saveGroup(Group group) {
+
+        groupRepository.save(group);
+    }
+
+    @Override
+    public Group getGroupById(long id) {
+        return groupRepository.getById(id);
+    }
+
+    @Override
+    public void deleteGroupById(long id) {
+        groupRepository.deleteById(id);
+    }
 }

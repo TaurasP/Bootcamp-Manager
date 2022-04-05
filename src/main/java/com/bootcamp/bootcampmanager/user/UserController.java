@@ -24,7 +24,6 @@ public class UserController {
         return "index";
     }
 
-
     @GetMapping("/new-user")
     public String showNewUserForm(Model model) {
         User user = new User();
