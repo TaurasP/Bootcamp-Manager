@@ -29,12 +29,19 @@ public class GroupController {
         return "createGroup";
     }
 
-    @GetMapping("/editGroup/{id}")
+    @GetMapping("/updateGroup/{id}")
     public String editGroupForm(@PathVariable( value = "id") long id, Model model) {
         Group group = groupService.getGroupById(id);
         model.addAttribute("group", group);
-        return "editGroup";
+        return "updateGroup";
     }
+
+//    @GetMapping("/update-user/{id}")
+//    public String showFormForUpdate(@PathVariable( value = "id") long id, Model model) {
+//        User user = userService.getUserById(id);
+//        model.addAttribute("user", user);
+//        return "update-user";
+//    }
 
     @GetMapping("/deleteGroup/{id}")
     public String deleteGroup(@PathVariable (value = "id") long id) {

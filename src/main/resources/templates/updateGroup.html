@@ -11,16 +11,17 @@
 </head>
 <body>
 <div class="container">
-    <h1> New group </h1>
+    <h1> Group edit </h1>
 
     <hr>
 
     <form action="#" th:action="@{/save-group}" th:object="${group}" method="POST">
+        <input type="hidden" th:field="*{id}"/>
 
-        <input type="text" th:field="*{name}"
-               placeholder="Group name" class="form-control mb-4 col-4">
+        <a> First name </a>
+        <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
 
-        <button type="submit" class="btn btn-info col-2"> Save </button>
+        <button type="submit" class="btn btn-info col-2"> Update </button>
     </form>
 
     <hr>
