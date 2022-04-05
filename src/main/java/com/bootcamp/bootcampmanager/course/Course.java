@@ -20,16 +20,16 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private Date dateFrom;
 
-    @Column(nullable = false)
+    @Column
     private Date dateTo;
 
-    @Column(nullable = false)
+    @Column
     private boolean IsCompleted;
 
     @OneToMany(mappedBy = "course")
@@ -37,7 +37,7 @@ public class Course {
 
     @ManyToMany
     @JoinTable(
-            name = "course_bootcamp",
+            name = "bootcamp_courses",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "bootcamp_id"))
     List<Bootcamp> bootCamps;

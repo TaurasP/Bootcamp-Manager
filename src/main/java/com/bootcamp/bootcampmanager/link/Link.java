@@ -18,10 +18,10 @@ public class Link {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
+    @Column
     private String url;
 
     @ManyToOne
-    @JoinColumn(name="task_id",nullable = false)
+    @JoinColumn(name="task_id")
     private Task task;
 }

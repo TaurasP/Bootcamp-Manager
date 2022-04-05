@@ -16,12 +16,12 @@ import java.util.List;
 @NoArgsConstructor
 public class Lecturer extends User {
 
-    @Column(nullable = false)
+    @Column
     private boolean isTrainer;
 
     @ManyToMany
     @JoinTable(
-            name = "lecturer_bootcamp",
+            name = "bootcamp_lecturers",
             joinColumns = @JoinColumn(name = "lecturer_id"),
             inverseJoinColumns = @JoinColumn(name = "bootcamp_id"))
     List<Bootcamp> joinedBootcamp;

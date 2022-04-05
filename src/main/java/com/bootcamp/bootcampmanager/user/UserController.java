@@ -1,6 +1,5 @@
 package com.bootcamp.bootcampmanager.user;
 
-import com.bootcamp.bootcampmanager.admin.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +16,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/index")
+    @GetMapping("/users")
     public String showAllUsers(Model model) {
         List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
-        return "index";
+        return "users";
     }
 
 
@@ -37,7 +36,7 @@ public class UserController {
         user.setEnabled(true);
         user.setRoles("ROLE_ADMIN");
         userService.saveUser(user);
-        return "redirect:/index";
+        return "redirect:/users";
     }
 
     @GetMapping("/update-user/{id}")
@@ -50,6 +49,6 @@ public class UserController {
     @GetMapping("/delete-user/{id}")
     public String deleteUser(@PathVariable (value = "id") long id) {
         this.userService.deleteUserById(id);
-        return "redirect:/index";
+        return "redirect:/users";
     }
 }
