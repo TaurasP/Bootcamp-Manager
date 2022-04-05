@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "projects")
+@Table(name = "projects")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,8 +25,10 @@ public class Project {
     @Column(nullable = false)
     private Date dateTo;
 
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id", referencedColumnName = "id")
+
     private Group group;
 
 }
