@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class GroupServiceImp {
 
-    @Autowired
-    public GroupRepository groupRepository;
+    private final GroupRepository groupRepository;
 
+    @Autowired
+    public GroupServiceImp(GroupRepository groupRepository) {
+        this.groupRepository = groupRepository;
+    }
 }
