@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Lecturer extends User {
 
-    @Column(nullable = false)
+    @Column
     private boolean isTrainer;
 
     @ManyToMany

@@ -20,7 +20,7 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
     @OneToMany(mappedBy = "group")
