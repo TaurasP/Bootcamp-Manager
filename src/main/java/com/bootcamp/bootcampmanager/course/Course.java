@@ -18,9 +18,17 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private Date dateFrom;
+
+    @Column(nullable = false)
     private Date dateTo;
+
+    @Column(nullable = false)
     private boolean IsCompleted;
 
     @OneToMany(mappedBy = "course")

@@ -20,10 +20,10 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false, length = 300)
+    @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "group") //targetEntity = Group.class, cascade = CascadeType.ALL, orphanRemoval = true
+    @OneToMany(mappedBy = "group")
     private List<Student> students;
 
     @OneToOne(cascade = CascadeType.ALL)
