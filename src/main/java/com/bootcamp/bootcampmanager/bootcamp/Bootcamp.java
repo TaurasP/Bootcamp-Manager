@@ -1,5 +1,9 @@
 package com.bootcamp.bootcampmanager.bootcamp;
 
+
+import com.bootcamp.bootcampmanager.admin.Admin;
+import com.bootcamp.bootcampmanager.course.Course;
+import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.student.Student;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,4 +34,14 @@ public class Bootcamp {
 
     @OneToMany(mappedBy = "bootcamp")
     private List<Student> students;
+
+    @ManyToMany(mappedBy = "bootCamps")
+    List<Course> coursesInCamp;
+
+
+    @ManyToMany(mappedBy = "joinedBootcamp")
+    List<Lecturer> campLecturers;
+
+    @ManyToMany(mappedBy = "managingBootcamp")
+    List<Admin> adminList;
 }

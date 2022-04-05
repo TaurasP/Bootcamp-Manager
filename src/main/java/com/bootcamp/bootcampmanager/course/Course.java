@@ -1,5 +1,6 @@
 package com.bootcamp.bootcampmanager.course;
 
+import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.task.Task;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,5 +34,12 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<Task> tasks;
+
+    @ManyToMany
+    @JoinTable(
+            name = "course_bootcamp",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "bootcamp_id"))
+    List<Bootcamp> bootCamps;
 
 }

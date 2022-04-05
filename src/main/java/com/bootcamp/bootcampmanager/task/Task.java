@@ -42,5 +42,5 @@ public class Task {
     private List<Link> links;
 
     @ManyToMany(mappedBy = "tasks")
-    List<Student> students = new ArrayList<>();
+    List<Student> students;
 }

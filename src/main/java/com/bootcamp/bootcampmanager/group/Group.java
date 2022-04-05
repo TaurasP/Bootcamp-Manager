@@ -29,5 +29,4 @@ public class Group {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Project project;
-    
 }
