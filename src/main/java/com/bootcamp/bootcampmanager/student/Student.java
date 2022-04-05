@@ -37,5 +37,5 @@ public class Student extends User {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "task_id")
     )
-    List<Task> tasks = new ArrayList<>();
+    List<Task> tasks;
 }

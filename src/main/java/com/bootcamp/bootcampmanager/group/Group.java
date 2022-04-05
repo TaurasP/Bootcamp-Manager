@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "myGroups")
+@Table(name = "groups")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +21,6 @@ public class Group {
     private long id;
 
     @Column(nullable = false, length = 300)
-
     private String name;
 
     @OneToMany(mappedBy = "group") //targetEntity = Group.class, cascade = CascadeType.ALL, orphanRemoval = true
@@ -30,6 +29,4 @@ public class Group {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Project project;
-    
-
 }
