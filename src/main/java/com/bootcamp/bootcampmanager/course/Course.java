@@ -37,7 +37,7 @@ public class Course {
 
     @ManyToMany
     @JoinTable(
-            name = "course_bootcamp",
+            name = "bootcamp_courses",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "bootcamp_id"))
     List<Bootcamp> bootCamps;

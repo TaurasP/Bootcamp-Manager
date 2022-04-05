@@ -25,7 +25,6 @@ public class Project {
     @Column
     private Date dateTo;
 
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id", referencedColumnName = "id")
 

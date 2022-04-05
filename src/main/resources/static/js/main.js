@@ -44,3 +44,12 @@
     });
 
 })(jQuery);
+
+/* Dropdown */
+$(document).ready(function(){
+    $("select.dropdown").change(function(){
+        var value = $(this).children("option:selected").val();
+        /* message for testing purposes */
+        /*alert("You have selected - " + value);*/
+    });
+});
