@@ -22,14 +22,13 @@ public class UserController {
     }
 
 
-    @GetMapping("/index")
+    @GetMapping("/users")
     public String showAllUsers(Model model) {
 
         List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
-        return "index";
+        return "users";
     }
-
 
     @GetMapping("/new-user")
     public String showNewUserForm(Model model) {
@@ -43,7 +42,7 @@ public class UserController {
         user.setEnabled(true);
         user.setRoles("ROLE_ADMIN");
         userService.saveUser(user);
-        return "redirect:/index";
+        return "redirect:/users";
     }
 
     @GetMapping("/update-user/{id}")
@@ -56,6 +55,6 @@ public class UserController {
     @GetMapping("/delete-user/{id}")
     public String deleteUser(@PathVariable (value = "id") long id) {
         this.userService.deleteUserById(id);
-        return "redirect:/index";
+        return "redirect:/users";
     }
 }

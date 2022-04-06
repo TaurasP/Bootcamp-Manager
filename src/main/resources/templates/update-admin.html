@@ -11,24 +11,26 @@
 </head>
 <body>
 <div class="container">
-    <h1> New user </h1>
+    <h1> Admin edit </h1>
 
     <hr>
 
     <form action="#" th:action="@{/save-user}" th:object="${user}" method="POST">
-        <input type="text" th:field="*{firstName}"
-               placeholder="First name" class="form-control mb-4 col-4">
+        <input type="hidden" th:field="*{id}"/>
 
-        <input type="text" th:field="*{lastName}"
-               placeholder="Last name" class="form-control mb-4 col-4">
+        <a> First name </a>
+        <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
 
-        <input type="email" th:field="*{email}"
-               placeholder="Email" class="form-control mb-4 col-4">
+        <a> Last name </a>
+        <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{password}"
-               placeholder="Password" class="form-control mb-4 col-4">
+        <a> Email </a>
+        <input type="email" th:field="*{email}" class="form-control mb-4 col-4">
 
-        <button type="submit" class="btn btn-info col-2"> Save </button>
+        <a> Password </a>
+        <input type="text" th:field="*{password}" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2"> Update </button>
     </form>
 
     <hr>

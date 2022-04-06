@@ -18,6 +18,7 @@ It's a web application for managing bootcamps.
 - JUnit
 - Log4j
 - Lombok
+- jQuery
 - JS
 - CSS
 - HTML
@@ -75,8 +76,20 @@ spring.datasource.password=root
 > 
 > `0` - user will not have access to the system
 
+> `roles` field: 
+> 
+> `ROLE_ADMIN` - user will be able to login with admin rights
+> 
+> `ROLE_LECTURER` - user will be able to login with lecturer rights
+> > 
+> `ROLE_STUDENT` - ser will be able to login with student rights
+
 - Go to `http://localhost:8080/login` or `http://localhost:8080/`
 - Enter `email` and `password`
+
+> `is_trainer` field for lecturers table: 
+> 
+> `0` or `1` - field should not be null (no logic implemented yet for setting this value)
 
 ---
 

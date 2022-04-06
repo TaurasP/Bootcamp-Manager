@@ -19,12 +19,11 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
+    @Column
     private Date dateFrom;
 
-    @Column(nullable = false)
+    @Column
     private Date dateTo;
-
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id", referencedColumnName = "id")

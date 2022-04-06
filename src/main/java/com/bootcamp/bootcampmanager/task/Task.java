@@ -22,20 +22,20 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private Date dateFrom;
 
-    @Column(nullable = false)
+    @Column
     private Date dateTo;
 
-    @Column(nullable = false)
+    @Column
     private boolean isCompleted;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="course_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name="course_id", referencedColumnName = "id")
     private Course course;
 
     @OneToMany(mappedBy = "task")
