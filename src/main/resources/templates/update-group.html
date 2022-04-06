@@ -15,11 +15,13 @@
 
     <hr>
 
-    <form action="#" th:action="@{/save-user}" th:object="${user}" method="POST">
+    <form action="#" th:action="@{/save-group}" th:object="${group}" method="POST">
         <input type="hidden" th:field="*{id}"/>
 
         <a> Name </a>
-        <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
+        <a> Project --requires wiring </a>
+        <input type="text" class="form-control mb-4 col-4">
 
         <button type="submit" class="btn btn-info col-2"> Update </button>
     </form>
