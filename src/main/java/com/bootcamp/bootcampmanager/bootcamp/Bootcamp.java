@@ -23,13 +23,13 @@ public class Bootcamp {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private Date dateFrom;
 
-    @Column(nullable = false)
+    @Column
     private Date dateTo;
 
     @OneToMany(mappedBy = "bootcamp")
