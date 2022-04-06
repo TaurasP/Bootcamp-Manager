@@ -14,111 +14,120 @@
 </head>
 <body class="hero-anime">
 
-<!-- Top navigation bar -->
-<div class="navigation-wrap bg-light start-header start-style">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar navbar-expand-md navbar-light">
-
-                    <a class="navbar-brand navbar-logo" href="/students">Bootcamp Manager</a>
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
-                                <a class="nav-link" href="/students">Students</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="/courses">Schedule</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="/groups">Groups</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/profile">My profile</a>
-                                    <a class="dropdown-item" href="/logout">Logout</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-
-<br/>
-
-<div class="section full-height">
-    <div class="section" style="padding-top: 80px">
+    <!-- Top navigation bar -->
+    <div class="navigation-wrap bg-light start-header start-style">
         <div class="container">
-
             <div class="row">
-                <h2>Students</h2>
-            </div>
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-md navbar-light">
 
-            <br/>
+                        <a class="navbar-brand navbar-logo" href="/students">Bootcamp Manager</a>
 
-            <!--<div class="row" style="padding-bottom: 30px">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-                &lt;!&ndash; Dropdown 1 &ndash;&gt;
-                <div th:object="${usersList}" style="padding-right: 30px">
-                    <select class="dropdown form-control" id="" name="">
-                        <option value=""> Select </option>
-                        <option th:each="user : ${usersList}"
-                                th:value="${user.email}"
-                                th:text="${user.email}"></option>
-                    </select>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                    <a class="nav-link" href="/students">Students</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/courses">Schedule</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/groups">Groups</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/profile">My profile</a>
+                                        <a class="dropdown-item" href="/logout">Logout</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
                 </div>
-
-                &lt;!&ndash; Dropdown 2 &ndash;&gt;
-                <div th:object="${usersList}">
-                    <select class="dropdown form-control" id="" name="">
-                        <option value=""> Select </option>
-                        <option th:each="user : ${usersList}"
-                                th:value="${user.email}"
-                                th:text="${user.email}"></option>
-                    </select>
-                </div>
-            </div>-->
-
-            <!-- Table -->
-            <div class="row">
-                <table border="1" class="table table-striped table-responsive-md">
-                    <!-- Table header -->
-                    <thead>
-                    <tr>
-                        <th> # </th>
-                        <th> Student </th>
-                        <th> Actions </th>
-                    </tr>
-                    </thead>
-                    <!-- Table rows -->
-                    <tbody>
-                    <tr th:each="user : ${usersList}">
-                        <td th:text="${usersList.indexOf(user)+1}"></td>
-                        <td th:text="${user.firstName}"></td>
-                        <td>
-                            <!-- Open student page button (hardcoded link - it opens not particular student's page for now) -->
-                            <!--<a th:href="@{/student}" class="btn btn-warning">Open</a>-->
-                            <!-- Edit button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                            <!-- Delete button -->
-                            <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
-</div>
+
+    <br/>
+
+    <div class="section full-height">
+        <div class="section" style="padding-top: 80px">
+            <div class="container">
+
+                <div class="row">
+                    <h2>Students</h2>
+                </div>
+
+                <br/>
+
+                <!-- Add button -->
+                <div class="row" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
+                    <a th:href = "@{/new-student}" class="btn btn-success btn-sm mb-3"><i class="fa-solid fa-plus"></i> Add </a>
+                </div>
+
+                   <!-- Dropdown 1 -->
+                    <!--<div th:object="${studentsList}" style="padding-right: 30px">
+                &lt;!&ndash;<div class="row" style="padding-bottom: 30px"> &ndash;&gt;
+
+                    &lt;!&ndash; Dropdown 1 &ndash;&gt;
+                    <div th:object="${usersList}" style="padding-right: 30px">
+                        <select class="dropdown form-control" id="" name="">
+                            <option value=""> Select </option>
+                            <option th:each="student : ${studentsList}"
+                                    th:value="${student.email}"
+                                    th:text="${student.email}"></option>
+                        </select>
+                    </div>-->
+
+                  <!-- Dropdown 2 -->
+                    <!--<div th:object="${usersList}">
+                        <select class="dropdown form-control" id="" name="">
+                            <option value=""> Select </option>
+                            <option th:each="user : ${usersList}"
+                                    th:value="${user.email}"
+                                    th:text="${user.email}"></option>
+                        </select>
+                    </div>
+                </div>
+                    </div>
+                </div>-->
+
+                <!-- Table -->
+                <div class="row">
+                    <table border="1" class="table table-striped table-responsive-md">
+                        <!-- Table header -->
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Student </th>
+                                <th> Actions </th>
+                            </tr>
+                        </thead>
+                        <!-- Table rows -->
+                        <tbody>
+                            <tr th:each="student : ${studentsList}">
+                                <td th:text="${studentsList.indexOf(student)+1}"></td>
+                                <td th:text="${student.firstName + ' ' + student.lastName}"></td>
+                                <td>
+                                    <!-- Open student page button (hardcoded link - it opens not particular student's page for now) -->
+                                    <!--<a th:href="@{/student}" class="btn btn-warning">Open</a>-->
+                                    <!-- Edit button -->
+                                    <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                    <!-- Delete button -->
+                                    <a th:href="@{/delete-student/{id}(id=${student.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

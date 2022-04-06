@@ -1,6 +1,5 @@
 package com.bootcamp.bootcampmanager.student;
 
-
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.group.Group;
 import com.bootcamp.bootcampmanager.task.Task;
@@ -12,9 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @Table(name = "students")
