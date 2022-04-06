@@ -66,18 +66,23 @@
 
             <br/>
 
+
+               <!-- Dropdown 1 -->
+                <div th:object="${studentsList}" style="padding-right: 30px">
             <!--<div class="row" style="padding-bottom: 30px">
 
                 &lt;!&ndash; Dropdown 1 &ndash;&gt;
                 <div th:object="${usersList}" style="padding-right: 30px">
                     <select class="dropdown form-control" id="" name="">
                         <option value=""> Select </option>
-                        <option th:each="user : ${usersList}"
-                                th:value="${user.email}"
-                                th:text="${user.email}"></option>
+                        <option th:each="student : ${studentsList}"
+                                th:value="${student.email}"
+                                th:text="${student.email}"></option>
                     </select>
                 </div>
 
+
+              <!-- Dropdown 2
                 &lt;!&ndash; Dropdown 2 &ndash;&gt;
                 <div th:object="${usersList}">
                     <select class="dropdown form-control" id="" name="">
@@ -86,6 +91,8 @@
                                 th:value="${user.email}"
                                 th:text="${user.email}"></option>
                     </select>
+                </div>-->
+            </div>
                 </div>
             </div>-->
 
@@ -97,11 +104,19 @@
                     <tr>
                         <th> # </th>
                         <th> Student </th>
+                        <th>  Open  </th>
                         <th> Actions </th>
                     </tr>
                     </thead>
                     <!-- Table rows -->
                     <tbody>
+                    <tr th:each="student : ${studentsList}">
+                        <td th:text="${studentsList.indexOf(student)+1}"></td>
+                        <td th:text="${student.firstName}"></td>
+                        <td>
+                            <!-- Open button -->
+                            <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
+                         </td>
                     <tr th:each="user : ${usersList}">
                         <td th:text="${usersList.indexOf(user)+1}"></td>
                         <td th:text="${user.firstName}"></td>

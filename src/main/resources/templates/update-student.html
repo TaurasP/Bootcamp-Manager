@@ -15,7 +15,7 @@
 
     <hr>
 
-    <form action="#" th:action="@{/save-user}" th:object="${user}" method="POST">
+    <form action="#" th:action="@{/save-student}" th:object="${student}" method="POST">
         <input type="hidden" th:field="*{id}"/>
 
         <a> First name </a>
@@ -35,7 +35,7 @@
 
     <hr>
 
-    <a class="btn btn-warning" th:href="@{/users}" role="button"> Back </a>
+    <a class="btn btn-warning" th:href="@{/students}" role="button"> Back </a>
 </div>
 </body>
 </html>
