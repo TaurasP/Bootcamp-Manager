@@ -23,9 +23,9 @@ import java.util.List;
 @NoArgsConstructor
 public class Student extends User {
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_id", referencedColumnName = "id")
-    private Group group;
+   // @ManyToOne(cascade = CascadeType.ALL)
+   // @JoinColumn(name = "group_id", referencedColumnName = "id")
+   // private Group group;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bootcamp_id", referencedColumnName = "id")

@@ -63,17 +63,17 @@
 
             <div class="row" style="padding-bottom: 30px">
 
-                <!-- Dropdown 1 -->
-                <div th:object="${usersList}" style="padding-right: 30px">
+               <!-- Dropdown 1 -->
+                <div th:object="${studentsList}" style="padding-right: 30px">
                     <select class="dropdown form-control" id="" name="">
                         <option value=""> Select </option>
-                        <option th:each="user : ${usersList}"
-                                th:value="${user.email}"
-                                th:text="${user.email}"></option>
+                        <option th:each="student : ${studentsList}"
+                                th:value="${student.email}"
+                                th:text="${student.email}"></option>
                     </select>
                 </div>
 
-                <!-- Dropdown 2 -->
+              <!-- Dropdown 2
                 <div th:object="${usersList}">
                     <select class="dropdown form-control" id="" name="">
                         <option value=""> Select </option>
@@ -81,7 +81,7 @@
                                 th:value="${user.email}"
                                 th:text="${user.email}"></option>
                     </select>
-                </div>
+                </div>-->
             </div>
 
             <!-- Table -->
@@ -91,29 +91,19 @@
                     <thead>
                     <tr>
                         <th> # </th>
-                        <th> First name </th>
-                        <th> Last name </th>
-                        <th> Email </th>
-                        <th> Password </th>
-                        <th> Actions </th>
+                        <th> Student </th>
+                        <th>  Open  </th>
                     </tr>
                     </thead>
                     <!-- Table rows -->
                     <tbody>
-                    <tr th:each="user : ${usersList}">
-                        <td th:text="${usersList.indexOf(user)+1}"></td>
-                        <td th:text="${user.firstName}"></td>
-                        <td th:text="${user.lastName}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.password}"></td>
+                    <tr th:each="student : ${studentsList}">
+                        <td th:text="${studentsList.indexOf(student)+1}"></td>
+                        <td th:text="${student.firstName}"></td>
                         <td>
                             <!-- Open button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
-                            <!-- Edit button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                            <!-- Delete button -->
-                            <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                        </td>
+                            <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
+                         </td>
                     </tr>
                     </tbody>
                 </table>

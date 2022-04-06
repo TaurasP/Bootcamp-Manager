@@ -35,7 +35,7 @@ public class StudentController {
     @PostMapping("/save-student")
     public String saveStudent(@ModelAttribute("student") Student student) {
         student.setEnabled(true);
-        student.setRoles("ROLE_ADMIN");
+        student.setRoles("ROLE_STUDENT");
         studentService.saveStudent(student);
         return "redirect:/students";
     }
