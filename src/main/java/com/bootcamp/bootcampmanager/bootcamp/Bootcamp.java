@@ -38,6 +38,7 @@ public class Bootcamp {
     @ManyToMany(mappedBy = "bootCamps")
     List<Course> coursesInCamp;
 
+
     @ManyToMany(mappedBy = "joinedBootcamp")
     List<Lecturer> campLecturers;
 
