@@ -86,6 +86,7 @@
                             <th> First name </th>
                             <th> Last name </th>
                             <th> Email </th>
+                            <th> Role </th>
                             <th> Actions </th>
                         </tr>
                         </thead>
@@ -96,6 +97,7 @@
                             <td th:text="${user.firstName}"></td>
                             <td th:text="${user.lastName}"></td>
                             <td th:text="${user.email}"></td>
+                            <td th:text="${user.userRole()}"></td>
                             <td>
                                 <!-- Open user page button (hardcoded link - it opens not particular user's page for now) -->
                                 <!--<a th:href="@{/user}" class="btn btn-warning">Open</a>-->

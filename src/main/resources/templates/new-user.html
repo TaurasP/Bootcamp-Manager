@@ -28,6 +28,15 @@
         <input type="text" th:field="*{password}"
                placeholder="Password" class="form-control mb-4 col-4">
 
+        <div>
+            <label>Select role:</label>
+            <select th:field="*{roles}">
+                <option value="ROLE_ADMIN">admin</option>
+                <option value="ROLE_STUDENT">student</option>
+                <option value="ROLE_LECTURER">lecturer</option>
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-info col-2"> Save </button>
     </form>
 
