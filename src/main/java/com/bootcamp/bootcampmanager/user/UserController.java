@@ -1,6 +1,5 @@
 package com.bootcamp.bootcampmanager.user;
 
-import com.bootcamp.bootcampmanager.admin.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +13,18 @@ import java.util.List;
 @Controller
 public class UserController {
 
+
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
 
     @GetMapping("/index")
     public String showAllUsers(Model model) {
+
         List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
         return "index";
