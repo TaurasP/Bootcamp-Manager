@@ -13,18 +13,11 @@ import java.util.List;
 @Controller
 public class UserController {
 
-
-    private final UserService userService;
-
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
+    private UserService userService;
 
     @GetMapping("/users")
     public String showAllUsers(Model model) {
-
         List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
         return "users";
