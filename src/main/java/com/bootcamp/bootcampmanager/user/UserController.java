@@ -1,5 +1,7 @@
 package com.bootcamp.bootcampmanager.user;
 
+import com.bootcamp.bootcampmanager.lecturer.LecturerService;
+import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private LecturerService lecturerService;
 
     @GetMapping("/users")
     public String showAllUsers(Model model) {

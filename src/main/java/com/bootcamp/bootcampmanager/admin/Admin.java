@@ -16,6 +16,28 @@ import java.util.List;
 @NoArgsConstructor
 public class Admin extends User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
+    private String email;
+
+    @Column
+    private String password;
+
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private boolean enabled;
+
+    @Column
+    private String roles;
+
     @ManyToMany
     @JoinTable(
             name = "bootcamp_admins",
