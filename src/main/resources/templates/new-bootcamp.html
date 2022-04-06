@@ -65,7 +65,7 @@
 
                 <!-- Title -->
                 <div>
-                    <h2> New bootcamp </h2>
+                    <h2> Add bootcamp </h2>
                 </div>
 
                 <br/>
@@ -77,7 +77,7 @@
 
                 <br/>
 
-                <!-- Bootcamp update form -->
+                <!-- Bootcamp creation form -->
                 <div>
                     <form action="#" th:action="@{/save-bootcamp}" th:object="${bootcamp}" method="POST">
                         <input type="text" th:field="${bootcamp.name}"

@@ -65,7 +65,7 @@
 
             <!-- Title -->
             <div style="padding-bottom: 20px">
-                <h2> New admin </h2>
+                <h2> Add admin </h2>
             </div>
 
             <!-- Back button -->
@@ -75,7 +75,7 @@
 
             <br/>
 
-            <!-- Admin update form -->
+            <!-- Admin creation form -->
             <div>
                 <form action="#" th:action="@{/save-user}" th:object="${user}" method="POST">
                     <input type="text" th:field="*{firstName}"
