@@ -1,6 +1,5 @@
 package com.bootcamp.bootcampmanager.student;
 
-
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.group.Group;
 import com.bootcamp.bootcampmanager.task.Task;
@@ -12,9 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @Table(name = "students")
@@ -23,9 +20,9 @@ import java.util.List;
 @NoArgsConstructor
 public class Student extends User {
 
-   // @ManyToOne(cascade = CascadeType.ALL)
-   // @JoinColumn(name = "group_id", referencedColumnName = "id")
-   // private Group group;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    private Group group;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bootcamp_id", referencedColumnName = "id")

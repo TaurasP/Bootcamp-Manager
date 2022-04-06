@@ -1,7 +1,5 @@
 package com.bootcamp.bootcampmanager.student;
 
-import com.bootcamp.bootcampmanager.user.User;
-
 import java.util.List;
 
 public interface StudentService{

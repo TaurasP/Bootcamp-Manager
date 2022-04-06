@@ -35,7 +35,8 @@
 
     <hr>
 
-    <a class="btn btn-warning" th:href="@{/students}" role="button"> Back </a>
+    <a class="btn btn-warning" th:href="@{/users}" role="button" sec:authorize="hasRole('ADMIN')"> Back </a>
+    <a class="btn btn-warning" th:href="@{/students}" role="button" sec:authorize="hasRole('LECTURER')"> Back </a>
 </div>
 </body>
 </html>

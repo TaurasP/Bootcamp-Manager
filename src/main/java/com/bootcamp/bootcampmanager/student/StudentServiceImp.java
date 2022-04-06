@@ -1,12 +1,11 @@
 package com.bootcamp.bootcampmanager.student;
 
-import com.bootcamp.bootcampmanager.user.User;
-import com.bootcamp.bootcampmanager.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class StudentServiceImp implements StudentService{
     @Autowired
@@ -29,7 +28,7 @@ public class StudentServiceImp implements StudentService{
         if (optional.isPresent()) {
             student = optional.get();
         } else {
-            throw new RuntimeException("Not found user: " + id);
+            throw new RuntimeException("Not found student: " + id);
         }
         return student;
     }
