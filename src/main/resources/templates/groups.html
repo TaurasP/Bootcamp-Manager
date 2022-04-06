@@ -84,6 +84,7 @@
                     <tr>
                         <th> # </th>
                         <th> Group </th>
+                        <th> Group Size </th>
                         <th> Actions </th>
                     </tr>
                     </thead>
@@ -92,6 +93,7 @@
                     <tr th:each="group : ${groupsList}">
                         <td th:text="${groupsList.indexOf(group)+1}"></td>
                         <td th:text="${group.name}"></td>
+                        <td th:text="${group.getStudents().size()}"></td>
                         <td>
                             <!-- Open button -->
                             <a th:href="@{/groupProfile/{id}(id=${group.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
