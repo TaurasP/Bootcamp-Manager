@@ -60,10 +60,15 @@
     <div class="section" style="padding-top: 80px">
         <div class="container">
 
+            <div class="row">
+                <h2>Students</h2>
+            </div>
 
-            <div class="row" style="padding-bottom: 30px">
+            <br/>
 
-                <!-- Dropdown 1 -->
+            <!--<div class="row" style="padding-bottom: 30px">
+
+                &lt;!&ndash; Dropdown 1 &ndash;&gt;
                 <div th:object="${usersList}" style="padding-right: 30px">
                     <select class="dropdown form-control" id="" name="">
                         <option value=""> Select </option>
@@ -73,7 +78,7 @@
                     </select>
                 </div>
 
-                <!-- Dropdown 2 -->
+                &lt;!&ndash; Dropdown 2 &ndash;&gt;
                 <div th:object="${usersList}">
                     <select class="dropdown form-control" id="" name="">
                         <option value=""> Select </option>
@@ -82,7 +87,7 @@
                                 th:text="${user.email}"></option>
                     </select>
                 </div>
-            </div>
+            </div>-->
 
             <!-- Table -->
             <div class="row">
@@ -91,10 +96,7 @@
                     <thead>
                     <tr>
                         <th> # </th>
-                        <th> First name </th>
-                        <th> Last name </th>
-                        <th> Email </th>
-                        <th> Password </th>
+                        <th> Student </th>
                         <th> Actions </th>
                     </tr>
                     </thead>
@@ -103,12 +105,9 @@
                     <tr th:each="user : ${usersList}">
                         <td th:text="${usersList.indexOf(user)+1}"></td>
                         <td th:text="${user.firstName}"></td>
-                        <td th:text="${user.lastName}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.password}"></td>
                         <td>
-                            <!-- Open button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
+                            <!-- Open student page button (hardcoded link - it opens not particular student's page for now) -->
+                            <!--<a th:href="@{/student}" class="btn btn-warning">Open</a>-->
                             <!-- Edit button -->
                             <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                             <!-- Delete button -->

@@ -94,7 +94,7 @@
                             <th> # </th>
                             <th sec:authorize="hasRole('ADMIN')"> Name </th>
                             <th sec:authorize="hasAnyRole('LECTURER', 'STUDENT')"> Course </th>
-                            <th> Actions </th>
+                            <th sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"> Actions </th>
                         </tr>
                         </thead>
                         <!-- Table rows -->
@@ -102,7 +102,7 @@
                         <tr th:each="course : ${coursesList}">
                             <td th:text="${coursesList.indexOf(course)+1}"></td>
                             <td th:text="${course.name}"></td>
-                            <td>
+                            <td sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
                                 <!-- Open course page button (hardcoded link - it opens not particular course's page for now) -->
                                 <!--<a th:href="@{/course}" class="btn btn-warning">Open</a>-->
                                 <!-- Edit button -->

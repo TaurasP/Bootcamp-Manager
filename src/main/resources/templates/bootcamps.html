@@ -63,9 +63,15 @@
         <div class="section" style="padding-top: 80px">
             <div class="container">
 
+                <div class="row">
+                    <h2>Bootcamps</h2>
+                </div>
+
+                <br/>
+
                 <!-- Add button -->
                 <div class="row">
-                    <a th:href = "@{/new-user}" class="btn btn-success btn-sm mb-3"><i class="fa-solid fa-plus"></i> Add </a>
+                    <a th:href = "@{/new-bootcamp}" class="btn btn-success btn-sm mb-3"><i class="fa-solid fa-plus"></i> Add </a>
                 </div>
 
                 <!-- Table -->
@@ -75,28 +81,26 @@
                         <thead>
                         <tr>
                             <th> # </th>
-                            <th> First name </th>
-                            <th> Last name </th>
-                            <th> Email </th>
-                            <th> Password </th>
+                            <th> Name </th>
+                            <th> Start date </th>
+                            <th> End date </th>
                             <th> Actions </th>
                         </tr>
                         </thead>
                         <!-- Table rows -->
                         <tbody>
-                        <tr th:each="user : ${usersList}">
-                            <td th:text="${usersList.indexOf(user)+1}"></td>
-                            <td th:text="${user.firstName}"></td>
-                            <td th:text="${user.lastName}"></td>
-                            <td th:text="${user.email}"></td>
-                            <td th:text="${user.password}"></td>
+                        <tr th:each="bootcamp : ${listBootcamps}">
+                            <td th:text="${listBootcamps.indexOf(bootcamp)+1}"></td>
+                            <td th:text="${bootcamp.name}"></td>
+                            <td th:text="${#dates.format(bootcamp.dateFrom, 'yyyy-MM-dd')}"></td>
+                            <td th:text="${#dates.format(bootcamp.dateTo, 'yyyy-MM-dd')}"></td>
                             <td>
-                                <!-- Open button -->
-                                <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
+                                <!-- Open bootcamp page button (hardcoded link - it opens not particular bootcamp's page for now) -->
+                                <!--<a th:href="@{/bootcamp}" class="btn btn-warning">Open</a>-->
                                 <!-- Edit button -->
-                                <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                <a th:href="@{/update-bootcamp/{id}(id=${bootcamp.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                                 <!-- Delete button -->
-                                <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                <a th:href="@{/delete-bootcamp/{id}(id=${bootcamp.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         </tbody>
