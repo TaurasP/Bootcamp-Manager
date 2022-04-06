@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProjectServiceImp {
+public class ProjectServiceImp implements ProjectService{
 
     @Autowired
     public ProjectRepository projectRepository;

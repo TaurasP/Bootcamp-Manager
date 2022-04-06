@@ -33,6 +33,4 @@ public class Project {
 
     private Group group;
 
-
-
 }
