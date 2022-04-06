@@ -16,42 +16,43 @@ public class GroupController {
     @Autowired
     private GroupService groupService;
 
-    @GetMapping("/listGroups")
+    @GetMapping("/groups")
     public String viewGroupsPage(Model model) {
-        model.addAttribute("allGroups", groupService.getAllGroups());
-        return "listGroups";
+        model.addAttribute("groupsList", groupService.getAllGroups());
+        return "groups";
     }
 
-    @GetMapping("/createGroup")
+    @GetMapping("/new-group")
     public String showNewGroupForm(Model model) {
         Group group = new Group();
         model.addAttribute("group", group);
-        return "createGroup";
+        return "new-group";
     }
 
-    @GetMapping("/updateGroup/{id}")
+    @GetMapping("/update-group/{id}")
     public String editGroupForm(@PathVariable( value = "id") long id, Model model) {
         Group group = groupService.getGroupById(id);
         model.addAttribute("group", group);
-        return "updateGroup";
+        return "update-group";
     }
 
-//    @GetMapping("/update-user/{id}")
-//    public String showFormForUpdate(@PathVariable( value = "id") long id, Model model) {
-//        User user = userService.getUserById(id);
-//        model.addAttribute("user", user);
-//        return "update-user";
-//    }
-
-    @GetMapping("/deleteGroup/{id}")
+    @GetMapping("/delete-group/{id}")
     public String deleteGroup(@PathVariable (value = "id") long id) {
         this.groupService.deleteGroupById(id);
-        return "redirect:/listGroups";
+        return "redirect:/groups";
     }
 
     @PostMapping("/save-group")
     public String saveUser(@ModelAttribute("group") Group group) {
         groupService.saveGroup(group);
-        return "redirect:/listGroups";
+        return "redirect:/groups";
     }
+
+    @GetMapping("/groupProfile/{id}")
+    public String displayGroupProfile(@PathVariable( value = "id") long id, Model model) {
+        Group thisGroup = groupService.getGroupById(id);
+        model.addAttribute("thisGroup", thisGroup);
+        return "groupProfile";
+    }
+
 }

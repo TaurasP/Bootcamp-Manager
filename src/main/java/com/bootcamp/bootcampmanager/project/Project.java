@@ -20,6 +20,9 @@ public class Project {
     private long id;
 
     @Column
+    private String name;
+
+    @Column
     private Date dateFrom;
 
     @Column
@@ -29,5 +32,7 @@ public class Project {
     @JoinColumn(name = "group_id", referencedColumnName = "id")
 
     private Group group;
+
+
 
 }
