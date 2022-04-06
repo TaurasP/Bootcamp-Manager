@@ -71,9 +71,15 @@
     <div class="section" style="padding-top: 80px">
         <div class="container">
 
+            <div class="row">
+                <h2>Groups</h2>
+            </div>
+
+            <br/>
+
             <!-- Add button -->
             <div class="row">
-                <a th:href = "@{/new-user}" class="btn btn-success btn-sm mb-3"><i class="fa-solid fa-plus"></i> Add </a>
+                <a th:href = "@{/new-group}" class="btn btn-success btn-sm mb-3"><i class="fa-solid fa-plus"></i> Add </a>
             </div>
 
             <!-- Table -->
@@ -83,28 +89,24 @@
                     <thead>
                     <tr>
                         <th> # </th>
-                        <th> First name </th>
-                        <th> Last name </th>
-                        <th> Email </th>
-                        <th> Password </th>
+                        <th> Name </th>
+                        <th> Size </th>
                         <th> Actions </th>
                     </tr>
                     </thead>
                     <!-- Table rows -->
                     <tbody>
-                    <tr th:each="user : ${usersList}">
-                        <td th:text="${usersList.indexOf(user)+1}"></td>
-                        <td th:text="${user.firstName}"></td>
-                        <td th:text="${user.lastName}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.password}"></td>
+                    <tr th:each="group : ${groupsList}">
+                        <td th:text="${groupsList.indexOf(group)+1}"></td>
+                        <td th:text="${group.name}"></td>
+                        <td th:text="${group.getStudents().size()}"></td>
                         <td>
-                            <!-- Open button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
+                            <!-- Open group page button (hardcoded link - it opens not particular group's page for now) -->
+                            <!--<a th:href="@{/group}" class="btn btn-warning">Open</a>-->
                             <!-- Edit button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                            <a th:href="@{/update-group/{id}(id=${group.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                             <!-- Delete button -->
-                            <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            <a th:href="@{/delete-group/{id}(id=${group.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                     </tbody>

@@ -1,12 +1,11 @@
-package com.bootcamp.bootcampmanager.project;
-
+package com.bootcamp.bootcampmanager.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ProjectController {
+public class TaskController {
 
     @Autowired
-    private ProjectService projectService;
+    public TaskService taskService;
 }

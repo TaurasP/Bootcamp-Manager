@@ -20,6 +20,9 @@ public class Project {
     private long id;
 
     @Column
+    private String name;
+
+    @Column
     private Date dateFrom;
 
     @Column

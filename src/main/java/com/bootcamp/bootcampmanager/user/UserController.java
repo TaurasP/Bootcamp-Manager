@@ -23,7 +23,6 @@ public class UserController {
         return "users";
     }
 
-
     @GetMapping("/new-user")
     public String showNewUserForm(Model model) {
         User user = new User();
@@ -40,7 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/update-user/{id}")
-    public String showFormForUpdate(@PathVariable( value = "id") long id, Model model) {
+    public String showUserFormForUpdate(@PathVariable( value = "id") long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "update-user";

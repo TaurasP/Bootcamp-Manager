@@ -8,6 +8,7 @@ import com.bootcamp.bootcampmanager.student.Student;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,14 +22,16 @@ import java.util.List;
 public class Bootcamp {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     @Column
     private String name;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFrom;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column
     private Date dateTo;
 
@@ -37,6 +40,7 @@ public class Bootcamp {
 
     @ManyToMany(mappedBy = "bootCamps")
     List<Course> coursesInCamp;
+
 
     @ManyToMany(mappedBy = "joinedBootcamp")
     List<Lecturer> campLecturers;
