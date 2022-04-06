@@ -46,7 +46,7 @@
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link" href="/users">Users</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active" sec:authorize="hasAnyRole('ADMIN'or 'LECTURER')">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
                                 <a class="nav-link" href="/groups">Groups</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -82,18 +82,16 @@
                     <!-- Table header -->
                     <thead>
                     <tr>
-                        <th> Group name </th>
-                        <th> Group ID </th>
-                        <th> Group Project </th>
+                        <th> # </th>
+                        <th> Group </th>
                         <th> Actions </th>
                     </tr>
                     </thead>
                     <!-- Table rows -->
                     <tbody>
                     <tr th:each="group : ${groupsList}">
-                        <td th:text="${group.getName()}"></td>
-                        <td th:text="${group.getId() + 1}"></td>
-                        <th> needs wiring </th>
+                        <td th:text="${groupsList.indexOf(group)+1}"></td>
+                        <td th:text="${group.name}"></td>
                         <td>
                             <!-- Open button -->
                             <a th:href="@{/groupProfile/{id}(id=${group.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
