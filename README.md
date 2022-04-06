@@ -3,7 +3,6 @@
 It's a web application for managing bootcamps.
 
 ---
----
 
 ## Stack
 
@@ -65,6 +64,8 @@ spring.datasource.password=root
 > 
 > `aplication.properties` file added to `.gitignore` file 
 
+> If `application.properties` file is not excluded - run command `git rm --cached -r src/main/resources/application.properties` on terminal (could be done from Intellij IDEA's terminal)
+> 
 ---
 
 ## Testing authentication
