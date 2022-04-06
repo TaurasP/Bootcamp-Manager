@@ -43,7 +43,7 @@ public class GroupController {
     }
 
     @PostMapping("/save-group")
-    public String saveUser(@ModelAttribute("group") Group group) {
+    public String saveGroup(@ModelAttribute("group") Group group) {
         groupService.saveGroup(group);
         return "redirect:/groups";
     }
