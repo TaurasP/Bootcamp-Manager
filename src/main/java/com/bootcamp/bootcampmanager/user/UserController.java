@@ -1,6 +1,9 @@
 package com.bootcamp.bootcampmanager.user;
 
+import com.bootcamp.bootcampmanager.admin.Admin;
+import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
+import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +43,10 @@ public class UserController {
 
     @PostMapping("/save-user")
     public String saveUser(@ModelAttribute("user") User user) {
+        user.setFirstName("test");
+        user.setLastName("Test");
+        user.setEmail("test@test.com");
+        user.setPassword("pass");
         user.setEnabled(true);
         userService.saveUser(user);
         return "redirect:/users";
