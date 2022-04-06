@@ -18,7 +18,7 @@ public class Admin extends User {
 
     @ManyToMany
     @JoinTable(
-            name = "admin_bootcamp",
+            name = "bootcamp_admins",
             joinColumns = @JoinColumn(name = "admin_id"),
             inverseJoinColumns = @JoinColumn(name = "bootcamp_id"))
     List<Bootcamp> managingBootcamp;
