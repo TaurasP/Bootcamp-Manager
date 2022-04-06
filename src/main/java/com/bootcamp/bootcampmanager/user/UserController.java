@@ -23,7 +23,6 @@ public class UserController {
         return "users";
     }
 
-
     @GetMapping("/new-user")
     public String showNewUserForm(Model model) {
         User user = new User();
