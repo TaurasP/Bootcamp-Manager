@@ -5,6 +5,7 @@ import com.bootcamp.bootcampmanager.task.Task;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -24,9 +25,11 @@ public class Course {
     private String name;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFrom;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateTo;
 
     @Column

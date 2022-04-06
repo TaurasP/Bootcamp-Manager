@@ -52,7 +52,7 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/profile">My profile</a>
+                                        <!--<a class="dropdown-item" href="/profile">My profile</a>-->
                                         <a class="dropdown-item" href="/logout">Logout</a>
                                     </div>
                                 </li>
@@ -71,22 +71,24 @@
         <div class="section" style="padding-top: 80px">
             <div class="container">
 
-                <div class="row" sec:authorize="hasRole('ADMIN')">
+                <div sec:authorize="hasRole('ADMIN')">
                     <h2>Courses</h2>
                 </div>
-                <div class="row" sec:authorize="hasAnyRole('LECTURER', 'STUDENT')">
+                <div sec:authorize="hasAnyRole('LECTURER', 'STUDENT')">
                     <h2>Schedule</h2>
                 </div>
 
                 <br/>
 
                 <!-- Add button -->
-                <div class="row" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
-                    <a th:href = "@{/new-course}" class="btn btn-success btn-sm mb-3"><i class="fa-solid fa-plus"></i> Add </a>
+                <div sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
+                    <a th:href = "@{/new-course}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add </a>
                 </div>
 
+                <br/>
+
                 <!-- Table -->
-                <div class="row">
+                <div>
                     <table border="1" class="table table-striped table-responsive-md">
                         <!-- Table header -->
                         <thead>

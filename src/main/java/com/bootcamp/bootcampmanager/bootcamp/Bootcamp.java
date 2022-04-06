@@ -31,8 +31,8 @@ public class Bootcamp {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFrom;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateTo;
 
     @OneToMany(mappedBy = "bootcamp")
