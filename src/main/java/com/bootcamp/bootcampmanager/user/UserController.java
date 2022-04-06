@@ -33,7 +33,6 @@ public class UserController {
     @PostMapping("/save-user")
     public String saveUser(@ModelAttribute("user") User user) {
         user.setEnabled(true);
-        user.setRoles("ROLE_ADMIN");
         userService.saveUser(user);
         return "redirect:/users";
     }
