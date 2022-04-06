@@ -34,4 +34,14 @@ public class User {
 
     @Column
     private String roles;
+
+    public String userRole() {
+        if(roles.equals("ROLE_ADMIN"))
+            return new String("admin");
+        if(roles.equals("ROLE_STUDENT"))
+            return new String("student");
+        if(roles.equals("ROLE_LECTURER"))
+            return new String("lecturer");
+        return "user with no role";
+    }
 }
