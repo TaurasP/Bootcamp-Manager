@@ -1,11 +1,13 @@
 package com.bootcamp.bootcampmanager.bootcamp;
 
 
+import com.bootcamp.bootcampmanager.group.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
@@ -23,19 +25,33 @@ public class BootcampController {
     @GetMapping("/bootcamps")
     public String showAllBootcamps(Model model) {
         model.addAttribute("listBootcamps", bootcampService.getAllBootcamps());
-        return "bootcamp/allBootcamp";
+        /*return "bootcamp/allBootcamp";*/
+        return "bootcamps";
     }
 
-    @GetMapping("/addNewBootcamp")
-    public String newBootcampForm(Model model) {
+    @GetMapping("/new-bootcamp")
+    public String showNewBootcampForm(Model model) {
         model.addAttribute("bootcamp", new Bootcamp());
-        return "bootcamp/new-bootcamp";
+        /*return "bootcamp/new-bootcamp";*/
+        return "new-bootcamp";
     }
 
     @PostMapping("/save-bootcamp")
     public String saveBootcamp(@ModelAttribute("bootcamp") Bootcamp bootcamp) {
         bootcampService.saveBootcamp(bootcamp);
-//redirect leads to @GetMapping("/bootcamps")
+        return "redirect:/bootcamps";
+    }
+
+    @GetMapping("/update-bootcamp/{id}")
+    public String showBootcampFormForUpdate(@PathVariable( value = "id") long id, Model model) {
+        Bootcamp bootcamp = bootcampService.getBootcampById(id);
+        model.addAttribute("bootcamp", bootcamp);
+        return "update-bootcamp";
+    }
+
+    @GetMapping("/delete-bootcamp/{id}")
+    public String deleteBootcamp(@PathVariable (value = "id") long id) {
+        this.bootcampService.deleteBootcampById(id);
         return "redirect:/bootcamps";
     }
 

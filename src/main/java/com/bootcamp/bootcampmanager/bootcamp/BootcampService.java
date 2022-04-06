@@ -1,7 +1,5 @@
 package com.bootcamp.bootcampmanager.bootcamp;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 

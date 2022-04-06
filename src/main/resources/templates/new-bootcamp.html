@@ -15,15 +15,15 @@
 
     <hr>
 
-    <form action="#" th:action="@{/save-user}" th:object="${user}" method="POST">
-        <input type="text" th:field="*{firstName}"
+    <form action="#" th:action="@{/save-bootcamp}" th:object="${bootcamp}" method="POST">
+        <input type="text" th:field="${bootcamp.name}"
                placeholder="Name" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{lastName}"
-               placeholder="Date from" class="form-control mb-4 col-4">
+        <input type="date" th:field="${bootcamp.dateFrom}"
+               placeholder="Start date" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{email}"
-               placeholder="Date to" class="form-control mb-4 col-4">
+        <input type="date" th:field="${bootcamp.dateTo}"
+               placeholder="End date" class="form-control mb-4 col-4">
 
         <button type="submit" class="btn btn-info col-2"> Save </button>
     </form>

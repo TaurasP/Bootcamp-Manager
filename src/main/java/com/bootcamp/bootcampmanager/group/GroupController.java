@@ -29,6 +29,12 @@ public class GroupController {
         return "new-group";
     }
 
+    @PostMapping("/save-group")
+    public String saveGroup(@ModelAttribute("group") Group group) {
+        groupService.saveGroup(group);
+        return "redirect:/groups";
+    }
+
     @GetMapping("/update-group/{id}")
     public String editGroupForm(@PathVariable( value = "id") long id, Model model) {
         Group group = groupService.getGroupById(id);
@@ -39,12 +45,6 @@ public class GroupController {
     @GetMapping("/delete-group/{id}")
     public String deleteGroup(@PathVariable (value = "id") long id) {
         this.groupService.deleteGroupById(id);
-        return "redirect:/groups";
-    }
-
-    @PostMapping("/save-group")
-    public String saveGroup(@ModelAttribute("group") Group group) {
-        groupService.saveGroup(group);
         return "redirect:/groups";
     }
 

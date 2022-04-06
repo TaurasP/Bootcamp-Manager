@@ -71,6 +71,15 @@
         <div class="section" style="padding-top: 80px">
             <div class="container">
 
+                <div class="row" sec:authorize="hasRole('ADMIN')">
+                    <h2>Courses</h2>
+                </div>
+                <div class="row" sec:authorize="hasAnyRole('LECTURER', 'STUDENT')">
+                    <h2>Schedule</h2>
+                </div>
+
+                <br/>
+
                 <!-- Add button -->
                 <div class="row" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
                     <a th:href = "@{/new-course}" class="btn btn-success btn-sm mb-3"><i class="fa-solid fa-plus"></i> Add </a>
@@ -83,18 +92,19 @@
                         <thead>
                         <tr>
                             <th> # </th>
-                            <th> Course name </th>
+                            <th sec:authorize="hasRole('ADMIN')"> Name </th>
+                            <th sec:authorize="hasAnyRole('LECTURER', 'STUDENT')"> Course </th>
                             <th> Actions </th>
                         </tr>
                         </thead>
                         <!-- Table rows -->
                         <tbody>
                         <tr th:each="course : ${coursesList}">
-                            <td th:text="${course.id}"></td>
-                            <td th:text="${course.getName()}"></td>
+                            <td th:text="${coursesList.indexOf(course)+1}"></td>
+                            <td th:text="${course.name}"></td>
                             <td>
-                                <!-- Open button -->
-                                <a th:href="@{/update-course/{id}(id=${course.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
+                                <!-- Open course page button (hardcoded link - it opens not particular course's page for now) -->
+                                <!--<a th:href="@{/course}" class="btn btn-warning">Open</a>-->
                                 <!-- Edit button -->
                                 <a th:href="@{/update-course/{id}(id=${course.id})}" class="btn btn-primary" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-pencil"></i></a>
                                 <!-- Delete button -->
