@@ -40,6 +40,8 @@ public class UserController {
         model.addAttribute("lecturersList", lecturersList);
         List<Student> studentsList = studentService.getAllStudents();
         model.addAttribute("studentsList", studentsList);
+        Counter counter = new Counter();
+        model.addAttribute("counter", counter);
         return "users";
     }
 
