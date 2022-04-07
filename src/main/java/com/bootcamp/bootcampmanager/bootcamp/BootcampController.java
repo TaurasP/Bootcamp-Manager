@@ -55,4 +55,10 @@ public class BootcampController {
         return "redirect:/bootcamps";
     }
 
+    @GetMapping("/bootcamp/{id}")
+    public String showBootcamp(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        return "bootcamp";
+    }
+
 }

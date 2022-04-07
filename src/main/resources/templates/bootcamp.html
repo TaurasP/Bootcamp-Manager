@@ -65,10 +65,10 @@
 
             <div>
                 <!-- Add here actual bootcamp's name -->
-                <h2>Bootcamp</h2>
+                <h2>Bootcamp <a th:text="${bootcamp.name}"></a> </h2>
             </div>
 
-            <br/>
+
 
             <div>
                 <!-- Back button -->
@@ -77,39 +77,39 @@
                 <a th:href = "@{/new-student}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add student</a>
             </div>
 
-            <br/>
 
             <!-- Table -->
-            <div>
-                <table border="1" class="table table-striped table-responsive-md">
-                    <!-- Table header -->
-                    <thead>
-                    <tr>
-                        <th> # </th>
-                        <th> Student </th>
-                        <th> Group </th>
-                        <th> Actions </th>
-                    </tr>
-                    </thead>
-                    <!-- Table rows -->
-                    <tbody>
-                    <tr th:each="user : ${listUsers}">
-                        <td th:text="${listUsers.indexOf(user)+1}"></td>
-                        <td th:text="${user.firstName + ' ' + user.lastName}"></td>
-                        <td th:text="${#dates.format(user.dateFrom, 'yyyy-MM-dd')}"></td>
-                        <td th:text="${#dates.format(user.dateTo, 'yyyy-MM-dd')}"></td>
-                        <td>
-                            <!-- Open user page button (hardcoded link - it opens not particular bootcamp's page for now) -->
-                            <a th:href="@{/user}" class="btn btn-warning">Open</a>
-                            <!-- Edit button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                            <!-- Delete button -->
-                            <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <!--            <div>-->
+            <!--                <table border="1" class="table table-striped table-responsive-md">-->
+            <!--                    &lt;!&ndash; Table header &ndash;&gt;-->
+            <!--                    <thead>-->
+            <!--                    <tr>-->
+            <!--                        <th> # </th>-->
+            <!--                        <th> Student </th>-->
+            <!--                        <th> Group </th>-->
+            <!--                        <th> Actions </th>-->
+            <!--                    </tr>-->
+            <!--                    </thead>-->
+            <!--                    &lt;!&ndash; Table rows &ndash;&gt;-->
+            <!--                    <tbody>-->
+            <!--                    <tr th:each="user : ${listUsers}">-->
+            <!--                        <td th:text="${listUsers.indexOf(user)+1}"></td>-->
+            <!--                        <td th:text="${user.firstName + ' ' + user.lastName}"></td>-->
+            <!--                        <td th:text="${#dates.format(user.dateFrom, 'yyyy-MM-dd')}"></td>-->
+            <!--                        <td th:text="${#dates.format(user.dateTo, 'yyyy-MM-dd')}"></td>-->
+            <!--                        <td>-->
+            <!--                            &lt;!&ndash; Open user page button (hardcoded link - it opens not particular bootcamp's page for now) &ndash;&gt;-->
+            <!--                            <a th:href="@{/user}" class="btn btn-warning">Open</a>-->
+            <!--                            &lt;!&ndash; Edit button &ndash;&gt;-->
+            <!--                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>-->
+            <!--                            &lt;!&ndash; Delete button &ndash;&gt;-->
+            <!--                            <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>-->
+            <!--                        </td>-->
+            <!--                    </tr>-->
+            <!--                    </tbody>-->
+            <!--                </table>-->
+            <!--            </div>-->
+
         </div>
     </div>
 </div>

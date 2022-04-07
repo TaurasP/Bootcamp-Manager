@@ -100,7 +100,7 @@
                             <td th:text="${#dates.format(bootcamp.dateTo, 'yyyy-MM-dd')}"></td>
                             <td>
                                 <!-- Open bootcamp page button (hardcoded link - it opens not particular bootcamp's page for now) -->
-                                <!--<a th:href="@{/bootcamp}" class="btn btn-warning">Open</a>-->
+                                <a th:href="@{/bootcamp/{id}(id=${bootcamp.id})}" class="btn btn-warning">Open</a>
                                 <!-- Edit button -->
                                 <a th:href="@{/update-bootcamp/{id}(id=${bootcamp.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                                 <!-- Delete button -->
