@@ -43,10 +43,10 @@ public class UserController {
 
     @PostMapping("/save-user")
     public String saveUser(@ModelAttribute("user") User user) {
-        user.setFirstName("test");
+        /*user.setFirstName("test");
         user.setLastName("Test");
         user.setEmail("test@test.com");
-        user.setPassword("pass");
+        user.setPassword("pass");*/
         user.setEnabled(true);
         userService.saveUser(user);
         return "redirect:/users";
