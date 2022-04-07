@@ -17,7 +17,6 @@ import java.util.List;
 @Table(name = "students")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Student extends User {
 
     @Id
@@ -67,6 +66,11 @@ public class Student extends User {
         this.roles = user.roles;
         this.id = user.getId();
         this.enabled = true;
+    }
+
+    public Student(){
+        super();
+        this.roles = "ROLE_STUDENT";
     }
 
     public String userRole() {
