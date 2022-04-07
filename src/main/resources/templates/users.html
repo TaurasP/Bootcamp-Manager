@@ -84,28 +84,57 @@
                         <thead>
                         <tr>
                             <th> # </th>
-                            <!--<th> First name </th>
+                            <th> First name </th>
                             <th> Last name </th>
                             <th> Email </th>
-                            <th> Role </th>-->
+                            <th> Role </th>
                             <th> Actions </th>
                         </tr>
                         </thead>
                         <!-- Table rows -->
                         <tbody>
-                        <tr th:each="user : ${usersList}">
-                            <td th:text="${usersList.indexOf(user)+1}"></td>
-                            <!--<td th:text="${user.firstName}"></td>
-                            <td th:text="${user.lastName}"></td>
-                            <td th:text="${user.email}"></td>
-                            <td th:text="${user.userRole()}"></td>-->
+                        <tr th:each="admin : ${adminsList}">
+                            <td th:text="${admin.id+1}"></td>
+                            <td th:text="${admin.getFirstName()}"></td>
+                            <td th:text="${admin.getLastName()}"></td>
+                            <td th:text="${admin.getEmail()}"></td>
+                            <td th:text="${admin.userRole()}"></td>
                             <td>
                                 <!-- Open user page button (hardcoded link - it opens not particular user's page for now) -->
                                 <!--<a th:href="@{/user}" class="btn btn-warning">Open</a>-->
                                 <!-- Edit button -->
-                                <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                <a th:href="@{/update-user/{id}(id=${admin.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                                 <!-- Delete button -->
-                                <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                <a th:href="@{/delete-user/{id}(id=${admin.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        <tr th:each="lecturer : ${lecturersList}">
+                            <td th:text="${lecturer.id+1}"></td>
+                            <td th:text="${lecturer.getFirstName()}"></td>
+                            <td th:text="${lecturer.getLastName()}"></td>
+                            <td th:text="${lecturer.getEmail()}"></td>
+                            <td th:text="${lecturer.userRole()}"></td>
+                            <td>
+                                <!-- Open user page button (hardcoded link - it opens not particular user's page for now) -->
+                                <!--<a th:href="@{/user}" class="btn btn-warning">Open</a>-->
+                                <!-- Edit button -->
+                                <a th:href="@{/update-user/{id}(id=${lecturer.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                <!-- Delete button -->
+                                <a th:href="@{/delete-user/{id}(id=${lecturer.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                        <tr th:each="student : ${studentsList}">
+                            <td th:text="${student.id+1}"></td>
+                            <td th:text="${student.getFirstName()}"></td>
+                            <td th:text="${student.getLastName()}"></td>
+                            <td th:text="${student.getEmail()}"></td>
+                            <td th:text="${student.userRole()}"></td>
+                            <td>
+                                <!-- Open user page button (hardcoded link - it opens not particular user's page for now) -->
+                                <!--<a th:href="@{/user}" class="btn btn-warning">Open</a>-->
+                                <!-- Edit button -->
+                                <a th:href="@{/update-user/{id}(id=${student.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                <!-- Delete button -->
+                                <a th:href="@{/delete-user/{id}(id=${student.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         </tbody>

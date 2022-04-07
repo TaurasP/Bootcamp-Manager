@@ -52,10 +52,15 @@ public class Admin extends User {
         this.password = user.getPassword();
         this.roles = user.roles;
         this.id = user.getId();
+        this.enabled = true;
     }
 
     Admin(){
         super();
+    }
+
+    public String userRole() {
+        return "admin";
     }
 
 }

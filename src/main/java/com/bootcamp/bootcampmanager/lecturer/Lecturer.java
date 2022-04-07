@@ -47,4 +47,19 @@ public class Lecturer extends User {
             joinColumns = @JoinColumn(name = "lecturer_id"),
             inverseJoinColumns = @JoinColumn(name = "bootcamp_id"))
     List<Bootcamp> joinedBootcamp;
+
+    public Lecturer(User user){
+        super();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.roles = user.roles;
+        this.id = user.getId();
+        this.enabled = true;
+    }
+
+    public String userRole() {
+        return "lecturer";
+    }
 }
