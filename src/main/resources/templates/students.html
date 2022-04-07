@@ -107,7 +107,8 @@
                         <thead>
                             <tr>
                                 <th> # </th>
-                                <!--<th> Student </th>-->
+                                <th> Student </th>
+                                <th> email </th>
                                 <th> Actions </th>
                             </tr>
                         </thead>
@@ -115,7 +116,8 @@
                         <tbody>
                             <tr th:each="student : ${studentsList}">
                                 <td th:text="${studentsList.indexOf(student)+1}"></td>
-                                <!--<td th:text="${student.firstName + ' ' + student.lastName}"></td>-->
+                                <td th:text="${student.firstName + ' ' + student.lastName}"></td>
+                                <td th:text="${student.getEmail()}"></td>
                                 <td>
                                     <!-- Open student page button (hardcoded link - it opens not particular student's page for now) -->
                                     <!--<a th:href="@{/student}" class="btn btn-warning">Open</a>-->

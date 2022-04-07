@@ -87,7 +87,7 @@
 
             <!-- Student update form -->
             <div>
-                <form action="#" th:action="@{/save-user}" th:object="${user}" method="POST">
+                <form action="#" th:action="@{/save-student}" th:object="${student}" method="POST">
                     <input type="hidden" th:field="*{id}"/>
 
                     <a> First name </a>
@@ -102,7 +102,6 @@
                     <a> Password </a>
                     <input type="text" th:field="*{password}" class="form-control mb-4 col-4">
 
-                    <!-- Save button -->
                     <button type="submit" class="btn btn-info col-2"> Update </button>
                 </form>
             </div>
