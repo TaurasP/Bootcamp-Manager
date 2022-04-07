@@ -101,8 +101,8 @@
                     </thead>
                     <!-- Table rows -->
                     <tbody>
-                    <tr th:each="task : ${listTasks}">
-                        <td th:text="${listTasks.indexOf(task)+1}"></td>
+                    <tr th:each="task : ${tasks}">
+                        <td th:text="${tasks.indexOf(task)+1}"></td>
                         <td th:text="${task.name}"></td>
                         <td>
                             <!-- Open selected task's link -->
