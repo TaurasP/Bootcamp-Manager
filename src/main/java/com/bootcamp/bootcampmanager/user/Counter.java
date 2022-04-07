@@ -9,6 +9,10 @@ public class Counter {
     @Autowired
     static int a = 0;
 
+    Counter(){
+        a = 0;
+    }
+
 
     public int getIndex(){
         a++;
