@@ -1,6 +1,7 @@
 package com.bootcamp.bootcampmanager.user;
 
 import com.bootcamp.bootcampmanager.admin.Admin;
+import com.bootcamp.bootcampmanager.admin.AdminService;
 import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.student.Student;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,9 +29,15 @@ public class UserController {
     @Autowired
     private LecturerService lecturerService;
 
+    @Autowired
+    private AdminService adminService;
+
     @GetMapping("/users")
     public String showAllUsers(Model model) {
-        List<User> usersList = userService.getAllUsers();
+        List<Admin> usersList = adminService.getAllAdmins();// new ArrayList<>();
+//        usersList.addAll(studentService.getAllStudents());
+//        usersList.addAll(adminService.getAllAdmins());
+//        usersList.addAll(lecturerService.getAllLecturers());
         model.addAttribute("usersList", usersList);
         return "users";
     }
@@ -43,12 +51,21 @@ public class UserController {
 
     @PostMapping("/save-user")
     public String saveUser(@ModelAttribute("user") User user) {
-        /*user.setFirstName("test");
-        user.setLastName("Test");
-        user.setEmail("test@test.com");
-        user.setPassword("pass");*/
         user.setEnabled(true);
-        userService.saveUser(user);
+        if(user.getRoles().equals("ROLE_ADMIN")){
+            Admin admin = new Admin(user);
+            adminService.saveAdmin(admin);
+        }
+//        else if (user.userRole().equals("ROLE_STUDENT")){
+//            Student student = (Student) user;
+//            System.out.println("STUDENT!!!!!!!!!!!!");
+//            studentService.saveStudent(student);
+//        }
+//        else if (user.userRole().equals("ROLE_LECTURER")){
+//            Lecturer lecturer = (Lecturer) user;
+//            System.out.println("LECTURER!!!!!!!!!!!!");
+//            lecturerService.saveLecturer(lecturer);
+//        }
         return "redirect:/users";
     }
 
