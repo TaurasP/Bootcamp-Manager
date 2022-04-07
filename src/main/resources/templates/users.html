@@ -94,7 +94,7 @@
                         <!-- Table rows -->
                         <tbody>
                         <tr th:each="admin : ${adminsList}">
-                            <td th:text="${admin.id+1}"></td>
+                            <td th:text="${counter.getIndex()}"></td>
                             <td th:text="${admin.getFirstName()}"></td>
                             <td th:text="${admin.getLastName()}"></td>
                             <td th:text="${admin.getEmail()}"></td>
@@ -108,7 +108,7 @@
                                 <a th:href="@{/delete-user/{id}(id=${admin.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         <tr th:each="lecturer : ${lecturersList}">
-                            <td th:text="${lecturer.id+1}"></td>
+                            <td th:text="${counter.getIndex()}"></td>
                             <td th:text="${lecturer.getFirstName()}"></td>
                             <td th:text="${lecturer.getLastName()}"></td>
                             <td th:text="${lecturer.getEmail()}"></td>
@@ -123,7 +123,7 @@
                             </td>
                         </tr>
                         <tr th:each="student : ${studentsList}">
-                            <td th:text="${student.id+1}"></td>
+                            <td th:text="${counter.getIndex()}"></td>
                             <td th:text="${student.getFirstName()}"></td>
                             <td th:text="${student.getLastName()}"></td>
                             <td th:text="${student.getEmail()}"></td>
