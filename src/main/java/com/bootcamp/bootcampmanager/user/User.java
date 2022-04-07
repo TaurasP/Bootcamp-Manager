@@ -33,9 +33,11 @@ public class User {
     private boolean enabled;
 
     @Column
-    private String roles;
+    public String roles;
 
     public String userRole() {
+        if(roles == null)
+            return "user with null role";
         if(roles.equals("ROLE_ADMIN"))
             return new String("admin");
         if(roles.equals("ROLE_STUDENT"))
