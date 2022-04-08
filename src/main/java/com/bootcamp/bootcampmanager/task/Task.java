@@ -10,7 +10,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,7 +21,7 @@ import java.util.List;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column
     private String name;
@@ -64,4 +64,22 @@ public class Task {
 
     /*@OneToMany(mappedBy = "task")
     private List<FileDB> files;*/
+
+    public Task(String name, String description, boolean isCompleted, Date deadline, FileDB fileDB) {
+        this.name = name;
+        this.description = description;
+        this.isCompleted = false;
+        this.deadline = deadline;
+        this.fileDB = fileDB;
+    }
+
+    public String getStatus(boolean isCompleted) {
+        String status = "";
+        if(isCompleted) {
+            status = "completed";
+        } else {
+            status = "not started";
+        }
+        return status;
+    }
 }

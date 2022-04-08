@@ -1,5 +1,6 @@
 package com.bootcamp.bootcampmanager.filedb;
 
+import com.bootcamp.bootcampmanager.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,11 +14,11 @@ public class FileDBServiceImpl implements FileDBService{
     @Autowired
     private FileDBRepository fileDBRepository;
 
-    public FileDB saveFile(MultipartFile file) {
-        String docname = file.getOriginalFilename();
+    public FileDB saveFile(MultipartFile file, Task task) {
+        String fileName = file.getOriginalFilename();
         try {
-            FileDB doc = new FileDB(docname,file.getContentType(),file.getBytes());
-            return fileDBRepository.save(doc);
+            FileDB fileDB = new FileDB(fileName,file.getContentType(),file.getBytes(), task);
+            return fileDBRepository.save(fileDB);
         }
         catch(Exception e) {
             e.printStackTrace();

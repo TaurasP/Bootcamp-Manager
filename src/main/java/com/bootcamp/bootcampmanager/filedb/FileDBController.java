@@ -1,5 +1,7 @@
 package com.bootcamp.bootcampmanager.filedb;
 
+import com.bootcamp.bootcampmanager.task.Task;
+import com.bootcamp.bootcampmanager.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -7,10 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -21,6 +20,9 @@ public class FileDBController {
     @Autowired
     private FileDBService fileDBService;
 
+    @Autowired
+    public TaskService taskService;
+
     @GetMapping("/task")
     public String getFiles(Model model) {
         List<FileDB> filesList = fileDBService.getFiles();
@@ -29,16 +31,19 @@ public class FileDBController {
     }
 
     /* Make single file upload */
-    @PostMapping("/uploadFiles")
-    public String uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-        for (MultipartFile file: files) {
-            fileDBService.saveFile(file);
+    @PostMapping("/upload-file")
+    public String uploadMultipleFiles(@ModelAttribute("task") Task task, @RequestParam("files") MultipartFile[] files) {
+
+        for (MultipartFile f: files) {
+            fileDBService.saveFile(f, task);
+            //task.setFileDB(fileDBService.saveFile(f, task));
         }
-        return "redirect:/task";
+        return "redirect:/tasks";
     }
 
-    @GetMapping("/download/{fileId}")
-    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable Long fileId){
+    @GetMapping("/task/{taskId}/file/{fileId}")
+    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable long taskId, @PathVariable Long fileId){
+        taskService.getTaskById(taskId);
         FileDB fileDB = fileDBService.getFile(fileId).get();
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(fileDB.getType()))
