@@ -57,4 +57,10 @@ public class BootcampController {
         return "bootcamp";
     }
 
+    @GetMapping("/link-student/{id}")
+    public String linkStudent(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        return "link-student";
+    }
+
 }
