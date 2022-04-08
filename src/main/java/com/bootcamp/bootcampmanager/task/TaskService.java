@@ -6,7 +6,7 @@ public interface TaskService {
 
     List<Task> getAllTasks();
     void saveTask(Task task);
-    Task getTaskById(long id);
-    void deleteTaskById(long id);
+    Task getTaskById(Long id);
+    void deleteTaskById(Long id);
     /*public List<Task> getTasksByCourse(long courseId);*/
 }

@@ -27,21 +27,21 @@ It's a web application for managing bootcamps.
 
 ## UML use case diagram
 
-- [UML Use Case Diagram](https://drive.google.com/file/d/1eRUpW3hdi2KLrTivJaAsVuUPQJUQfOD-/view?usp=sharing)
+- [UML Use Case Diagram](https://drive.google.com/file/d/1-VAKYnnf2r4ChuVijbJe0vcClGy9ODPb/view?usp=sharing)
 
 ---
 
 ## DB diagram
 
-- [DB diagram](https://drive.google.com/file/d/1T20BFAoDww8ZI9-7hZ4Ugren5qwBBcWn/view?usp=sharing)
+- [DB diagram](https://drive.google.com/file/d/18E37xIysjoBIvGrfJKQ801s0y7cp6FmL/view?usp=sharing)
 
 ---
 
 ## UI prototypes
 
-- [ADMIN prototype](https://drive.google.com/file/d/1d2NyOrZ2WMDcww2ioYTxg_9lY8-HGfIw/view?usp=sharing)
-- [LECTURER prototype](https://drive.google.com/file/d/1Y0YNEjnWQB8fD4N7Thf8SiOwKnxWXqeO/view?usp=sharing)
-- [STUDENT prototype](https://drive.google.com/file/d/1lPl_bx7ggvmbotvgcN-p42WIf-ktes3d/view?usp=sharing)
+- [ADMIN prototype](https://drive.google.com/file/d/1Mi_P7OgGSE3V6lX_2NQPicCDrWw6TcpW/view?usp=sharing)
+- [LECTURER prototype](https://drive.google.com/file/d/1xjy97FvxPdrtMqnnl4R5LCsx5DyZ7ssm/view?usp=sharing)
+- [STUDENT prototype](https://drive.google.com/file/d/1YKynQzmpWRdqqeSpiTVIGRs8J2LTV_CF/view?usp=sharing)
 
 ---
 
@@ -101,15 +101,4 @@ Please make 2 changes in Intellij IDEA Preferences to make Spring Boot DevTools 
 - `Preferences/Build, Execution, Deployment/Compiler/Build Project automatically`(tick this checkbox)
 - `Preferences/Advanced Settings/Allow auto-make to start even if developed application is currently running` (tick this checkbox under Compiler separator)
 
----
-
-~~## Spring Boot Security~~
-
-~~Spring Boot Security out of the box gives you a Login page with authentification. Authentification can be checked by entering:~~
-~~- URL to login: `http://localhost:8080/` / `http://localhost:8080/login`~~
-~~- URL to logout: `http://localhost:8080/logout`~~
-~~- username: `user`~~
-~~- password: (after you run Spring Boot Application, password will be generated and printed in the console. Look for code line: `Using generated security password: db70d73b-9b2f-4933-b284-db9bf525ec46`, password will be different each time. Whitelabel Error Page indicates that authentification was successful.)~~
-
----
 
