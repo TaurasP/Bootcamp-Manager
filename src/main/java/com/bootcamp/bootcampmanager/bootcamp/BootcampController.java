@@ -3,10 +3,7 @@ package com.bootcamp.bootcampmanager.bootcamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller()
 public class BootcampController {
@@ -57,10 +54,30 @@ public class BootcampController {
         return "bootcamp";
     }
 
-    @GetMapping("/link-student/{id}")
-    public String linkStudent(@PathVariable (value = "id") long id, Model model) {
+//    @GetMapping("/link-student/{id}")
+//    public String linkStudent(@PathVariable (value = "id") long id, Model model) {
+//        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+//        return "link-student";
+//    }
+
+    @RequestMapping(value = "/link-student/{id}")
+    public String showCheckbox(@PathVariable (value = "id") long id, Model model) {
+        boolean myBooleanVariable = false;
+        model.addAttribute("myBooleanVariable", myBooleanVariable);
         model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
         return "link-student";
     }
+
+//    @GetMapping("/create")
+//    public String createExample(Model model) {
+//        model.addAttribute("example", new Example());
+//        return "example-form";
+//    }
+//
+        @PostMapping("/insert/{id}")
+        public String insertExample(@PathVariable (value = "id") long id, Model model, boolean myBooleanVariable) {
+            model.addAttribute("myBooleanVariable", myBooleanVariable);
+            return "redirect:/bootcamp/" + id;
+        }
 
 }
