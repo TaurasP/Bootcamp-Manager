@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.project;
 
 
@@ -10,3 +11,4 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 }
+*/

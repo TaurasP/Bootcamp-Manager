@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.course;
 
 import java.util.List;
@@ -14,3 +15,4 @@ public interface CourseService {
 
     void saveCourse(Course course);
 }
+*/

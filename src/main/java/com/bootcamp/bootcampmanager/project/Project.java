@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.project;
 
 import com.bootcamp.bootcampmanager.group.Group;
@@ -34,3 +35,4 @@ public class Project {
     private Group group;
 
 }
+*/

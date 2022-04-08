@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.group;
 
 import com.bootcamp.bootcampmanager.group.GroupService;
@@ -56,3 +57,4 @@ public class GroupController {
     }
 
 }
+*/

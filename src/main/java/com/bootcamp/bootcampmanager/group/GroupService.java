@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.group;
 
 import java.util.List;
@@ -10,3 +11,4 @@ public interface GroupService {
     Group getGroupById(long id);
     void deleteGroupById(long id);
 }
+*/

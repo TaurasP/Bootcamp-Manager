@@ -21,7 +21,11 @@ public class Link {
     @Column
     private String url;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name="task_id")
+    private Task task;*/
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id", referencedColumnName = "id")
     private Task task;
 }

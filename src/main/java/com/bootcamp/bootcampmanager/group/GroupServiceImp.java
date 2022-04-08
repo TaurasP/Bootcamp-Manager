@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.group;
 
 import com.bootcamp.bootcampmanager.group.GroupRepository;
@@ -36,3 +37,4 @@ public class GroupServiceImp implements GroupService{
         groupRepository.deleteById(id);
     }
 }
+*/

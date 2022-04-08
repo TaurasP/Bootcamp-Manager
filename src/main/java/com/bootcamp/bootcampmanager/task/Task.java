@@ -1,6 +1,7 @@
 package com.bootcamp.bootcampmanager.task;
 
-import com.bootcamp.bootcampmanager.course.Course;
+import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
+import com.bootcamp.bootcampmanager.filedb.FileDB;
 import com.bootcamp.bootcampmanager.link.Link;
 import com.bootcamp.bootcampmanager.student.Student;
 import lombok.Getter;
@@ -10,7 +11,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,23 +27,41 @@ public class Task {
     private String name;
 
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateFrom;
+    private String description;
 
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateTo;
+    private Date deadline;
 
     @Column
     private boolean isCompleted;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="course_id", referencedColumnName = "id")
-    private Course course;
+    /*@Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateFrom;*/
 
-    @OneToMany(mappedBy = "task")
-    private List<Link> links;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "link_id", referencedColumnName = "id")
+    private Link link;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_id", referencedColumnName = "id")
+    private FileDB fileDB;
 
     @ManyToMany(mappedBy = "tasks")
-    List<Student> students;
+    private List<Student> students;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bootcamp_id", referencedColumnName = "id")
+    private Bootcamp bootcamp;
+
+    /*@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="course_id", referencedColumnName = "id")
+    private Course course;*/
+
+    /*@OneToMany(mappedBy = "task")
+    private List<Link> links;*/
+
+    /*@OneToMany(mappedBy = "task")
+    private List<FileDB> files;*/
 }
