@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.course;
 
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
@@ -46,3 +47,4 @@ public class Course {
     List<Bootcamp> bootCamps;
 
 }
+*/

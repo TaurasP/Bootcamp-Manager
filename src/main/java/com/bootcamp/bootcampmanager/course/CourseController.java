@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.course;
 
 import com.bootcamp.bootcampmanager.group.Group;
@@ -65,3 +66,4 @@ public class CourseController {
         return "course";
     }
 }
+*/

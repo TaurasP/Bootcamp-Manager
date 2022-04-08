@@ -40,7 +40,7 @@ public class StudentController {
     }
 
     @GetMapping("/update-student/{id}")
-    public String showFormForUpdate(@PathVariable( value = "id") long id, Model model) {
+    public String showStudentFormForUpdate(@PathVariable( value = "id") long id, Model model) {
         Student student = studentService.getStudentById(id);
         model.addAttribute("student", student);
         return "update-student";

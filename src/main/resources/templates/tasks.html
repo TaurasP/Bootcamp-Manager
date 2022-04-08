@@ -23,7 +23,7 @@
 
                     <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
                     <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
-                    <a class="navbar-brand navbar-logo" href="/courses" sec:authorize="hasRole('STUDENT')">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/tasks" sec:authorize="hasRole('STUDENT')">Bootcamp Manager</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -35,21 +35,19 @@
                                 <a class="nav-link" href="/bootcamps">Bootcamps</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
-                                <a class="nav-link" href="/courses">Courses</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
-                                <a class="nav-link" href="/courses">Schedule</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link" href="/users">Users</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
-                                <a class="nav-link" href="/groups">Groups</a>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
+                                <a class="nav-link" href="/students">Students</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                <a class="nav-link" href="/tasks">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/profile">My profile</a>
+                                    <!-- redirect to logged-in user's user page-->
+                                    <!--<a class="dropdown-item" href="/user">My profile</a>-->
                                     <a class="dropdown-item" href="/logout">Logout</a>
                                 </div>
                             </li>
@@ -74,21 +72,9 @@
 
             <br/>
 
-            <!-- Dropdown -->
-            <div style="padding-bottom: 30px">
-                <div th:object="${usersList}">
-                    <select class="dropdown form-control" id="" name="">
-                        <option value=""> Select </option>
-                        <option th:each="user : ${usersList}"
-                                th:value="${user.email}"
-                                th:text="${user.email}"></option>
-                    </select>
-                </div>
-            </div>
-
             <!-- Add button -->
             <div>
-                <a th:href = "@{/new-user}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add </a>
+                <a th:href = "@{/new-task}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add </a>
             </div>
 
             <br/>
@@ -100,28 +86,22 @@
                     <thead>
                     <tr>
                         <th> # </th>
-                        <th> First name </th>
-                        <th> Last name </th>
-                        <th> Email </th>
-                        <th> Password </th>
+                        <th> Name </th>
                         <th> Actions </th>
                     </tr>
                     </thead>
                     <!-- Table rows -->
                     <tbody>
-                    <tr th:each="user : ${usersList}">
-                        <td th:text="${usersList.indexOf(user)+1}"></td>
-                        <td th:text="${user.firstName}"></td>
-                        <td th:text="${user.lastName}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.password}"></td>
+                    <tr th:each="task : ${tasksList}">
+                        <td th:text="${tasksList.indexOf(task)+1}"></td>
+                        <td th:text="${task.name}"></td>
                         <td>
-                            <!-- Open button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-warning"><i class="fa-solid fa-folder-open"></i></a>
+                            <!-- Open bootcamp page button (hardcoded link - it opens not particular bootcamp's page for now) -->
+                            <a th:href="@{/task/{id}(id=${task.id})}" class="btn btn-warning">Open</a>
                             <!-- Edit button -->
-                            <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                            <a th:href="@{/update-task/{id}(id=${task.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                             <!-- Delete button -->
-                            <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            <a th:href="@{/delete-task/{id}(id=${task.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                     </tbody>

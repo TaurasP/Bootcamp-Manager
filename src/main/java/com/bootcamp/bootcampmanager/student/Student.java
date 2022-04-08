@@ -1,7 +1,6 @@
 package com.bootcamp.bootcampmanager.student;
 
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
-import com.bootcamp.bootcampmanager.group.Group;
 import com.bootcamp.bootcampmanager.task.Task;
 
 import com.bootcamp.bootcampmanager.user.User;
@@ -42,20 +41,20 @@ public class Student extends User {
     private String roles;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_id", referencedColumnName = "id")
-    private Group group;
-
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bootcamp_id", referencedColumnName = "id")
     private Bootcamp bootcamp;
 
     @ManyToMany
     @JoinTable(
-            name = "student_task",
+            name = "student_tasks",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "task_id")
     )
     List<Task> tasks;
+
+    /*@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    private Group group;*/
 
     public Student(User user){
         super();

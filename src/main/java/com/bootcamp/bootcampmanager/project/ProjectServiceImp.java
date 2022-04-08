@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.project;
 
 import com.bootcamp.bootcampmanager.project.ProjectRepository;
@@ -11,3 +12,4 @@ public class ProjectServiceImp implements ProjectService{
     public ProjectRepository projectRepository;
 
 }
+*/

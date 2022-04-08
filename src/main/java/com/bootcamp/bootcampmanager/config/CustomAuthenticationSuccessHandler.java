@@ -26,7 +26,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             httpServletResponse.sendRedirect("/students");
         }
         if(roles.contains("ROLE_STUDENT")) {
-            httpServletResponse.sendRedirect("/courses");
+            httpServletResponse.sendRedirect("/tasks");
         }
     }
 }

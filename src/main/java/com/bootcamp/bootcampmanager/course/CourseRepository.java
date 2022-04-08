@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.course;
 
 
@@ -7,3 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
 }
+*/

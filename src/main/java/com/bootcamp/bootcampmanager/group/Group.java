@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.group;
 
 import com.bootcamp.bootcampmanager.project.Project;
@@ -30,3 +31,4 @@ public class Group {
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Project project;
 }
+*/

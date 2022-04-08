@@ -23,6 +23,7 @@
 
                     <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
                     <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/tasks" sec:authorize="hasRole('STUDENT')">Bootcamp Manager</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -30,23 +31,17 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasAnyRole('ADMIN')">
-                                <a class="nav-link" href="/bootcamps">Bootcamps</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
-                                <a class="nav-link" href="/students">Students</a>
-                            </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
-                                <a class="nav-link" href="/courses">Courses</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
-                                <a class="nav-link" href="/courses">Schedule</a>
+                                <a class="nav-link" href="/bootcamps">Bootcamps</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link" href="/users">Users</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
-                                <a class="nav-link" href="/groups">Groups</a>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
+                                <a class="nav-link" href="/students">Students</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" href="/tasks">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
@@ -90,11 +85,11 @@
                     <input type="text" th:field="*{name}"
                            placeholder="Name" class="form-control mb-4 col-4">
 
-                    <input type="date" th:field="${task.dateFrom}"
-                           placeholder="Start date" class="form-control mb-4 col-4">
+                    <input type="text" th:field="*{description}"
+                           placeholder="Description" class="form-control mb-4 col-4">
 
-                    <input type="date" th:field="${task.dateTo}"
-                           placeholder="End date" class="form-control mb-4 col-4">
+                    <input type="date" th:field="${task.deadline}"
+                           placeholder="Deadline" class="form-control mb-4 col-4">
 
                     <!-- Save button -->
                     <button type="submit" class="btn btn-info col-2"> Save </button>
