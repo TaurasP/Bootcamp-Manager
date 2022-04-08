@@ -1,5 +1,7 @@
 package com.bootcamp.bootcampmanager.bootcamp;
 
+import com.bootcamp.bootcampmanager.student.Student;
+import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,10 +11,12 @@ import org.springframework.web.bind.annotation.*;
 public class BootcampController {
 
     private final BootcampService bootcampService;
+    private final StudentService studentService;
 
     @Autowired
-    public BootcampController(BootcampService bootcampService) {
+    public BootcampController(BootcampService bootcampService, StudentService studentService) {
         this.bootcampService = bootcampService;
+        this.studentService = studentService;
     }
 
     @GetMapping("/bootcamps")
@@ -60,10 +64,10 @@ public class BootcampController {
 //        return "link-student";
 //    }
 
-    @RequestMapping(value = "/link-student/{id}")
+    @GetMapping(value = "/link-student/{id}")
     public String showCheckbox(@PathVariable (value = "id") long id, Model model) {
-        boolean myBooleanVariable = false;
-        model.addAttribute("myBooleanVariable", myBooleanVariable);
+        model.addAttribute("variable",  new Variable());
+        model.addAttribute("students",  studentService.getAllStudents());
         model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
         return "link-student";
     }
@@ -75,8 +79,13 @@ public class BootcampController {
 //    }
 //
         @PostMapping("/insert/{id}")
-        public String insertExample(@PathVariable (value = "id") long id, Model model, boolean myBooleanVariable) {
-            model.addAttribute("myBooleanVariable", myBooleanVariable);
+        public String insertExample(@ModelAttribute("variable") Variable variable, @ModelAttribute("bootcamp") Bootcamp bootcamp, @PathVariable (value = "id") long id) {
+            //model.addAttribute("myBooleanVariable", myBooleanVariable);
+            bootcampService.getBootcampById(id).setStudents(bootcamp.getStudents());
+            for(Student i : bootcamp.getStudents()){
+                System.out.println("Zootcamp variable: " + i.getFirstName());
+
+            }
             return "redirect:/bootcamp/" + id;
         }
 

@@ -77,23 +77,20 @@
 
             </div>
 
-<!--            <input-->
-<!--                    type="checkbox"-->
-<!--                    name="myBooleanVariable"-->
-<!--                    th:checked="${myBooleanVariable}"/>-->
-
             <div>
-                <form th:action="@{/insert/{id}(id=${bootcamp.id})}" method="post">
-                    <div class="form-group required-control">
-                        <label for="gre">GRE</label>
-                        <input id="gre" type="checkbox" name="gre" th:checked="*{myBooleanVariable}" />
-<!--                        <label for="gre2">GRE 2</label>-->
-<!--                        <input id="gre2" type="checkbox" name="gre2" th:checked="*{gre2}" />-->
-                    </div>
-                    <button type="submit">Submit Form</button>
+                <form action="#" th:action="@{/insert/{id}(id=${bootcamp.id})}" method="POST">
+
+                    <li th:each="student : ${students}">
+                        <div class = "ui checkbox">
+                            <input type="checkbox" th:field="${bootcamp.students}" th:value="${student.getId()}"/>
+                            <label th:text="${student.getFirstName()}"></label>
+                        </div>
+                    </li>
+
+                    <button type="submit" class="btn btn-info col-2"> Submit </button>
+                </form>
                 </form>
             </div>
-
 
         </div>
     </div>
