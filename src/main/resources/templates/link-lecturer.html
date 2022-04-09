@@ -66,7 +66,7 @@
 
             <!-- Title -->
             <div>
-                <h2> Enroll Students To Bootcamp: "<td th:text="${bootcamp.getName()}"></td>" </h2>
+                <h2> Enroll Lecturers To Bootcamp: "<td th:text="${bootcamp.getName()}"></td>" </h2>
             </div>
 
             <br/>
@@ -79,12 +79,12 @@
 
             <br>
             <div>
-                <form action="#" th:action="@{/insert/{id}(id=${bootcamp.id})}" method="POST">
+                <form action="#" th:action="@{/insertLecturer/{id}(id=${bootcamp.id})}" method="POST">
 
-                    <tr th:each="student : ${students}">
+                    <tr th:each="lecturer : ${lecturers}">
 
-                        <input type="checkbox" id="checkbox" name="checkbox" th:field="${bootcamp.students}" th:value="${student.getId()}"/>
-                        <label for="checkbox" th:text="${student.getFirstName()}"></label>
+                        <input type="checkbox" id="checkbox" name="checkbox" th:field="${bootcamp.campLecturers}" th:value="${lecturer.getId()}"/>
+                        <label for="checkbox" th:text="${lecturer.getFirstName()}"></label>
                         <br>
 
                     </tr>

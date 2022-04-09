@@ -1,5 +1,7 @@
 package com.bootcamp.bootcampmanager.bootcamp;
 
+import com.bootcamp.bootcampmanager.lecturer.Lecturer;
+import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,16 +9,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller()
 public class BootcampController {
 
     private final BootcampService bootcampService;
     private final StudentService studentService;
+    private final LecturerService lecturerService;
 
     @Autowired
-    public BootcampController(BootcampService bootcampService, StudentService studentService) {
+    public BootcampController(BootcampService bootcampService, StudentService studentService, LecturerService lecturerService) {
         this.bootcampService = bootcampService;
         this.studentService = studentService;
+        this.lecturerService = lecturerService;
     }
 
     @GetMapping("/bootcamps")
@@ -59,17 +65,16 @@ public class BootcampController {
     }
 
     @GetMapping(value = "/link-student/{id}")
-    public String showCheckbox(@PathVariable (value = "id") long id, Model model) {
-        model.addAttribute("studentList",  new StudentList());
+    public String showStudentCheckbox(@PathVariable (value = "id") long id, Model model) {
         model.addAttribute("students",  studentService.getAllStudents());
         model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
         return "link-student";
     }
 
     @PostMapping("/insert/{id}")
-    public String insertExample(@ModelAttribute("studentList") StudentList studentList, @PathVariable (value = "id") long id) {
+    public String insertStudent(@ModelAttribute("bootcamp") Bootcamp bootcamp, @PathVariable (value = "id") long id) {
         Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
-        for(Student student : studentList.getEnrolledStudents()){
+        for(Student student : bootcamp.getStudents()){
             student.setBootcamp(thisBootcamp);
             studentService.saveStudent(student);
         }
@@ -91,6 +96,47 @@ public class BootcampController {
         model.addAttribute("student", studentService.getStudentById(id));
         model.addAttribute("bootcamp", bootcampService.getAllBootcamps());
         return "enrolled-student";
+    }
+
+    @GetMapping(value = "/link-lecturer/{id}")
+    public String showLecturerCheckbox(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("lecturers",  lecturerService.getAllLecturers());
+        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        return "link-lecturer";
+    }
+
+    @PostMapping("/insertLecturer/{id}")
+    public String insertExample(@ModelAttribute("bootcamp") Bootcamp bootcamp, @PathVariable (value = "id") long id) {
+        Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
+        for(Lecturer lecturer : bootcamp.getCampLecturers()){
+            List<Bootcamp> joinedBootcamps = lecturer.getJoinedBootcamp();
+            joinedBootcamps.add(thisBootcamp);
+            lecturer.setJoinedBootcamp(joinedBootcamps);
+            lecturerService.saveLecturer(lecturer);
+
+            List<Lecturer> addedLecturers = thisBootcamp.getCampLecturers();
+            addedLecturers.add(lecturer);
+            thisBootcamp.setCampLecturers(addedLecturers);
+            bootcampService.saveBootcamp(thisBootcamp);
+        }
+        return "redirect:/bootcamp/" + id;
+    }
+
+    @GetMapping(value = "/unlink-lecturer/{id}/{ip}")
+    public String unlinkLecturer(@PathVariable (value = "id") long id, @PathVariable (value = "ip") long ip, Model model) {
+
+        Lecturer lecturer = lecturerService.getLecturerById(id);
+        List<Bootcamp> bootcamps = lecturer.getJoinedBootcamp();
+        bootcamps.clear();
+        lecturer.setJoinedBootcamp(bootcamps);
+        lecturerService.saveLecturer(lecturer);
+
+        Bootcamp bootcamp = bootcampService.getBootcampById(ip);
+        List<Lecturer> lecturers = bootcamp.getCampLecturers();
+        lecturers.clear();
+        bootcamp.setCampLecturers(lecturers);
+        bootcampService.saveBootcamp(bootcamp);
+        return new String("redirect:/bootcamp/" + ip);
     }
 
 }
