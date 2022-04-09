@@ -21,7 +21,8 @@
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
 
-                    <a class="navbar-brand navbar-logo" href="/bootcamps">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -29,17 +30,17 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasAnyRole('ADMIN')">
                                 <a class="nav-link" href="/bootcamps">Bootcamps</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="/courses">Courses</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link" href="/users">Users</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="/groups">Groups</a>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
+                                <a class="nav-link" href="/students">Students</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
+                                <a class="nav-link" href="/tasks">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
@@ -64,34 +65,32 @@
         <div class="container">
 
             <!-- Title -->
-            <div style="padding-bottom: 20px">
-                <h2> Add admin </h2>
-            </div>
-
-            <!-- Back button -->
             <div>
-                <a class="btn btn-warning" th:href="@{/users}" role="button"> Back </a>
+                <h2> Enroll Students To Bootcamp: "<td th:text="${bootcamp.getName()}"></td>" </h2>
             </div>
 
             <br/>
 
-            <!-- Admin creation form -->
+            <!-- Back button -->
             <div>
-                <form action="#" th:action="@{/save-user}" th:object="${user}" method="POST">
-                    <input type="text" th:field="*{firstName}"
-                           placeholder="First name" class="form-control mb-4 col-4">
+                <a class="btn btn-warning" th:href="@{/bootcamp/{id}(id=${bootcamp.id})}" role="button" sec:authorize="hasRole('ADMIN')"> Back </a>
 
-                    <input type="text" th:field="*{lastName}"
-                           placeholder="Last name" class="form-control mb-4 col-4">
+            </div>
 
-                    <input type="email" th:field="*{email}"
-                           placeholder="Email" class="form-control mb-4 col-4">
+            <br>
+            <div>
+                <form action="#" th:action="@{/insert/{id}(id=${bootcamp.id})}" method="POST">
 
-                    <input type="text" th:field="*{password}"
-                           placeholder="Password" class="form-control mb-4 col-4">
+                    <tr th:each="student : ${students}">
 
-                    <!-- Save button -->
-                    <button type="submit" class="btn btn-info col-2"> Save </button>
+                        <input type="checkbox" id="checkbox" name="checkbox" th:field="${bootcamp.students}" th:value="${student.getId()}"/>
+                        <label for="checkbox" th:text="${student.getFirstName()}"></label>
+                        <br>
+
+                    </tr>
+                    <br>
+                    <button type="submit" class="btn btn-info col-2"> Submit </button>
+                </form>
                 </form>
             </div>
 

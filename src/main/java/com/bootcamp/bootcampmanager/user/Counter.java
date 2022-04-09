@@ -13,7 +13,6 @@ public class Counter {
         a = 0;
     }
 
-
     public int getIndex(){
         a++;
         return a;
