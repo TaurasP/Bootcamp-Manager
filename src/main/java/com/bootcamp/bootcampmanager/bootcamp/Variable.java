@@ -15,6 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Variable {
 
-    public List<Student> string = new ArrayList<>();
+    public List<Student> enrolledStudents = new ArrayList<>();
 
 }

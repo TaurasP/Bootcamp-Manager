@@ -86,7 +86,7 @@
                                 <tr>
                                     <th> # </th>
                                     <th> Student </th>
-                                    <th> email </th>
+                                    <th> Student email </th>
                                     <th> Actions </th>
                                 </tr>
                                 </thead>
@@ -94,15 +94,15 @@
                                 <tbody>
                                 <tr th:each="student : ${bootcamp.getStudents()}">
                                     <td th:text="${bootcamp.getStudents().indexOf(student)+1}"></td>
-                                    <td th:text="${student.getFirstName() + " " + student.getLastName()}"></td>
+                                    <td th:text="${student.getFirstName()} + ${student.getLastName()}"></td>
                                     <td th:text="${student.getEmail()}"></td>
                                     <td>
-                                        <!-- Open user page button (hardcoded link - it opens not particular bootcamp's page for now) -->
-                                        <a th:href="@{/user}" class="btn btn-warning">Open</a>
-                                        <!-- Edit button -->
-                                        <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                                        <!-- Delete button -->
-                                        <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+<!--                                        &lt;!&ndash; Open user page button (hardcoded link - it opens not particular bootcamp's page for now) &ndash;&gt;-->
+<!--                                        <a th:href="@{/student/{id}(id=${student.id})}" class="btn btn-warning">Open</a>-->
+<!--                                        &lt;!&ndash; Edit button &ndash;&gt;-->
+<!--                                        <a th:href="@{/update-user/{id}(id=${bootcamp.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>-->
+<!--                                        &lt;!&ndash; Delete button &ndash;&gt;-->
+<!--                                        <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>-->
                                     </td>
                                 </tr>
                                 </tbody>

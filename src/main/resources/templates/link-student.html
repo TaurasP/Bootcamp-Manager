@@ -82,7 +82,7 @@
 
                     <li th:each="student : ${students}">
                         <div class = "ui checkbox">
-                            <input type="checkbox" th:field="${bootcamp.students}" th:value="${student.getId()}"/>
+                            <input type="checkbox" th:field="${variable.enrolledStudents}" th:value="${student.getId()}"/>
                             <label th:text="${student.getFirstName()}"></label>
                         </div>
                     </li>

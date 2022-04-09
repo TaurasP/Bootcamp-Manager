@@ -79,12 +79,13 @@ public class BootcampController {
 //    }
 //
         @PostMapping("/insert/{id}")
-        public String insertExample(@ModelAttribute("variable") Variable variable, @ModelAttribute("bootcamp") Bootcamp bootcamp, @PathVariable (value = "id") long id) {
-            //model.addAttribute("myBooleanVariable", myBooleanVariable);
-            bootcampService.getBootcampById(id).setStudents(bootcamp.getStudents());
-            for(Student i : bootcamp.getStudents()){
-                System.out.println("Zootcamp variable: " + i.getFirstName());
-
+        public String insertExample(@ModelAttribute("variable") Variable variable, @PathVariable (value = "id") long id) {
+            Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
+            for(Student i : variable.getEnrolledStudents()){
+                System.out.println("Zootcamp variable: " + i.getFirstName() + " id: " + i.getId() + " bootcamp " + i.getBootcamp());
+                i.setBootcamp(thisBootcamp);
+                System.out.println("Bootcamp set: " + i.getBootcamp());
+                studentService.saveStudent(i);
             }
             return "redirect:/bootcamp/" + id;
         }
