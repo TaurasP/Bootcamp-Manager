@@ -66,7 +66,7 @@
 
             <!-- Title -->
             <div>
-                <h2> Link Student To Bootcamp: <td th:text="${bootcamp.getName()}"></td> </h2>
+                <h2> Enroll Students To Bootcamp: "<td th:text="${bootcamp.getName()}"></td>" </h2>
             </div>
 
             <br/>
@@ -77,16 +77,18 @@
 
             </div>
 
+            <br>
             <div>
                 <form action="#" th:action="@{/insert/{id}(id=${bootcamp.id})}" method="POST">
 
-                    <li th:each="student : ${students}">
-                        <div class = "ui checkbox">
-                            <input type="checkbox" th:field="${studentList.enrolledStudents}" th:value="${student.getId()}"/>
-                            <label th:text="${student.getFirstName()}"></label>
-                        </div>
-                    </li>
+                    <tr th:each="student : ${students}">
 
+                        <input type="checkbox" id="checkbox" name="checkbox" th:field="${studentList.enrolledStudents}" th:value="${student.getId()}"/>
+                        <label for="checkbox" th:text="${student.getFirstName()}"></label>
+                        <br>
+
+                    </tr>
+                    <br>
                     <button type="submit" class="btn btn-info col-2"> Submit </button>
                 </form>
                 </form>

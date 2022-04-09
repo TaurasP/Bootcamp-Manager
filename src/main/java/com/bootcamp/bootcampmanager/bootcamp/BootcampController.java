@@ -86,4 +86,11 @@ public class BootcampController {
         return new String("redirect:/bootcamp/" + index);
     }
 
+    @GetMapping(value = "/enrolled-student/{id}")
+    public String enrolledStudent(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("student", studentService.getStudentById(id));
+        model.addAttribute("bootcamp", bootcampService.getAllBootcamps());
+        return "enrolled-student";
+    }
+
 }
