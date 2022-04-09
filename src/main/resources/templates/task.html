@@ -118,15 +118,17 @@
 
                         <tr>
                             <td> Link </td>
-                            <td></td>
-                            <!--<td th:text="${task.description}"></td>-->
+                            <td>
+                                <!-- Open link button -->
+                                <a th:href="@{'/task/' + ${task.getId()} + '/link/' + ${task.getLink().getId()}}" class="btn btn-warning"> Open </a>
+                            </td>
                         </tr>
 
                         <tr>
                             <td> File </td>
                             <td>
                                 <!-- File download button -->
-                                <a th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}" class="btn btn-warning"> Download </a>
+                                <a th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}" class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>
                             </td>
                         </tr>
                     </tbody>

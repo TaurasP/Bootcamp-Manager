@@ -10,4 +10,5 @@ public interface FileDBService {
     FileDB saveFile(MultipartFile file, Task task);
     Optional<FileDB> getFile(Long fileId);
     List<FileDB> getFiles();
+    void deleteFileById(long id);
 }

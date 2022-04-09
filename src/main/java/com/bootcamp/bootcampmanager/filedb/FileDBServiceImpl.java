@@ -25,10 +25,17 @@ public class FileDBServiceImpl implements FileDBService{
         }
         return null;
     }
+
     public Optional<FileDB> getFile(Long fileId) {
         return fileDBRepository.findById(fileId);
     }
+
     public List<FileDB> getFiles(){
         return fileDBRepository.findAll();
+    }
+
+    @Override
+    public void deleteFileById(long id) {
+        this.fileDBRepository.deleteById(id);
     }
 }

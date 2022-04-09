@@ -1,8 +1,15 @@
 package com.bootcamp.bootcampmanager.link;
 
+import com.bootcamp.bootcampmanager.filedb.FileDB;
 import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
+import com.bootcamp.bootcampmanager.task.Task;
+import com.bootcamp.bootcampmanager.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +24,9 @@ public class LinkController {
 
     @Autowired
     private LinkService linkService;
+
+    @Autowired
+    TaskService taskService;
 
     @GetMapping("/links")
     public String showAllLinks(Model model) {
@@ -34,8 +44,8 @@ public class LinkController {
     }
 
     @PostMapping("/save-link")
-    public String saveLink(@ModelAttribute("link") Link link) {
-        linkService.saveLink(link);
+    public String saveLink(@ModelAttribute("task") Task task, @ModelAttribute("link") Link link) {
+        linkService.saveLink(link, task);
         return "redirect:/links";
     }
 
@@ -52,4 +62,13 @@ public class LinkController {
         return "redirect:/links";
     }
 
+    /*@GetMapping("/task/{taskId}/link/{linkId}")
+    public String openLink(@PathVariable long taskId, @PathVariable long linkId, Model model){
+        taskService.getTaskById(taskId);
+        taskId = linkService.ge(taskService.getTaskById(taskId).getLink().getId());
+        model.addAttribute("task", taskService.getTaskById(taskId));
+
+        model.addAttribute("link", linkService.getLinkById(linkId));
+        return "task";
+    }*/
 }
