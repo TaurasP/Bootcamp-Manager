@@ -23,7 +23,7 @@ public class TaskServiceImp implements TaskService{
     }
 
     @Override
-    public Task getTaskById(long id) {
+    public Task getTaskById(Long id) {
         Optional<Task> optional = taskRepository.findById(id);
         Task task;
         if (optional.isPresent()) {
@@ -35,7 +35,7 @@ public class TaskServiceImp implements TaskService{
     }
 
     @Override
-    public void deleteTaskById(long id) {
+    public void deleteTaskById(Long id) {
         this.taskRepository.deleteById(id);
     }
 

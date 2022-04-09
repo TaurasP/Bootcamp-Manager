@@ -40,7 +40,7 @@
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
                                 <a class="nav-link" href="/students">Students</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
                                 <a class="nav-link" href="/tasks">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -72,9 +72,21 @@
 
             <br/>
 
-            <!-- Add button -->
             <div>
-                <a th:href = "@{/new-task}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add </a>
+                <!-- Select bootcamp button -->
+                <!--<div th:object="${tasksList}" style="width: max-content; padding-bottom: 24px">
+                    <select class="dropdown form-control">
+                        <option value=""> Select bootcamp </option>
+                        <option th:each="task : ${tasksList}"
+                                th:value="${task.name}"
+                                th:text="${task.name}">
+                        </option>
+                    </select>
+                </div>-->
+                <!-- Apply filter button -->
+                <!--<a th:href = "@{/tasks}" class="btn btn-success" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-plus"></i> Add </a>-->
+                <!-- Add button -->
+                <a th:href = "@{/new-task}" class="btn btn-success" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-plus"></i> Add </a>
             </div>
 
             <br/>
@@ -86,7 +98,10 @@
                     <thead>
                     <tr>
                         <th> # </th>
-                        <th> Name </th>
+                        <th> Task </th>
+                        <th> Description </th>
+                        <th> Deadline </th>
+                        <th> Status </th>
                         <th> Actions </th>
                     </tr>
                     </thead>
@@ -95,13 +110,16 @@
                     <tr th:each="task : ${tasksList}">
                         <td th:text="${tasksList.indexOf(task)+1}"></td>
                         <td th:text="${task.name}"></td>
+                        <td th:text="${task.description}"></td>
+                        <td th:text="${#dates.format(task.deadline, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${task.getStatus(task.isCompleted())}"></td>
                         <td>
-                            <!-- Open bootcamp page button (hardcoded link - it opens not particular bootcamp's page for now) -->
+                            <!-- Open selected task's page button -->
                             <a th:href="@{/task/{id}(id=${task.id})}" class="btn btn-warning">Open</a>
                             <!-- Edit button -->
-                            <a th:href="@{/update-task/{id}(id=${task.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                            <!--<a th:href="@{/update-task/{id}(id=${task.id})}" class="btn btn-primary" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-pencil"></i></a>-->
                             <!-- Delete button -->
-                            <a th:href="@{/delete-task/{id}(id=${task.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            <!--<a th:href="@{/delete-task/{id}(id=${task.id})}" class="btn btn-danger" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-trash-can"></i></a>-->
                         </td>
                     </tr>
                     </tbody>
