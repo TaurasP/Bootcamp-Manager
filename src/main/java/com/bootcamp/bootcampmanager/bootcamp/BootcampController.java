@@ -1,21 +1,22 @@
 package com.bootcamp.bootcampmanager.bootcamp;
 
+import com.bootcamp.bootcampmanager.student.Student;
+import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller()
 public class BootcampController {
 
     private final BootcampService bootcampService;
+    private final StudentService studentService;
 
     @Autowired
-    public BootcampController(BootcampService bootcampService) {
+    public BootcampController(BootcampService bootcampService, StudentService studentService) {
         this.bootcampService = bootcampService;
+        this.studentService = studentService;
     }
 
     @GetMapping("/bootcamps")
@@ -55,6 +56,41 @@ public class BootcampController {
     public String showBootcamp(@PathVariable (value = "id") long id, Model model) {
         model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
         return "bootcamp";
+    }
+
+    @GetMapping(value = "/link-student/{id}")
+    public String showCheckbox(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("studentList",  new StudentList());
+        model.addAttribute("students",  studentService.getAllStudents());
+        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        return "link-student";
+    }
+
+    @PostMapping("/insert/{id}")
+    public String insertExample(@ModelAttribute("studentList") StudentList studentList, @PathVariable (value = "id") long id) {
+        Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
+        for(Student student : studentList.getEnrolledStudents()){
+            student.setBootcamp(thisBootcamp);
+            studentService.saveStudent(student);
+        }
+        return "redirect:/bootcamp/" + id;
+    }
+
+    @GetMapping(value = "/unlink-student/{id}")
+    public String unlinkStudent(@PathVariable (value = "id") long id, Model model) {
+
+        Student student = studentService.getStudentById(id);
+        long index = student.getBootcamp().getId();
+        student.setBootcamp(null);
+        studentService.saveStudent(student);
+        return new String("redirect:/bootcamp/" + index);
+    }
+
+    @GetMapping(value = "/enrolled-student/{id}")
+    public String enrolledStudent(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("student", studentService.getStudentById(id));
+        model.addAttribute("bootcamp", bootcampService.getAllBootcamps());
+        return "enrolled-student";
     }
 
 }
