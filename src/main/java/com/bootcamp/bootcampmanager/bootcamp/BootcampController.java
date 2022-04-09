@@ -165,4 +165,14 @@ public class BootcampController {
         }
         return "redirect:/bootcamp/" + id;
     }
+
+    @GetMapping(value = "/unlink-task/{id}")
+    public String unlinkTask(@PathVariable (value = "id") long id, Model model) {
+
+        Task task = taskService.getTaskById(id);
+        long index = task.getBootcamp().getId();
+        task.setBootcamp(null);
+        taskService.saveTask(task);
+        return new String("redirect:/bootcamp/" + index);
+    }
 }
