@@ -58,36 +58,32 @@ public class BootcampController {
         return "bootcamp";
     }
 
-//    @GetMapping("/link-student/{id}")
-//    public String linkStudent(@PathVariable (value = "id") long id, Model model) {
-//        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
-//        return "link-student";
-//    }
-
     @GetMapping(value = "/link-student/{id}")
     public String showCheckbox(@PathVariable (value = "id") long id, Model model) {
-        model.addAttribute("variable",  new Variable());
+        model.addAttribute("studentList",  new StudentList());
         model.addAttribute("students",  studentService.getAllStudents());
         model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
         return "link-student";
     }
 
-//    @GetMapping("/create")
-//    public String createExample(Model model) {
-//        model.addAttribute("example", new Example());
-//        return "example-form";
-//    }
-//
-        @PostMapping("/insert/{id}")
-        public String insertExample(@ModelAttribute("variable") Variable variable, @PathVariable (value = "id") long id) {
-            Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
-            for(Student i : variable.getEnrolledStudents()){
-                System.out.println("Zootcamp variable: " + i.getFirstName() + " id: " + i.getId() + " bootcamp " + i.getBootcamp());
-                i.setBootcamp(thisBootcamp);
-                System.out.println("Bootcamp set: " + i.getBootcamp());
-                studentService.saveStudent(i);
-            }
-            return "redirect:/bootcamp/" + id;
+    @PostMapping("/insert/{id}")
+    public String insertExample(@ModelAttribute("studentList") StudentList studentList, @PathVariable (value = "id") long id) {
+        Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
+        for(Student student : studentList.getEnrolledStudents()){
+            student.setBootcamp(thisBootcamp);
+            studentService.saveStudent(student);
         }
+        return "redirect:/bootcamp/" + id;
+    }
+
+    @GetMapping(value = "/unlink-student/{id}")
+    public String unlinkStudent(@PathVariable (value = "id") long id, Model model) {
+
+        Student student = studentService.getStudentById(id);
+        long index = student.getBootcamp().getId();
+        student.setBootcamp(null);
+        studentService.saveStudent(student);
+        return new String("redirect:/bootcamp/" + index);
+    }
 
 }

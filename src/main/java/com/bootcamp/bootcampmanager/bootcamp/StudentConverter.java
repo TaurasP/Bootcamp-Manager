@@ -17,5 +17,4 @@ public class StudentConverter implements Converter<String, Student> {
     public Student convert(String id){
         return studentService.getStudentById(Integer.parseInt(id));
     }
-
 }

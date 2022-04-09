@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Variable {
+public class StudentList {
 
     public List<Student> enrolledStudents = new ArrayList<>();
 
