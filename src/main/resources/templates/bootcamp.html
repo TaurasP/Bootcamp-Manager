@@ -135,7 +135,7 @@
                         <td th:text="${lecturer.getEmail()}"></td>
                         <td>
                             <!-- Open user page button (hardcoded link - it opens not particular bootcamp's page for now) -->
-<!--                            <a th:href="@{/enrolled-lecturer/{id}(id=${student.id})}" class="btn btn-warning">Open</a>-->
+                            <a th:href="@{/enrolled-lecturer/{id}/{ip}(id=${lecturer.id}, ip=${bootcamp.id})}" class="btn btn-warning">Open</a>
                             <a th:href="@{/unlink-lecturer/{id}/{ip}(id=${lecturer.id}, ip=${bootcamp.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>

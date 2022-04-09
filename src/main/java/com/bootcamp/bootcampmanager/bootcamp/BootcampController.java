@@ -131,16 +131,17 @@ public class BootcampController {
 
         Lecturer lecturer = lecturerService.getLecturerById(id);
         List<Bootcamp> bootcamps = lecturer.getJoinedBootcamp();
-        bootcamps.clear();
+        bootcamps.remove(bootcampService.getBootcampById(ip));
         lecturer.setJoinedBootcamp(bootcamps);
         lecturerService.saveLecturer(lecturer);
-
-//        Bootcamp bootcamp = bootcampService.getBootcampById(ip);
-//        List<Lecturer> lecturers = bootcamp.getCampLecturers();
-//        lecturers.clear();
-//        bootcamp.setCampLecturers(lecturers);
-//        bootcampService.saveBootcamp(bootcamp);
         return new String("redirect:/bootcamp/" + ip);
     }
 
+
+    @GetMapping(value = "/enrolled-lecturer/{id}/{ip}")
+    public String enrolledStudent(@PathVariable (value = "id") long id, @PathVariable (value = "ip") long ip, Model model) {
+        model.addAttribute("lecturer", lecturerService.getLecturerById(id));
+        model.addAttribute("bootcamp", bootcampService.getBootcampById(ip));
+        return "enrolled-lecturer";
+    }
 }
