@@ -8,4 +8,5 @@ public interface StudentService{
     void saveStudent(Student student);
     Student getStudentById(long id);
     void deleteStudentById(long id);
+    List<Student> getStudentByBootcampIdAndTaskId(Long campId, Long taskId);
 }
