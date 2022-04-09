@@ -74,7 +74,7 @@
 
             <div>
                 <!-- Select bootcamp button -->
-                <div th:object="${tasksList}" style="width: max-content; padding-bottom: 24px">
+                <!--<div th:object="${tasksList}" style="width: max-content; padding-bottom: 24px">
                     <select class="dropdown form-control">
                         <option value=""> Select bootcamp </option>
                         <option th:each="task : ${tasksList}"
@@ -82,9 +82,9 @@
                                 th:text="${task.name}">
                         </option>
                     </select>
-                </div>
+                </div>-->
                 <!-- Apply filter button -->
-                <a th:href = "@{/tasks}" class="btn btn-success" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-plus"></i> Add </a>
+                <!--<a th:href = "@{/tasks}" class="btn btn-success" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-plus"></i> Add </a>-->
                 <!-- Add button -->
                 <a th:href = "@{/new-task}" class="btn btn-success" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-plus"></i> Add </a>
             </div>

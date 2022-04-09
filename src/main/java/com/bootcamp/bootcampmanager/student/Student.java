@@ -1,6 +1,7 @@
 package com.bootcamp.bootcampmanager.student;
 
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
+import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.task.Task;
 
 import com.bootcamp.bootcampmanager.user.User;
@@ -56,7 +57,9 @@ public class Student extends User {
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Group group;*/
 
-    public Student(User user){
+    private String trainerName;
+
+    public Student(User user) {
         super();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
@@ -67,7 +70,7 @@ public class Student extends User {
         this.enabled = true;
     }
 
-    public Student(){
+    public Student() {
         super();
         this.roles = "ROLE_STUDENT";
     }
