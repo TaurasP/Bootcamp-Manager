@@ -61,14 +61,4 @@ public class LinkController {
         this.linkService.deleteLinkById(id);
         return "redirect:/links";
     }
-
-    /*@GetMapping("/task/{taskId}/link/{linkId}")
-    public String openLink(@PathVariable long taskId, @PathVariable long linkId, Model model){
-        taskService.getTaskById(taskId);
-        taskId = linkService.ge(taskService.getTaskById(taskId).getLink().getId());
-        model.addAttribute("task", taskService.getTaskById(taskId));
-
-        model.addAttribute("link", linkService.getLinkById(linkId));
-        return "task";
-    }*/
 }

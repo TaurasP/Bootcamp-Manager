@@ -82,26 +82,43 @@
             <!-- Task creation form -->
             <div>
                 <form action="/" th:action="@{/save-task}" th:object="${task}" encType="multipart/form-data" method="POST">
+                    <!-- Add name -->
+                    <a> Name </a>
                     <input type="text" th:field="${task.name}"
-                           placeholder="Name" required class="form-control mb-4 col-4">
+                           required class="form-control mb-4 col-4">
 
-                    <input type="text" th:field="${task.description}"
-                           placeholder="Description" required class="form-control mb-4 col-4">
+                    <!--<input type="text" th:field="${task.description}"
+                           placeholder="Description" required class="form-control mb-4 col-4">-->
 
-                    <input type="text" th:field="${task.link.url}"
-                           placeholder="www.example.com"
+                    <!-- Add description -->
+                    <a> Description </a>
+                    <br/>
+                    <textarea th:text="${task.description}" rows="4" cols="50"></textarea>
+                    <br/>
+
+                    <!-- Add deadline date -->
+                    <a> Deadline </a>
+                    <input type="date" th:field="${task.deadline}"
                            class="form-control mb-4 col-4">
 
-                    <input type="date" th:field="${task.deadline}"
-                           placeholder="Deadline date" class="form-control mb-4 col-4">
+                    <!-- Add link -->
+                    <a> Link </a>
+                    <input type="url" th:field="${task.link.url}"
+                           placeholder="https://www.example.com"
+                           size="100"
+                           class="form-control mb-4 col-4">
 
                     <!-- Upload file -->
-                    <input type="file" name="files" multiple />
+                    <a> File </a>
+                    <br/>
+                    <input type="file" name="files" />
+                    <br/><br/>
 
                     <!-- Save button -->
-                    <!--<div >-->
+                    <div>
                         <button type="submit" value="Upload" class="btn btn-info col-2"> Save </button>
-                    <!--</div>-->
+                    </div>
+
                 </form>
             </div>
 

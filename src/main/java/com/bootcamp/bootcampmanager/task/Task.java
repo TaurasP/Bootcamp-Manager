@@ -101,6 +101,21 @@ public class Task {
         this.deadline = deadline;
     }
 
+    public Task(String name, String description, boolean isCompleted) {
+        this.name = name;
+        this.description = description;
+        this.isCompleted = false;
+    }
+
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Task(String name) {
+        this.name = name;
+    }
+
     public String getStatus(boolean isCompleted) {
         String status = "";
         if(isCompleted) {

@@ -120,15 +120,20 @@
                             <td> Link </td>
                             <td>
                                 <!-- Open link button -->
-                                <!--<a th:href="@{'/task/' + ${task.getId()} + '/link/' + ${task.getLink().getId()}}" class="btn btn-warning"> Open </a>-->
+                                <a th:href="@{${task.link.url}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning"> Open </a>
                             </td>
                         </tr>
 
                         <tr>
                             <td> File </td>
                             <td>
-                                <!-- File download button -->
-                                <a th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}" class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>
+                                <!-- File download button (if !null - show button) -->
+                                <!--<a th:if="${task.fileDB.data != null}" th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
+                                   class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>-->
+
+                                <!-- Download file -->
+                                <a th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
+                                   class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>
                             </td>
                         </tr>
                     </tbody>
