@@ -78,7 +78,7 @@
                 <!-- Edit button -->
                 <a th:href = "@{/link-lecturer/{id}(id=${bootcamp.id})}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Enroll lecturers</a>
                 <a th:href = "@{/link-student/{id}(id=${bootcamp.id})}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Enroll students</a>
-                <a th:href = "@{/link-student/{id}(id=${bootcamp.id})}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add tasks</a>
+                <a th:href = "@{/link-task/{id}(id=${bootcamp.id})}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add tasks</a>
             </div>
             <br>
 
@@ -167,8 +167,8 @@
                         <td th:text="${task.isCompleted()}"></td>
                         <td>
                             <!-- Open user page button (hardcoded link - it opens not particular bootcamp's page for now) -->
-<!--                            <a th:href="@{/enrolled-task/{id}(id=${task.id})}" class="btn btn-warning">Open</a>-->
-<!--                            <a th:href="@{/unlink-task/{id}(id=${task.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>-->
+                            <a th:href="@{/task/{id}(id=${task.id})}" class="btn btn-warning">Open</a>
+                            <a th:href="@{/unlink-task/{id}(id=${task.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                     </tbody>
