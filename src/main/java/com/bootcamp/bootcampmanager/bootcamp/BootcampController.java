@@ -110,14 +110,18 @@ public class BootcampController {
         Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
         for(Lecturer lecturer : bootcamp.getCampLecturers()){
             List<Bootcamp> joinedBootcamps = lecturer.getJoinedBootcamp();
-            joinedBootcamps.add(thisBootcamp);
-            lecturer.setJoinedBootcamp(joinedBootcamps);
-            lecturerService.saveLecturer(lecturer);
+            if(!joinedBootcamps.contains(thisBootcamp)){
+                joinedBootcamps.add(thisBootcamp);
+                lecturer.setJoinedBootcamp(joinedBootcamps);
+                lecturerService.saveLecturer(lecturer);
+            }
 
             List<Lecturer> addedLecturers = thisBootcamp.getCampLecturers();
-            addedLecturers.add(lecturer);
-            thisBootcamp.setCampLecturers(addedLecturers);
-            bootcampService.saveBootcamp(thisBootcamp);
+            if(!addedLecturers.contains(thisBootcamp)){
+                addedLecturers.add(lecturer);
+                thisBootcamp.setCampLecturers(addedLecturers);
+                bootcampService.saveBootcamp(thisBootcamp);
+            }
         }
         return "redirect:/bootcamp/" + id;
     }
@@ -131,11 +135,11 @@ public class BootcampController {
         lecturer.setJoinedBootcamp(bootcamps);
         lecturerService.saveLecturer(lecturer);
 
-        Bootcamp bootcamp = bootcampService.getBootcampById(ip);
-        List<Lecturer> lecturers = bootcamp.getCampLecturers();
-        lecturers.clear();
-        bootcamp.setCampLecturers(lecturers);
-        bootcampService.saveBootcamp(bootcamp);
+//        Bootcamp bootcamp = bootcampService.getBootcampById(ip);
+//        List<Lecturer> lecturers = bootcamp.getCampLecturers();
+//        lecturers.clear();
+//        bootcamp.setCampLecturers(lecturers);
+//        bootcampService.saveBootcamp(bootcamp);
         return new String("redirect:/bootcamp/" + ip);
     }
 
