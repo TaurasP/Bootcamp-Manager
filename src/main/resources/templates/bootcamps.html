@@ -85,8 +85,9 @@
                             <th> Name </th>
                             <th> Start date </th>
                             <th> End date </th>
-                            <th> Enrolled lecturers </th>
-                            <th> Enrolled students </th>
+                            <th> Lecturers </th>
+                            <th> Students </th>
+                            <th> Tasks </th>
                             <th> Actions </th>
                         </tr>
                         </thead>
@@ -99,6 +100,7 @@
                             <td th:text="${#dates.format(bootcamp.dateTo, 'yyyy-MM-dd')}"></td>
                             <td th:text="${bootcamp.getCampLecturers().size()}"></td>
                             <td th:text="${bootcamp.getStudents().size()}"></td>
+                            <td th:text="${bootcamp.getTasks().size()}"></td>
                             <td>
                                 <!-- Open bootcamp page button (hardcoded link - it opens not particular bootcamp's page for now) -->
                                 <a th:href="@{/bootcamp/{id}(id=${bootcamp.id})}" class="btn btn-warning">Open</a>
