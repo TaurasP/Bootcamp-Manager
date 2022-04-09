@@ -2,7 +2,6 @@ package com.bootcamp.bootcampmanager.student;
 
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.bootcamp.BootcampService;
-import com.bootcamp.bootcampmanager.task.Task;
 import com.bootcamp.bootcampmanager.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,14 +32,6 @@ public class StudentController {
         this.studentService = studentService;
         this.bootcampService = bootcampService;
         this.taskService = taskService;
-    }
-
-    @Bean
-    public void setUpSomeConnections(){
-        Bootcamp pythonBegin = bootcampService.getBootcampById(3);
-        Bootcamp pythonAdv = bootcampService.getBootcampById(4);
-
-        Task oOP = taskService.getTaskById(3);
     }
 
     @GetMapping("/students")
