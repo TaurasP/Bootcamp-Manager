@@ -4,6 +4,8 @@ import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
+import com.bootcamp.bootcampmanager.task.Task;
+import com.bootcamp.bootcampmanager.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +19,14 @@ public class BootcampController {
     private final BootcampService bootcampService;
     private final StudentService studentService;
     private final LecturerService lecturerService;
+    private final TaskService taskService;
 
     @Autowired
-    public BootcampController(BootcampService bootcampService, StudentService studentService, LecturerService lecturerService) {
+    public BootcampController(BootcampService bootcampService, StudentService studentService, LecturerService lecturerService, TaskService taskService) {
         this.bootcampService = bootcampService;
         this.studentService = studentService;
         this.lecturerService = lecturerService;
+        this.taskService = taskService;
     }
 
     @GetMapping("/bootcamps")
@@ -143,5 +147,22 @@ public class BootcampController {
         model.addAttribute("lecturer", lecturerService.getLecturerById(id));
         model.addAttribute("bootcamp", bootcampService.getBootcampById(ip));
         return "enrolled-lecturer";
+    }
+
+    @GetMapping(value = "/link-task/{id}")
+    public String showTaskCheckbox(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("tasks", taskService.getAllTasks());
+        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        return "link-task";
+    }
+
+    @PostMapping("/insertTask/{id}")
+    public String insertTask(@ModelAttribute("bootcamp") Bootcamp bootcamp, @PathVariable (value = "id") long id) {
+        Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
+        for(Task task : bootcamp.getTasks()){
+            task.setBootcamp(thisBootcamp);
+            taskService.saveTask(task);
+        }
+        return "redirect:/bootcamp/" + id;
     }
 }
