@@ -28,4 +28,9 @@ public class Link {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "task_id", referencedColumnName = "id")
     private Task task;
+
+    public Link(String url, Task task) {
+        this.url = url;
+        this.task = task;
+    }
 }

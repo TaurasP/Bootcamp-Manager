@@ -1,5 +1,6 @@
 package com.bootcamp.bootcampmanager.link;
 
+import com.bootcamp.bootcampmanager.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,9 @@ public class LinkServiceImpl implements LinkService{
     }
 
     @Override
-    public void saveLink(Link link) {
-        this.linkRepository.save(link);
+    public void saveLink(Link link, Task task) {
+        Link l = new Link(link.getUrl(), task);
+        this.linkRepository.save(l);
     }
 
     @Override

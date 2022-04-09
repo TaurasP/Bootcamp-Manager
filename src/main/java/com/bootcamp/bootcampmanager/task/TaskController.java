@@ -2,6 +2,8 @@ package com.bootcamp.bootcampmanager.task;
 
 import com.bootcamp.bootcampmanager.filedb.FileDB;
 import com.bootcamp.bootcampmanager.filedb.FileDBService;
+import com.bootcamp.bootcampmanager.link.Link;
+import com.bootcamp.bootcampmanager.link.LinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +26,9 @@ public class TaskController {
     @Autowired
     public FileDBService fileDBService;
 
+    @Autowired
+    public LinkService linkService;
+
     /*@Autowired
     public LinkService linkService;*/
 
@@ -42,16 +47,18 @@ public class TaskController {
     }
 
     @PostMapping("/save-task")
-    public String saveTask(@ModelAttribute("task") Task task, @RequestParam("files") MultipartFile[] files) {
+    public String saveTask(@ModelAttribute("task") Task task, @ModelAttribute("link") Link link, @RequestParam("files") MultipartFile[] files) {
 
         for (MultipartFile f : files) {
             task.setFileDB(fileDBService.saveFile(f, task));
         }
 
+        linkService.saveLink(link, task);
         taskService.saveTask(task);
         return "redirect:/tasks";
     }
 
+    /* NEED TO FIX THIS */
     @GetMapping("/update-task/{id}")
     public String showTaskFormForUpdate(@PathVariable( value = "id") long id, Model model) {
         Task task = taskService.getTaskById(id);
@@ -59,9 +66,12 @@ public class TaskController {
         return "update-task";
     }
 
+    /* NEED TO FIX THIS */
     @GetMapping("/delete-task/{id}")
     public String deleteTask(@PathVariable (value = "id") long id) {
         this.taskService.deleteTaskById(id);
+        linkService.deleteLinkById(taskService.getTaskById(id).getLink().getId());
+        fileDBService.deleteFileById(taskService.getTaskById(id).getFileDB().getId());
         return "redirect:/tasks";
     }
 

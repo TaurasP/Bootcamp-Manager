@@ -65,12 +65,40 @@ public class Task {
     /*@OneToMany(mappedBy = "task")
     private List<FileDB> files;*/
 
+    /* File and Link mandatory */
+    public Task(String name, String description, boolean isCompleted, Date deadline, FileDB fileDB, Link link) {
+        this.name = name;
+        this.description = description;
+        this.isCompleted = false;
+        this.deadline = deadline;
+        this.fileDB = fileDB;
+        this.link = link;
+    }
+
+    /* File mandatory */
     public Task(String name, String description, boolean isCompleted, Date deadline, FileDB fileDB) {
         this.name = name;
         this.description = description;
         this.isCompleted = false;
         this.deadline = deadline;
         this.fileDB = fileDB;
+    }
+
+    /* Link mandatory */
+    public Task(String name, String description, boolean isCompleted, Date deadline, Link link) {
+        this.name = name;
+        this.description = description;
+        this.isCompleted = false;
+        this.deadline = deadline;
+        this.link = link;
+    }
+
+    /* No File or Link */
+    public Task(String name, String description, boolean isCompleted, Date deadline) {
+        this.name = name;
+        this.description = description;
+        this.isCompleted = false;
+        this.deadline = deadline;
     }
 
     public String getStatus(boolean isCompleted) {
