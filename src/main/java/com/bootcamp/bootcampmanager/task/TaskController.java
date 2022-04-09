@@ -4,6 +4,8 @@ import com.bootcamp.bootcampmanager.filedb.FileDB;
 import com.bootcamp.bootcampmanager.filedb.FileDBService;
 import com.bootcamp.bootcampmanager.link.Link;
 import com.bootcamp.bootcampmanager.link.LinkService;
+import com.bootcamp.bootcampmanager.student.Student;
+import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,11 +32,21 @@ public class TaskController {
     @Autowired
     public LinkService linkService;
 
-    /*@Autowired
-    public LinkService linkService;*/
+    @Autowired
+    public StudentService studentService;
 
     @GetMapping("/tasks")
-    public String showAllTasks(Model model) {
+    public String showAllTasks(Model model, Principal principal) {
+
+        List<Student> allStudents = studentService.getAllStudents();
+        for(Student student : allStudents){
+            if(student.getEmail().equals(principal.getName())){
+                List<Task> tasksList = student.getBootcamp().getTasks();
+                model.addAttribute("thisStudent", student);
+                model.addAttribute("tasksList", tasksList);
+                return "tasks";
+            }
+        }
         List<Task> tasksList = taskService.getAllTasks();
         model.addAttribute("tasksList", tasksList);
         return "tasks";
