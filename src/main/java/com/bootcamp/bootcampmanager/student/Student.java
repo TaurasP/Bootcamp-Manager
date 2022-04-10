@@ -41,6 +41,10 @@ public class Student extends User {
     @Column
     private String roles;
 
+    @Column
+    @Lob
+    private String completedTasks;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bootcamp_id", referencedColumnName = "id")
     private Bootcamp bootcamp;
@@ -68,15 +72,34 @@ public class Student extends User {
         this.roles = user.roles;
         this.id = user.getId();
         this.enabled = true;
+        this.completedTasks = new String("0");
     }
 
     public Student() {
         super();
         this.roles = "ROLE_STUDENT";
+        this.completedTasks = new String("0");
     }
 
     public String userRole() {
         return "student";
+    }
+
+
+    public void setTaskCompleted(Task task){
+
+        for(String i : this.completedTasks.split(","))
+            if(task.getId().toString().equals(i))
+                return;
+        this.completedTasks += "," + task.getId();
+    }
+
+    public void unsetTaskCompleted(Task task){
+        String[] completed = this.completedTasks.split(",");
+        this.completedTasks = "0";
+        for(String i : completed)
+            if(!task.getId().toString().equals(i))
+                this.completedTasks += "," + i;
     }
 
 }
