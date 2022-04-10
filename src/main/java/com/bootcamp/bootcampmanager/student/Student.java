@@ -41,6 +41,9 @@ public class Student extends User {
     @Column
     private String roles;
 
+    @Column
+    private String completedTasks;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bootcamp_id", referencedColumnName = "id")
     private Bootcamp bootcamp;
@@ -68,15 +71,22 @@ public class Student extends User {
         this.roles = user.roles;
         this.id = user.getId();
         this.enabled = true;
+        this.completedTasks = new String("0");
     }
 
     public Student() {
         super();
         this.roles = "ROLE_STUDENT";
+        this.completedTasks = new String("0");
     }
 
     public String userRole() {
         return "student";
+    }
+
+
+    public void setTaskCompleted(Task task){
+        this.completedTasks += "," + task.getId();
     }
 
 }
