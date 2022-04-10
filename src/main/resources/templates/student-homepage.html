@@ -23,7 +23,7 @@
 
                     <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
                     <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
-                    <a class="navbar-brand navbar-logo" href="/tasks" sec:authorize="hasRole('STUDENT')">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/student-homepage" sec:authorize="hasRole('STUDENT')">Bootcamp Manager</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -100,7 +100,8 @@
                         <td>
                             <!-- Open selected task's page button -->
                             <a th:href="@{/student-task/{id}/{studentId}(id=${task.id}, studentId=${thisStudent.getId()})}" class="btn btn-warning">Open</a>
-                            <a th:href="@{/set-task-completed/{id}/{student}(id=${task.id}, student=${thisStudent.id})}" class="btn btn-warning">Completed?</a>
+                            <a th:href="@{/set-task-completed/{id}/{student}(id=${task.id}, student=${thisStudent.id})}" class="btn btn-warning">Set Completed!</a>
+                            <a th:href="@{/unset-task-completed/{id}/{student}(id=${task.id}, student=${thisStudent.id})}" class="btn btn-warning">Unset Completed!</a>
                             <!-- Edit button -->
                             <!--<a th:href="@{/update-task/{id}(id=${task.id})}" class="btn btn-primary" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')"><i class="fa-solid fa-pencil"></i></a>-->
                             <!-- Delete button -->

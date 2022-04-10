@@ -42,6 +42,7 @@ public class Student extends User {
     private String roles;
 
     @Column
+    @Lob
     private String completedTasks;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -86,7 +87,19 @@ public class Student extends User {
 
 
     public void setTaskCompleted(Task task){
+
+        for(String i : this.completedTasks.split(","))
+            if(task.getId().toString().equals(i))
+                return;
         this.completedTasks += "," + task.getId();
+    }
+
+    public void unsetTaskCompleted(Task task){
+        String[] completed = this.completedTasks.split(",");
+        this.completedTasks = "0";
+        for(String i : completed)
+            if(!task.getId().toString().equals(i))
+                this.completedTasks += "," + i;
     }
 
 }

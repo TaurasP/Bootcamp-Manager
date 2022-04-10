@@ -21,8 +21,6 @@ public class StudentHomepageController {
     private TaskService taskService;
 
 
-
-
     @GetMapping("/student-homepage")
     public String showStudentTasks(Model model, Principal principal) {
 
@@ -53,6 +51,14 @@ public class StudentHomepageController {
     public String setTaskCompleted(@PathVariable(value = "id") long id, @PathVariable(value = "studentId") long studentId, Model model) {
         Student thisStudent = studentService.getStudentById(studentId);
         thisStudent.setTaskCompleted(taskService.getTaskById(id));
+        studentService.saveStudent(thisStudent);
+        return "redirect:/student-homepage";
+    }
+
+    @GetMapping("/unset-task-completed/{id}/{studentId}")
+    public String unsetTaskCompleted(@PathVariable(value = "id") long id, @PathVariable(value = "studentId") long studentId, Model model) {
+        Student thisStudent = studentService.getStudentById(studentId);
+        thisStudent.unsetTaskCompleted(taskService.getTaskById(id));
         studentService.saveStudent(thisStudent);
         return "redirect:/student-homepage";
     }
