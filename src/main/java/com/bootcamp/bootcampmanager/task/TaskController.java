@@ -65,7 +65,6 @@ public class TaskController {
         for (MultipartFile f : files) {
             task.setFileDB(fileDBService.saveFile(f, task));
         }
-
         linkService.saveLink(link, task);
         taskService.saveTask(task);
         return "redirect:/tasks";

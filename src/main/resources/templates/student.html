@@ -76,15 +76,20 @@
                 <h2 th:text="${student.firstName}+' '+${student.lastName}">Student</h2>
             </div>
 
-
-
             <div>
                 <!-- Back button -->
                 <a th:href="@{/students}" class="btn btn-warning"> Back </a>
                 <!-- Edit student's data which was selected from previous page -->
                 <!-- Edit button -->
+
+                <!-- <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-success"><i class="fa-solid fa-pencil"></i> Edit </a> -->
+            </div>
+
+            </br>
+
                 <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-success"><i class="fa-solid fa-pencil"></i> Edit </a>
             </div>
+
 
 
             <!-- Table -->
@@ -92,10 +97,17 @@
                 <table border="1" class="table table-striped table-responsive-md">
                     <!-- Table header -->
                     <thead>
+
+                    <!--                    <tr>-->
+                    <!--                        <th> Title</th>-->
+                    <!--                        <th> Value</th>-->
+                    <!--                    </tr>-->
+
                     <tr>
                         <th> Title</th>
                         <th> Value</th>
                     </tr>
+
                     </thead>
                     <!-- Table rows -->
                     <tbody>
@@ -112,7 +124,10 @@
                         <td th:text="${student.email}"> Value</td>
                     <tr>
                         <td> Bootcamp</td>
+
+                        <td th:text="${student.bootcamp.name} ?: 'Not assigned'"> Value</td>
                         <td th:text="${student.bootcamp} ?: 'Not assigned'"> Value</td>
+
                     </tr>
                     <tr>
                         <td> Trainer</td>
