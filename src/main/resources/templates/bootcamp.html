@@ -152,7 +152,6 @@
                         <th> Title </th>
                         <th> Description </th>
                         <th> Deadline </th>
-                        <th> Completed </th>
                         <th> Actions </th>
 
                     </tr>
@@ -164,7 +163,6 @@
                         <td th:text="${task.getName()}"></td>
                         <td th:text="${task.getDescription()}"></td>
                         <td th:text="${task.getDeadline().toGMTString()}"></td>
-                        <td th:text="${task.isCompleted()}"></td>
                         <td>
                             <!-- Open user page button (hardcoded link - it opens not particular bootcamp's page for now) -->
                             <a th:href="@{/task/{id}(id=${task.id})}" class="btn btn-warning">Open</a>

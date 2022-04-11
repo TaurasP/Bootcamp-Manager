@@ -42,7 +42,6 @@ public class Student extends User {
     private String roles;
 
     @Column
-    @Lob
     private String completedTasks;
 
     @ManyToOne(cascade = CascadeType.ALL)
