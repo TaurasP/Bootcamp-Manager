@@ -38,21 +38,18 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                 <a class="nav-link" href="/students">Students</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="/courses">Schedule</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="/groups">Groups</a>
+                                <a class="nav-link" href="/tasks">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="true" aria-expanded="false"><i
                                         class="fa-solid fa-circle-user"></i></a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/profile">My profile</a>
+                                    <!--<a class="dropdown-item" href="/profile">My profile</a>-->
                                     <a class="dropdown-item" href="/logout">Logout</a>
                                 </div>
                             </li>
@@ -72,71 +69,75 @@
         <div class="container">
 
             <div>
-                <!-- Add here actual student's firstName and lastName -->
-                <h2 th:text="${student.firstName}+' '+${student.lastName}">Student</h2>
+
+                <h2>Sorted Students <a th:text="'in bootcamp: '+${bootcamp}"></a></h2>
+                <h2>Sorted Students</h2>
+
             </div>
 
-            <div>
-                <!-- Back button -->
-                <a th:href="@{/students}" class="btn btn-warning"> Back </a>
-                <!-- Edit student's data which was selected from previous page -->
-                <!-- Edit button -->
+            <br/>
 
-                <!-- <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-success"><i class="fa-solid fa-pencil"></i> Edit </a> -->
+            <!-- Add button -->
+            <div sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
+
+                <a class="btn btn-warning" th:href="@{/students}" role="button"> Back </a>
+                <a class="btn btn-warning" th:href="@{/students}" role="button" > Back </a>
+
             </div>
 
-            </br>
+            <br/>
 
-                <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-success"><i class="fa-solid fa-pencil"></i> Edit </a>
-            </div>
-
-
-
-            <!-- Table -->
             <div>
                 <table border="1" class="table table-striped table-responsive-md">
                     <!-- Table header -->
                     <thead>
-
-                    <!--                    <tr>-->
-                    <!--                        <th> Title</th>-->
-                    <!--                        <th> Value</th>-->
-                    <!--                    </tr>-->
-
                     <tr>
-                        <th> Title</th>
-                        <th> Value</th>
-                    </tr>
+                        <th> #</th>
 
+                        <th>Student</th>
+                        <th>Task: <a th:text="${task}"></a></th>
+                        <th> Name</th>
+                        <th> Surname</th>
+                        <th> email</th>
+                        <th> Actions</th>
+                    </tr>
                     </thead>
                     <!-- Table rows -->
                     <tbody>
-                    <tr>
-                        <td> First name</td>
+                    <tr th:each="entry, stats : ${map}" th:with="student=${entry.key}">
+                        <td th:text="${stats.index+1}"></td>
+                        <td th:text="${student.firstName+' '+student.lastName}"></td>
+                        <td th:text="${entry.value} ? 'Completed' : 'In progress'"></td>
+                        <td>
+<!--                             Open student page button-->
+                            <a th:href="@{/info-student/{id}(id=${student.id})}" class="btn btn-warning">Open</a>
+<!--                             Edit button-->
+<!--                                                        <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-primary"><i-->
+<!--                                                                class="fa-solid fa-pencil"></i></a>-->
+<!--                             Delete button-->
+<!--                                                        <a th:href="@{/delete-student/{id}(id=${student.id})}" class="btn btn-danger"><i-->
+<!--                                                                class="fa-solid fa-trash-can"></i></a>-->
+
+                    <tr th:each="student : ${studentsList}">
+                        <td th:text="${studentsList.indexOf(student)+1}"></td>
                         <td th:text="${student.firstName}"></td>
-                    </tr>
-                    <tr>
-                        <td> Last name</td>
-                        <td th:text="${student.lastName}"> Value</td>
-                    </tr>
-                    <tr>
-                        <td> Email</td>
-                        <td th:text="${student.email}"> Value</td>
-                    <tr>
-                        <td> Bootcamp</td>
+                        <td th:text="${student.lastName}"></td>
+                        <td th:text="${student.getEmail()}"></td>
+                        <td>
+                            <!-- Open student page button  -->
+                            <a th:href="@{/info-student/{id}(id=${student.id})}" class="btn btn-warning">Open</a>
+                            <!-- Edit button -->
+<!--                            <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-primary"><i-->
+<!--                                    class="fa-solid fa-pencil"></i></a>-->
+                            <!-- Delete button -->
+<!--                            <a th:href="@{/delete-student/{id}(id=${student.id})}" class="btn btn-danger"><i-->
+<!--                                    class="fa-solid fa-trash-can"></i></a>-->
 
-                        <td th:text="${student.bootcamp.name} ?: 'Not assigned'"> Value</td>
-                        <td th:text="${student.bootcamp} ?: 'Not assigned'"> Value</td>
-
-                    </tr>
-                    <tr>
-                        <td> Trainer</td>
-                        <td th:text="${student.trainerName}"> Value</td>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 </div>

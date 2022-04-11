@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.link;
 
 import com.bootcamp.bootcampmanager.filedb.FileDB;
@@ -62,3 +63,4 @@ public class LinkController {
         return "redirect:/links";
     }
 }
+*/

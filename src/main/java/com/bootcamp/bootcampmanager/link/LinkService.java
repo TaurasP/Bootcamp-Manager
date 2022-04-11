@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.link;
 
 import com.bootcamp.bootcampmanager.task.Task;
@@ -11,3 +12,4 @@ public interface LinkService {
     Link getLinkById(long id);
     void deleteLinkById(long id);
 }
+*/
