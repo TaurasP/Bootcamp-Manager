@@ -38,11 +38,8 @@ public class TaskController {
     }
 
     @PostMapping("/save-task")
-    public String saveTask(@ModelAttribute("task") Task task, @RequestParam("files") MultipartFile[] files) {
-
-        for (MultipartFile f : files) {
-            task.setFileDB(fileDBService.saveFile(f, task));
-        }
+    public String saveTask(@ModelAttribute("task") Task task, @RequestParam("file") MultipartFile[] files) {
+        task.setFileDB(fileDBService.saveFile(files[0], task));
         taskService.saveTask(task);
         return "redirect:/tasks";
     }

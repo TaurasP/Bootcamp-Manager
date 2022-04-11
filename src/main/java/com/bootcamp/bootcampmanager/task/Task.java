@@ -43,7 +43,7 @@ public class Task {
     @JoinColumn(name = "link_id", referencedColumnName = "id")
     private Link link;*/
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private FileDB fileDB;
 
