@@ -6,6 +6,7 @@ import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.mail.Mail;
 import com.bootcamp.bootcampmanager.mail.MailService;
+import com.bootcamp.bootcampmanager.password.PasswordGeneratorService;
 import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class UserController {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    private PasswordGeneratorService passwordGeneratorService;
+
     @GetMapping("/users")
     public String showAllUsers(Model model) {
         List<Admin> adminsList = adminService.getAllAdmins();
@@ -62,25 +66,22 @@ public class UserController {
         if(user.getRoles() == null)
             return "redirect:/users";
         if(user.getRoles().equals("ROLE_ADMIN")){
+            passwordGeneratorService.generateRandomPassword(user);
             Admin admin = new Admin(user);
             adminService.saveAdmin(admin);
         }
         else if(user.getRoles().equals("ROLE_STUDENT")){
+            passwordGeneratorService.generateRandomPassword(user);
             Student student = new Student(user);
             studentService.saveStudent(student);
         }
         else if(user.getRoles().equals("ROLE_LECTURER")){
+            passwordGeneratorService.generateRandomPassword(user);
             Lecturer lecturer = new Lecturer(user);
             lecturerService.saveLecturer(lecturer);
         }
 
         mailService.sendEmailForNewUser(user);
-        /*Mail mail = new Mail();
-        mail.setMailFrom("bootcamp.manager.2022@gmail.com");
-        mail.setMailTo("taurasp1@gmail.com");
-        mail.setMailSubject("Bootcamp Manager - New User Created");
-        mail.setMailContent("Hello, " + user.getFirstName() + " " + user.getLastName());
-        mailService.sendEmail(mail);*/
         return "redirect:/users";
     }
 

@@ -83,17 +83,13 @@
             <div>
                 <form action="#" th:action="@{/save-student}" th:object="${student}" method="POST">
                     <input type="text" th:field="*{firstName}"
-                           placeholder="First name" class="form-control mb-4 col-4">
+                           placeholder="First name" required class="form-control mb-4 col-4">
 
                     <input type="text" th:field="*{lastName}"
-                           placeholder="Last name" class="form-control mb-4 col-4">
+                           placeholder="Last name" required class="form-control mb-4 col-4">
 
                     <input type="email" th:field="*{email}"
-                           placeholder="Email" class="form-control mb-4 col-4">
-
-                    <input type="text" th:field="*{password}"
-                           placeholder="Password" class="form-control mb-4 col-4">
-
+                           placeholder="Email" required class="form-control mb-4 col-4">
 
                     <button type="submit" class="btn btn-info col-2"> Save </button>
                 </form>
