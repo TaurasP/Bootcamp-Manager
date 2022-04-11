@@ -6,6 +6,7 @@ import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.mail.Mail;
 import com.bootcamp.bootcampmanager.mail.MailService;
+import com.bootcamp.bootcampmanager.mail.MailThread;
 import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +75,8 @@ public class UserController {
             lecturerService.saveLecturer(lecturer);
         }
 
-        mailService.sendEmailForNewUser(user);
+        MailThread mailThread = new MailThread(mailService, user);
+        mailThread.start();
         /*Mail mail = new Mail();
         mail.setMailFrom("bootcamp.manager.2022@gmail.com");
         mail.setMailTo("taurasp1@gmail.com");
