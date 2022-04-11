@@ -6,6 +6,7 @@ import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.mail.Mail;
 import com.bootcamp.bootcampmanager.mail.MailService;
+import com.bootcamp.bootcampmanager.mail.MailThread;
 import com.bootcamp.bootcampmanager.password.PasswordGeneratorService;
 import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
@@ -81,6 +82,14 @@ public class UserController {
             lecturerService.saveLecturer(lecturer);
         }
 
+        MailThread mailThread = new MailThread(mailService, user);
+        mailThread.start();
+        /*Mail mail = new Mail();
+        mail.setMailFrom("bootcamp.manager.2022@gmail.com");
+        mail.setMailTo("taurasp1@gmail.com");
+        mail.setMailSubject("Bootcamp Manager - New User Created");
+        mail.setMailContent("Hello, " + user.getFirstName() + " " + user.getLastName());
+        mailService.sendEmail(mail);*/
         mailService.sendEmailForNewUser(user);
         return "redirect:/users";
     }
