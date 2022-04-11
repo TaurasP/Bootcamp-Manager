@@ -109,16 +109,30 @@
                         <th th:text="${student.getBootcamp().getName()}"></th>
                     </tr>
 
-                    <tr>
-                        <td> Bootcamp start date </td>
-                        <th th:text="${student.getBootcamp().getDateFrom().toGMTString()}"></th>
-                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <br/>
+
+            <!-- Table -->
+            <div th:object="${student}">
+                <table border="1" class="table table-striped table-responsive-md">
+                    <!-- Table header -->
+                    <thead>
                     <tr>
-                        <td> Bootcamp end date </td>
-                        <th th:text="${student.getBootcamp().getDateTo().toGMTString()}"></th>
-                        </td>
+                        <th> Tasks for <a th:text="${student.getFirstName()}"></a> in bootcamp <a th:text="${student.getBootcamp().getName()}"></a> </th>
+                        <th> Task Status </th>
                     </tr>
+                    </thead>
+                    <!-- Table rows -->
+                    <tbody>
+                    <tr th:each="task : ${student.getBootcamp().getTasks()}">
+                        <td th:text="${task.getName()}"></td>
+                        <th th:text="${helper.isTaskCompleted(task.getId(), student.getId())}"></th>
+                    </tr>
+                    <tr>
+
                     </tbody>
                 </table>
             </div>
