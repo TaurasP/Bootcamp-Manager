@@ -1,6 +1,8 @@
 package com.bootcamp.bootcampmanager.task;
 
+import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.filedb.FileDBService;
+import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,6 +24,9 @@ public class TaskController {
 
     @Autowired
     public StudentService studentService;
+
+    @Autowired
+    public LecturerService lecturerService;
 
     @GetMapping("/tasks")
     public String showAllTasks(Model model) {
@@ -74,11 +80,14 @@ public class TaskController {
         return "task";
     }
 
-    @GetMapping("/lecturer-tasks")
-    public String showLecturerTasks(Model model) {
+    @GetMapping("/lecturer-tasks/{id}")
+    public String showLecturerTasks(@PathVariable( value = "id") long id, Model model) {
 
-        List<Task> tasksList = taskService.getAllTasks();
+        List<Task> tasksList = new ArrayList<>();
+        for(Bootcamp bootcamp : lecturerService.getLecturerById(id).getJoinedBootcamp())
+                tasksList.addAll(bootcamp.getTasks());
         model.addAttribute("tasksList", tasksList);
+        model.addAttribute("thisLecturer", lecturerService.getLecturerById(id));
         return "lecturer-tasks";
     }
 }

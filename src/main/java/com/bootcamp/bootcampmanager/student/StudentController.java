@@ -107,6 +107,7 @@ public class StudentController {
     public String showStudentInfo(@PathVariable(value = "id") long id, Model model) {
 
         model.addAttribute("student", studentService.getStudentById(id));
+        model.addAttribute("helper", new StudentHelper(studentService));
         return "student";
     }
 
