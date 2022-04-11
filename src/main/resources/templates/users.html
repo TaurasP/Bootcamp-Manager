@@ -14,131 +14,131 @@
 </head>
 <body class="hero-anime">
 
-<!--    &lt;!&ndash; Top navigation bar &ndash;&gt;-->
-<!--    <div class="navigation-wrap bg-light start-header start-style">-->
-<!--        <div class="container">-->
-<!--            <div class="row">-->
-<!--                <div class="col-12">-->
-<!--                    <nav class="navbar navbar-expand-md navbar-light">-->
+    <!-- Top navigation bar -->
+    <div class="navigation-wrap bg-light start-header start-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-md navbar-light">
 
-<!--                        <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>-->
-<!--                        <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>-->
+                        <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
+                        <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
 
-<!--                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                            <span class="navbar-toggler-icon"></span>-->
-<!--                        </button>-->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-<!--                        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--                            <ul class="navbar-nav ml-auto py-4 py-md-0">-->
-<!--                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">-->
-<!--                                    <a class="nav-link" href="/bootcamps">Bootcamps</a>-->
-<!--                                </li>-->
-<!--                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">-->
-<!--                                    <a class="nav-link" href="/users">Users</a>-->
-<!--                                </li>-->
-<!--                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">-->
-<!--                                    <a class="nav-link" href="/tasks">Tasks</a>-->
-<!--                                </li>-->
-<!--                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">-->
-<!--                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>-->
-<!--                                    <div class="dropdown-menu">-->
-<!--                                        &lt;!&ndash;<a class="dropdown-item" href="/profile">My profile</a>&ndash;&gt;-->
-<!--                                        <a class="dropdown-item" href="/logout">Logout</a>-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/bootcamps">Bootcamps</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                    <a class="nav-link" href="/users">Users</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/tasks">Tasks</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
+                                    <div class="dropdown-menu">
+                                        <!--<a class="dropdown-item" href="/profile">My profile</a>-->
+                                        <a class="dropdown-item" href="/logout">Logout</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
 
-<!--                    </nav>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!--    <br/>-->
+    <br/>
 
-<!--    <div class="section full-height">-->
-<!--        <div class="section" style="padding-top: 80px">-->
-<!--            <div class="container">-->
+    <div class="section full-height">
+        <div class="section" style="padding-top: 80px">
+            <div class="container">
 
-<!--                <div>-->
-<!--                    <h2>Users</h2>-->
-<!--                </div>-->
+                <div>
+                    <h2>Users</h2>
+                </div>
 
-<!--                <br/>-->
+                <br/>
 
-<!--                &lt;!&ndash; Add button &ndash;&gt;-->
-<!--                <div>-->
-<!--                    <a th:href = "@{/new-user}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add </a>-->
-<!--                </div>-->
+                <!-- Add button -->
+                <div>
+                    <a th:href = "@{/new-user}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add </a>
+                </div>
 
-<!--                <br/>-->
+                <br/>
 
-<!--                &lt;!&ndash; Table &ndash;&gt;-->
-<!--                <div>-->
-<!--                    <table border="1" class="table table-striped table-responsive-md">-->
-<!--                        &lt;!&ndash; Table header &ndash;&gt;-->
-<!--                        <thead>-->
-<!--                        <tr>-->
-<!--                            <th> # </th>-->
-<!--                            <th> First name </th>-->
-<!--                            <th> Last name </th>-->
-<!--                            <th> Email </th>-->
-<!--                            <th> Role </th>-->
-<!--                            <th> Actions </th>-->
-<!--                        </tr>-->
-<!--                        </thead>-->
-<!--                        &lt;!&ndash; Table rows &ndash;&gt;-->
-<!--                        <tbody>-->
-<!--                        <tr th:each="admin : ${adminsList}">-->
-<!--                            <td th:text="${counter.getIndex()}"></td>-->
-<!--                            <td th:text="${admin.getFirstName()}"></td>-->
-<!--                            <td th:text="${admin.getLastName()}"></td>-->
-<!--                            <td th:text="${admin.getEmail()}"></td>-->
-<!--                            <td th:text="${admin.userRole()}"></td>-->
-<!--                            <td>-->
-<!--                                &lt;!&ndash; Open user page button (hardcoded link - it opens not particular user's page for now) &ndash;&gt;-->
-<!--                                &lt;!&ndash;<a th:href="@{/user}" class="btn btn-warning">Open</a>&ndash;&gt;-->
-<!--                                &lt;!&ndash; Edit button &ndash;&gt;-->
-<!--                                <a th:href="@{/update-user/{id}(id=${admin.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>-->
-<!--                                &lt;!&ndash; Delete button &ndash;&gt;-->
-<!--                                <a th:href="@{/delete-user/{id}(id=${admin.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>-->
-<!--                            </td>-->
-<!--                        <tr th:each="lecturer : ${lecturersList}">-->
-<!--                            <td th:text="${counter.getIndex()}"></td>-->
-<!--                            <td th:text="${lecturer.getFirstName()}"></td>-->
-<!--                            <td th:text="${lecturer.getLastName()}"></td>-->
-<!--                            <td th:text="${lecturer.getEmail()}"></td>-->
-<!--                            <td th:text="${lecturer.userRole()}"></td>-->
-<!--                            <td>-->
-<!--                                &lt;!&ndash; Open user page button (hardcoded link - it opens not particular user's page for now) &ndash;&gt;-->
-<!--                                &lt;!&ndash;<a th:href="@{/user}" class="btn btn-warning">Open</a>&ndash;&gt;-->
-<!--                                &lt;!&ndash; Edit button &ndash;&gt;-->
-<!--                                <a th:href="@{/update-user/{id}(id=${lecturer.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>-->
-<!--                                &lt;!&ndash; Delete button &ndash;&gt;-->
-<!--                                <a th:href="@{/delete-user/{id}(id=${lecturer.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:each="student : ${studentsList}">-->
-<!--                            <td th:text="${counter.getIndex()}"></td>-->
-<!--                            <td th:text="${student.getFirstName()}"></td>-->
-<!--                            <td th:text="${student.getLastName()}"></td>-->
-<!--                            <td th:text="${student.getEmail()}"></td>-->
-<!--                            <td th:text="${student.userRole()}"></td>-->
-<!--                            <td>-->
-<!--                                &lt;!&ndash; Open user page button (hardcoded link - it opens not particular user's page for now) &ndash;&gt;-->
-<!--                                &lt;!&ndash;<a th:href="@{/user}" class="btn btn-warning">Open</a>&ndash;&gt;-->
-<!--                                &lt;!&ndash; Edit button &ndash;&gt;-->
-<!--                                <a th:href="@{/update-user/{id}(id=${student.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>-->
-<!--                                &lt;!&ndash; Delete button &ndash;&gt;-->
-<!--                                <a th:href="@{/delete-user/{id}(id=${student.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        </tbody>-->
-<!--                    </table>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+                <!-- Table -->
+                <div>
+                    <table border="1" class="table table-striped table-responsive-md">
+                        <!-- Table header -->
+                        <thead>
+                        <tr>
+                            <th> # </th>
+                            <th> First name </th>
+                            <th> Last name </th>
+                            <th> Email </th>
+                            <th> Role </th>
+                            <th> Actions </th>
+                        </tr>
+                        </thead>
+                        <!-- Table rows -->
+                        <tbody>
+                        <tr th:each="admin : ${adminsList}">
+                            <td th:text="${counter.getIndex()}"></td>
+                            <td th:text="${admin.getFirstName()}"></td>
+                            <td th:text="${admin.getLastName()}"></td>
+                            <td th:text="${admin.getEmail()}"></td>
+                            <td th:text="${admin.userRole()}"></td>
+                            <td>
+                                <!-- Open user page button (hardcoded link - it opens not particular user's page for now) -->
+                                <!--<a th:href="@{/user}" class="btn btn-warning">Open</a>-->
+                                <!-- Edit button -->
+                                <a th:href="@{/update-user/{id}(id=${admin.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                <!-- Delete button -->
+                                <a th:href="@{/delete-user/{id}(id=${admin.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        <tr th:each="lecturer : ${lecturersList}">
+                            <td th:text="${counter.getIndex()}"></td>
+                            <td th:text="${lecturer.getFirstName()}"></td>
+                            <td th:text="${lecturer.getLastName()}"></td>
+                            <td th:text="${lecturer.getEmail()}"></td>
+                            <td th:text="${lecturer.userRole()}"></td>
+                            <td>
+                                <!-- Open user page button (hardcoded link - it opens not particular user's page for now) -->
+                                <!--<a th:href="@{/user}" class="btn btn-warning">Open</a>-->
+                                <!-- Edit button -->
+                                <a th:href="@{/update-user/{id}(id=${lecturer.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                <!-- Delete button -->
+                                <a th:href="@{/delete-user/{id}(id=${lecturer.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                        <tr th:each="student : ${studentsList}">
+                            <td th:text="${counter.getIndex()}"></td>
+                            <td th:text="${student.getFirstName()}"></td>
+                            <td th:text="${student.getLastName()}"></td>
+                            <td th:text="${student.getEmail()}"></td>
+                            <td th:text="${student.userRole()}"></td>
+                            <td>
+                                <!-- Open user page button (hardcoded link - it opens not particular user's page for now) -->
+                                <!--<a th:href="@{/user}" class="btn btn-warning">Open</a>-->
+                                <!-- Edit button -->
+                                <a th:href="@{/update-user/{id}(id=${student.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                <!-- Delete button -->
+                                <a th:href="@{/delete-user/{id}(id=${student.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
