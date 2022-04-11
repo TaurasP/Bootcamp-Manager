@@ -39,6 +39,7 @@ public class TaskController {
 
     @PostMapping("/save-task")
     public String saveTask(@ModelAttribute("task") Task task, @RequestParam("file") MultipartFile[] files) {
+        /*fileDBService.saveFile(files[0]);*/
         task.setFileDB(fileDBService.saveFile(files[0], task));
         taskService.saveTask(task);
         return "redirect:/tasks";
@@ -51,11 +52,10 @@ public class TaskController {
         return "update-task";
     }
 
-    /* NEED TO FIX THIS */
     @GetMapping("/delete-task/{id}")
     public String deleteTask(@PathVariable (value = "id") long id) {
         this.taskService.deleteTaskById(id);
-        fileDBService.deleteFileById(taskService.getTaskById(id).getFileDB().getId());
+        //fileDBService.deleteFileById(taskService.getTaskById(id).getFileDB().getId());
         return "redirect:/tasks";
     }
 

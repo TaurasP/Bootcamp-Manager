@@ -34,10 +34,7 @@ public class FileDBController {
     @PostMapping("/upload-file")
     public String uploadMultipleFiles(@ModelAttribute("task") Task task, @RequestParam("files") MultipartFile[] files) {
 
-        for (MultipartFile f: files) {
-            fileDBService.saveFile(f, task);
-            //task.setFileDB(fileDBService.saveFile(f, task));
-        }
+        task.setFileDB(fileDBService.saveFile(files[0], task));
         return "redirect:/tasks";
     }
 
