@@ -28,7 +28,7 @@
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
 
-                    <a class="navbar-brand navbar-logo" href="/students">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/students">Bootcamp Manager: Lecturer Profile</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -42,7 +42,7 @@
                                 <a class="nav-link" href="/students">Students</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="/lecturer-tasks">Tasks</a>
+                                <a class="nav-link" th:href="@{/lecturer-tasks/{id}(id=${thisLecturer.id})}">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
@@ -68,7 +68,7 @@
     <div class="section" style="padding-top: 80px">
         <div class="container">
             <div>
-                <h2>Bootcamps assigned for lecturer <td th:text="${thisLecturer.getFirstName()}"></td> </h2>
+                <h2>Bootcamps assigned for lecturer <td th:text="${thisLecturer.getFirstName()}" </h2>
             </div>
 
 
