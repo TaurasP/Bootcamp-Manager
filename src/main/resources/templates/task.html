@@ -112,15 +112,10 @@
                         </tr>
 
                         <tr>
-                            <td> Status </td>
-                            <td th:text="${task.getStatus(task.isCompleted())}"></td>
-                        </tr>
-
-                        <tr>
                             <td> Link </td>
                             <td>
                                 <!-- Open link button -->
-                                <a th:href="@{${task.link.url}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning"> Open </a>
+                                <a th:href="@{${task.linkURL}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning"> Open </a>
                             </td>
                         </tr>
 

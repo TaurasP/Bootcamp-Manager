@@ -1,3 +1,4 @@
+/*
 package com.bootcamp.bootcampmanager.link;
 
 import com.bootcamp.bootcampmanager.task.Task;
@@ -41,3 +42,4 @@ public class LinkServiceImpl implements LinkService{
         this.linkRepository.deleteById(id);
     }
 }
+*/

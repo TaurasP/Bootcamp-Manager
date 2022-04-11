@@ -2,7 +2,6 @@ package com.bootcamp.bootcampmanager.task;
 
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.filedb.FileDB;
-import com.bootcamp.bootcampmanager.link.Link;
 import com.bootcamp.bootcampmanager.student.Student;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,15 +33,15 @@ public class Task {
     private Date deadline;
 
     @Column
-    private boolean isCompleted;
+    private String linkURL;
 
     /*@Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFrom;*/
 
-    @OneToOne(cascade = CascadeType.ALL)
+    /*@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "link_id", referencedColumnName = "id")
-    private Link link;
+    private Link link;*/
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
@@ -65,46 +64,36 @@ public class Task {
     /*@OneToMany(mappedBy = "task")
     private List<FileDB> files;*/
 
-    /* File and Link mandatory */
-    public Task(String name, String description, boolean isCompleted, Date deadline, FileDB fileDB, Link link) {
+    /* File and link mandatory */
+    public Task(String name, String description, Date deadline, FileDB fileDB, String linkURL) {
         this.name = name;
         this.description = description;
-        this.isCompleted = false;
         this.deadline = deadline;
         this.fileDB = fileDB;
-        this.link = link;
+        this.linkURL = linkURL;
     }
 
     /* File mandatory */
-    public Task(String name, String description, boolean isCompleted, Date deadline, FileDB fileDB) {
+    public Task(String name, String description, Date deadline, FileDB fileDB) {
         this.name = name;
         this.description = description;
-        this.isCompleted = false;
         this.deadline = deadline;
         this.fileDB = fileDB;
     }
 
     /* Link mandatory */
-    public Task(String name, String description, boolean isCompleted, Date deadline, Link link) {
+    public Task(String name, String description, Date deadline, String linkURL) {
         this.name = name;
         this.description = description;
-        this.isCompleted = false;
         this.deadline = deadline;
-        this.link = link;
+        this.linkURL = linkURL;
     }
 
-    /* No File or Link */
-    public Task(String name, String description, boolean isCompleted, Date deadline) {
+    /* No File or Link mandatory */
+    public Task(String name, String description, Date deadline) {
         this.name = name;
         this.description = description;
-        this.isCompleted = false;
         this.deadline = deadline;
-    }
-
-    public Task(String name, String description, boolean isCompleted) {
-        this.name = name;
-        this.description = description;
-        this.isCompleted = false;
     }
 
     public Task(String name, String description) {
@@ -116,7 +105,7 @@ public class Task {
         this.name = name;
     }
 
-    public String getStatus(boolean isCompleted) {
+    /*public String getStatus(boolean isCompleted) {
         String status = "";
         if(isCompleted) {
             status = "completed";
@@ -124,5 +113,5 @@ public class Task {
             status = "not started";
         }
         return status;
-    }
+    }*/
 }

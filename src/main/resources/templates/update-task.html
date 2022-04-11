@@ -81,21 +81,16 @@
 
             <!-- Task update form -->
             <div>
-                <form action="#" th:action="@{/save-task}" th:object="${task}" method="POST">
+                <form action="#" th:action="@{/save-task}" th:object="${task}" encType="multipart/form-data" method="POST">
                     <input type="hidden" th:field="*{id}"/>
 
                     <!-- Edit name -->
                     <a> Name </a>
                     <input type="text" th:field="*{name}" required class="form-control mb-4 col-4">
 
-                    <!--<a> Description </a>
-                    <input type="text" th:field="*{description}" class="form-control mb-4 col-4">-->
-
                     <!-- Edit description -->
                     <a> Description </a>
-                    <br/>
-                    <textarea th:text="${task.description}" rows="4" cols="50"></textarea>
-                    <br/>
+                    <input type="text" th:field="*{description}" class="form-control mb-4 col-4">
 
                     <!-- Edit deadline date -->
                     <a> Deadline </a>
@@ -104,7 +99,7 @@
 
                     <!-- Edit link -->
                     <a> Link </a>
-                    <input type="url" th:field="${task.link.url}"
+                    <input type="url" th:field="${task.linkURL}"
                            placeholder="https://www.example.com"
                            size="100"
                            class="form-control mb-4 col-4">
@@ -112,7 +107,7 @@
                     <!-- Upload file -->
                     <a> File </a>
                     <br/>
-                    <input type="file" name="files" />
+                    <input type="file" name="file" />
                     <br/><br/>
 
                     <!-- Save button -->
