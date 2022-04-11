@@ -77,6 +77,15 @@ public class StudentController {
     public String saveStudent(@ModelAttribute("student") Student student) {
         student.setEnabled(true);
         student.setRoles("ROLE_STUDENT");
+        try{
+            long bootcampID = student.getBootcamp().getId();
+            if(bootcampID != 0)
+                student.setBootcamp(bootcampService.getBootcampById(bootcampID));
+        }
+        catch (Exception e){
+            studentService.saveStudent(student);
+            return "redirect:/students";
+        }
         studentService.saveStudent(student);
         return "redirect:/students";
     }

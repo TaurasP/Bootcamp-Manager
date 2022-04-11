@@ -73,4 +73,12 @@ public class TaskController {
         model.addAttribute("taskStatus", task);
         return "task";
     }
+
+    @GetMapping("/lecturer-tasks")
+    public String showLecturerTasks(Model model) {
+
+        List<Task> tasksList = taskService.getAllTasks();
+        model.addAttribute("tasksList", tasksList);
+        return "lecturer-tasks";
+    }
 }
