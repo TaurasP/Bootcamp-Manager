@@ -37,7 +37,6 @@ public class StudentServiceImp implements StudentService {
         } else {
             throw new RuntimeException("Not found student: " + id);
         }
-        student.setTrainerName(findLecturer(student));
         return student;
     }
 
@@ -46,28 +45,28 @@ public class StudentServiceImp implements StudentService {
         this.studentRepository.deleteById(id);
     }
 
-    @Override
-    public Map<Student, Boolean> getAllStudentsByBootcampIdAndTaskId(Long campId, Long taskId) {
-    public List<Student> getStudentByBootcampIdAndTaskId(Long campId, Long taskId) {
-
-        List<Student> collect = getAllStudents().stream()
-                .filter(student -> student.getBootcamp().getId() == campId)
-                .filter(student -> student.getTasks()
-                        .stream()
-                        .anyMatch(task -> task.getId() == taskId))
-                .collect(Collectors.toList());
-
-        Map<Student, Boolean> studentTaskMap = collect.stream()
-                .collect(Collectors.toMap(student -> student,
-                        student ->
-                                student.getTasks().stream()
-                                        .filter(task -> task.getId() == taskId)
-                                        .findFirst().get().isCompleted()
-                ));
-        return studentTaskMap;
-        return collect;
-
-    }
+//    @Override
+//    public Map<Student, Boolean> getAllStudentsByBootcampIdAndTaskId(Long campId, Long taskId) {
+//    public List<Student> getStudentByBootcampIdAndTaskId(Long campId, Long taskId) {
+//
+//        List<Student> collect = getAllStudents().stream()
+//                .filter(student -> student.getBootcamp().getId() == campId)
+//                .filter(student -> student.getTasks()
+//                        .stream()
+//                        .anyMatch(task -> task.getId() == taskId))
+//                .collect(Collectors.toList());
+//
+//        Map<Student, Boolean> studentTaskMap = collect.stream()
+//                .collect(Collectors.toMap(student -> student,
+//                        student ->
+//                                student.getTasks().stream()
+//                                        .filter(task -> task.getId() == taskId)
+//                                        .findFirst().get().isCompleted()
+//                ));
+//        return studentTaskMap;
+//        return collect;
+//
+//    }
 
     private String findLecturer(Student student) {
         if (student.getBootcamp() != null) {

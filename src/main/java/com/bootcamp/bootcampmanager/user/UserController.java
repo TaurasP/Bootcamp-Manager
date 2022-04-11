@@ -38,7 +38,7 @@ public class UserController {
         List<Lecturer> lecturersList = lecturerService.getAllLecturers();
         model.addAttribute("lecturersList", lecturersList);
         List<Student> studentsList = studentService.getAllStudents();
-        model.addAttribute("studentsList", studentsList);
+//        model.addAttribute("studentsList", studentsList);
         Counter counter = new Counter();
         model.addAttribute("counter", counter);
         return "users";
