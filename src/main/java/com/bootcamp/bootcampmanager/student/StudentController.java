@@ -2,6 +2,7 @@ package com.bootcamp.bootcampmanager.student;
 
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.bootcamp.BootcampService;
+import com.bootcamp.bootcampmanager.task.Task;
 import com.bootcamp.bootcampmanager.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -75,6 +77,7 @@ public class StudentController {
 
     @GetMapping("/info-student/{id}")
     public String showStudentInfo(@PathVariable(value = "id") long id, Model model) {
+//        studentService.getStudentById(id).getBootcamp().g
         model.addAttribute("student", studentService.getStudentById(id));
         return "student";
     }
@@ -98,8 +101,15 @@ public class StudentController {
         if (taskId == 0 || campId == 0) {
             return "redirect:/students";
         }
-        model.addAttribute("studentsList",
-                studentService.getStudentByBootcampIdAndTaskId(campId, taskId));
+        Map<Student, Boolean> map = studentService.getAllStudentsByBootcampIdAndTaskId(campId, taskId);
+
+        System.out.println("Map size: "+map.size());
+
+        model.addAttribute("bootcamp", bootcampService.getBootcampById(campId).getName());
+        model.addAttribute("task", taskService.getTaskById(taskId).getName());
+        model.addAttribute("map",
+                studentService.getAllStudentsByBootcampIdAndTaskId(campId, taskId)
+        );
         return "sorted-students";
     }
 

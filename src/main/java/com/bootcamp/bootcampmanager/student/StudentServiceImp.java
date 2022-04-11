@@ -2,11 +2,14 @@ package com.bootcamp.bootcampmanager.student;
 
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.lecturer.Lecturer;
+import com.bootcamp.bootcampmanager.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,14 +47,23 @@ public class StudentServiceImp implements StudentService {
     }
 
     @Override
-    public List<Student> getStudentByBootcampIdAndTaskId(Long campId, Long taskId) {
+    public Map<Student, Boolean> getAllStudentsByBootcampIdAndTaskId(Long campId, Long taskId) {
         List<Student> collect = getAllStudents().stream()
                 .filter(student -> student.getBootcamp().getId() == campId)
                 .filter(student -> student.getTasks()
                         .stream()
                         .anyMatch(task -> task.getId() == taskId))
                 .collect(Collectors.toList());
-        return collect;
+
+
+        Map<Student, Boolean> studentTaskMap = collect.stream()
+                .collect(Collectors.toMap(student -> student,
+                        student ->
+                                student.getTasks().stream()
+                                        .filter(task -> task.getId() == taskId)
+                                        .findFirst().get().isCompleted()
+                ));
+        return studentTaskMap;
     }
 
     private String findLecturer(Student student) {
