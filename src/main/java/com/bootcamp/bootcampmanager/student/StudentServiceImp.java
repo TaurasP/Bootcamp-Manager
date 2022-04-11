@@ -48,13 +48,14 @@ public class StudentServiceImp implements StudentService {
 
     @Override
     public Map<Student, Boolean> getAllStudentsByBootcampIdAndTaskId(Long campId, Long taskId) {
+    public List<Student> getStudentByBootcampIdAndTaskId(Long campId, Long taskId) {
+
         List<Student> collect = getAllStudents().stream()
                 .filter(student -> student.getBootcamp().getId() == campId)
                 .filter(student -> student.getTasks()
                         .stream()
                         .anyMatch(task -> task.getId() == taskId))
                 .collect(Collectors.toList());
-
 
         Map<Student, Boolean> studentTaskMap = collect.stream()
                 .collect(Collectors.toMap(student -> student,
@@ -64,6 +65,8 @@ public class StudentServiceImp implements StudentService {
                                         .findFirst().get().isCompleted()
                 ));
         return studentTaskMap;
+        return collect;
+
     }
 
     private String findLecturer(Student student) {

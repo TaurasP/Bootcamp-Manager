@@ -102,8 +102,13 @@
                             </select>
                         </td>
                         <td>
+
                             <button type="submit" class="btn btn-warning"> Apply Filter</button>
                             <!--                         <a th:href="@{/students/{id}(id=bootcampList.value)}" class="btn btn-warning">Open</a>-->
+
+                            <button type="submit" class="btn btn-warning"> Show Students</button>
+<!--                         <a th:href="@{/students/{id}(id=bootcampList.value)}" class="btn btn-warning">Open</a>-->
+
                         </td>
                     </tr>
                     </tbody>
@@ -119,7 +124,12 @@
                     <thead>
                     <tr>
                         <th> #</th>
+
                         <th> Student</th>
+
+                        <th> Name</th>
+                        <th> Surname</th>
+
                         <th> email</th>
                         <th> Actions</th>
                     </tr>
@@ -128,17 +138,30 @@
                     <tbody>
                     <tr th:each="student : ${studentsList}">
                         <td th:text="${studentsList.indexOf(student)+1}"></td>
+
                         <td th:text="${student.firstName+' '+student.lastName}"></td>
+
+                        <td th:text="${student.firstName}"></td>
+                        <td th:text="${student.lastName}"></td>
+
                         <td th:text="${student.getEmail()}"></td>
                         <td>
                             <!-- Open student page button  -->
                             <a th:href="@{/info-student/{id}(id=${student.id})}" class="btn btn-warning">Open</a>
                             <!-- Edit button -->
+
                             <!-- <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-primary"><i -->
                             <!-- class="fa-solid fa-pencil"></i></a> -->
                             <!-- Delete button -->
                             <!-- <a th:href="@{/delete-student/{id}(id=${student.id})}" class="btn btn-danger"><i -->
                             <!-- class="fa-solid fa-trash-can"></i></a> -->
+
+                            <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-primary"><i
+                                    class="fa-solid fa-pencil"></i></a>
+                            <!-- Delete button -->
+                            <a th:href="@{/delete-student/{id}(id=${student.id})}" class="btn btn-danger"><i
+                                    class="fa-solid fa-trash-can"></i></a>
+
                         </td>
                     </tr>
                     </tbody>

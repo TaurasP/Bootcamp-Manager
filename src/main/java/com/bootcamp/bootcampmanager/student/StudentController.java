@@ -77,7 +77,7 @@ public class StudentController {
 
     @GetMapping("/info-student/{id}")
     public String showStudentInfo(@PathVariable(value = "id") long id, Model model) {
-//        studentService.getStudentById(id).getBootcamp().g
+
         model.addAttribute("student", studentService.getStudentById(id));
         return "student";
     }
@@ -110,6 +110,9 @@ public class StudentController {
         model.addAttribute("map",
                 studentService.getAllStudentsByBootcampIdAndTaskId(campId, taskId)
         );
+
+        model.addAttribute("studentsList",
+                studentService.getStudentByBootcampIdAndTaskId(campId, taskId));
         return "sorted-students";
     }
 
