@@ -4,6 +4,8 @@ import com.bootcamp.bootcampmanager.admin.Admin;
 import com.bootcamp.bootcampmanager.admin.AdminService;
 import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
+import com.bootcamp.bootcampmanager.mail.Mail;
+import com.bootcamp.bootcampmanager.mail.MailService;
 import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class UserController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private MailService mailService;
 
     @GetMapping("/users")
     public String showAllUsers(Model model) {
@@ -68,6 +73,14 @@ public class UserController {
             Lecturer lecturer = new Lecturer(user);
             lecturerService.saveLecturer(lecturer);
         }
+
+        mailService.sendEmailForNewUser(user);
+        /*Mail mail = new Mail();
+        mail.setMailFrom("bootcamp.manager.2022@gmail.com");
+        mail.setMailTo("taurasp1@gmail.com");
+        mail.setMailSubject("Bootcamp Manager - New User Created");
+        mail.setMailContent("Hello, " + user.getFirstName() + " " + user.getLastName());
+        mailService.sendEmail(mail);*/
         return "redirect:/users";
     }
 

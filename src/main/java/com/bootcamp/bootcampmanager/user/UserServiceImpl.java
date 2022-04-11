@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -21,8 +21,6 @@ public class UserServiceImpl implements UserService{
     public void saveUser(User user) {
         this.userRepository.save(user);
     }
-
-
 
     @Override
     public User getUserById(long id) {
