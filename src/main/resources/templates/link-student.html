@@ -84,7 +84,7 @@
                     <tr th:each="student : ${students}">
 
                         <input type="checkbox" id="checkbox" name="checkbox" th:field="${bootcamp.students}" th:value="${student.getId()}"/>
-                        <label for="checkbox" th:text="${student.getFirstName()}"></label>
+                        <label for="checkbox" th:text="${student.getFirstName()} + ' ' + ${student.getLastName()}"></label>
                         <br>
 
                     </tr>
