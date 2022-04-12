@@ -41,7 +41,7 @@
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                 <div class="dropdown-menu">
-                                    <!--<a class="dropdown-item" href="/profile">My profile</a>-->
+                                    <a class="dropdown-item" href="/user">My profile</a>
                                     <a class="dropdown-item" href="/logout">Logout</a>
                                 </div>
                             </li>
@@ -88,8 +88,7 @@
                     <a> Email </a>
                     <input type="email" th:field="*{email}" class="form-control mb-4 col-4">
 
-                    <a style="padding-left: 12px"> Select role: </a>
-
+                    <a> Role </a>
                     <div style="width: max-content; padding-bottom: 24px">
                         <select th:field="*{roles}" class="dropdown form-control">
                             <option value="ROLE_ADMIN">admin</option>

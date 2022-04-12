@@ -45,7 +45,7 @@
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                 <div class="dropdown-menu">
-                                    <!--<a class="dropdown-item" href="/profile">My profile</a>-->
+                                    <a class="dropdown-item" href="/user">My profile</a>
                                     <a class="dropdown-item" href="/logout">Logout</a>
                                 </div>
                             </li>
@@ -82,12 +82,15 @@
             <!-- Student creation form -->
             <div>
                 <form action="#" th:action="@{/save-student}" th:object="${student}" method="POST">
+                    <a> First name </a>
                     <input type="text" th:field="*{firstName}"
                            placeholder="First name" required class="form-control mb-4 col-4">
 
+                    <a> Last name </a>
                     <input type="text" th:field="*{lastName}"
                            placeholder="Last name" required class="form-control mb-4 col-4">
 
+                    <a> Email </a>
                     <input type="email" th:field="*{email}"
                            placeholder="Email" required class="form-control mb-4 col-4">
 

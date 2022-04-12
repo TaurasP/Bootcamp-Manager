@@ -57,38 +57,63 @@ $(document).ready(function(){
 /* bootcamp page */
 function showLecturers() {
     var lecturersTable = document.getElementById("lecturers");
+    var lecturersActive = document.getElementById("active-l");
     var studentsTable = document.getElementById("students");
+    var studentsActive = document.getElementById("active-s");
     var tasksTable = document.getElementById("tasks");
+    var tasksActive = document.getElementById("active-t");
 
     if (lecturersTable.style.display === "none") {
         lecturersTable.style.display = "block";
+        lecturersActive.classList.add('active');
+
         studentsTable.style.display = "none";
+        studentsActive.classList.remove('active');
+
         tasksTable.style.display = "none";
+        tasksActive.classList.remove('active');
     }
 }
 
 /* bootcamp page */
 function showStudents() {
     var lecturersTable = document.getElementById("lecturers");
+    var lecturersActive = document.getElementById("active-l");
     var studentsTable = document.getElementById("students");
+    var studentsActive = document.getElementById("active-s");
     var tasksTable = document.getElementById("tasks");
+    var tasksActive = document.getElementById("active-t");
 
     if (studentsTable.style.display === "none") {
         studentsTable.style.display = "block";
+        studentsActive.classList.add('active');
+
         lecturersTable.style.display = "none";
+        lecturersActive.classList.remove('active');
+
         tasksTable.style.display = "none";
+        tasksActive.classList.remove('active');
     }
 }
 
 /* bootcamp page */
 function showTasks() {
     var lecturersTable = document.getElementById("lecturers");
+    var lecturersActive = document.getElementById("active-l");
     var studentsTable = document.getElementById("students");
+    var studentsActive = document.getElementById("active-s");
     var tasksTable = document.getElementById("tasks");
+    var tasksActive = document.getElementById("active-t");
 
     if (tasksTable.style.display === "none") {
         tasksTable.style.display = "block";
+        tasksActive.classList.add('active');
+
         studentsTable.style.display = "none";
+        studentsActive.classList.remove('active');
+
         lecturersTable.style.display = "none";
+        lecturersActive.classList.remove('active');
     }
 }
+

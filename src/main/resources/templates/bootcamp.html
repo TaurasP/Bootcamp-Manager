@@ -74,14 +74,14 @@
 
             <a th:href="@{/bootcamps}" class="btn btn-warning"> Back </a>
 
-            <div class="btn-group" role="group">
-                <button onclick="showLecturers()" type="button" class="btn btn-success"> Lecturers </button>
-                <button onclick="showStudents()" type="button" class="btn btn-success"> Students </button>
-                <button onclick="showTasks()" type="button" class="btn btn-success"> Tasks </button>
+            <div class="btn-group">
+                <button id="active-l"  onclick="showLecturers()" type="button" class="btn btn-success active"> Lecturers </button>
+                <button id="active-s" onclick="showStudents()" type="button" class="btn btn-success"> Students </button>
+                <button id="active-t"  onclick="showTasks()" type="button" class="btn btn-success"> Tasks </button>
             </div>
             <br><br>
 
-            <div th:id="lecturers" style="display: block">
+            <div th:id="lecturers">
                 <div>
                     <h2>Lecturers</h2>
                 </div>
