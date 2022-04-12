@@ -64,10 +64,28 @@ public class BootcampController {
     }
 
     @GetMapping("/bootcamp/{id}")
-    public String showBootcamp(@PathVariable (value = "id") long id, Model model) {
+    public String showBootcampLecturers(@PathVariable (value = "id") long id, Model model) {
         model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
         return "bootcamp";
     }
+
+    /*@GetMapping("/bootcamp/{id}/lecturers")
+    public String showBootcampLecturers(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        return "bootcamp";
+    }
+
+    @GetMapping("/bootcamp/{id}/students")
+    public String showBootcampStudents(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        return "bootcamp";
+    }
+
+    @GetMapping("/bootcamp/{id}/tasks")
+    public String showBootcampTasks(@PathVariable (value = "id") long id, Model model) {
+        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        return "bootcamp";
+    }*/
 
     @GetMapping(value = "/link-student/{id}")
     public String showStudentCheckbox(@PathVariable (value = "id") long id, Model model) {
