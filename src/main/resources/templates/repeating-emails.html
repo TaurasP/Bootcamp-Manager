@@ -62,14 +62,16 @@
             <div class="container">
 
                 <div>
-                    <h2>User with email: already exists. Please return to NewUser form!</h2>
+                    <h2>User with email: "<td th:text="${email}"></td>" already exists.</h2>
+                    <br>
+                        <h4>Please return to NewUser form!</h4>
                 </div>
 
                 <br/>
 
                 <!-- Add button -->
                 <div>
-                    <a th:href = "@{/new-user}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add </a>
+                    <a th:href = "@{/new-user}" class="btn btn-warning"> Back </a>
                 </div>
 
                 <br/>
