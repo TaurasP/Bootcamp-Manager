@@ -50,7 +50,7 @@ public class Task {
     @ManyToMany(mappedBy = "tasks")
     private List<Student> students;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "bootcamp_id", referencedColumnName = "id")
     private Bootcamp bootcamp;
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,7 +28,9 @@ public class StudentHomepageController {
         List<Student> allStudents = studentService.getAllStudents();
         for(Student student : allStudents)
             if(student.getEmail().equals(principal.getName())){
-                List<Task> tasksList = student.getBootcamp().getTasks();
+                List<Task> tasksList = new ArrayList<>();
+                if (student.getBootcamp() != null)
+                    tasksList.addAll(student.getBootcamp().getTasks());
                 model.addAttribute("thisStudent", student);
                 model.addAttribute("tasksList", tasksList);
                 model.addAttribute("helper", new StudentHelper(studentService));

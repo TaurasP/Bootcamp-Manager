@@ -38,7 +38,7 @@ public class Bootcamp {
     @OneToMany(mappedBy = "bootcamp")
     private List<Student> students;
 
-    @OneToMany(mappedBy = "bootcamp")
+    @OneToMany(mappedBy = "bootcamp", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
     @ManyToMany(mappedBy = "joinedBootcamp")
