@@ -4,6 +4,10 @@ import com.bootcamp.bootcampmanager.admin.Admin;
 import com.bootcamp.bootcampmanager.admin.AdminService;
 import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
+import com.bootcamp.bootcampmanager.mail.Mail;
+import com.bootcamp.bootcampmanager.mail.MailService;
+import com.bootcamp.bootcampmanager.mail.MailThread;
+import com.bootcamp.bootcampmanager.password.PasswordGeneratorService;
 import com.bootcamp.bootcampmanager.student.Student;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,12 @@ public class UserController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private MailService mailService;
+
+    @Autowired
+    private PasswordGeneratorService passwordGeneratorService;
+
     @GetMapping("/users")
     public String showAllUsers(Model model) {
         List<Admin> adminsList = adminService.getAllAdmins();
@@ -38,7 +48,7 @@ public class UserController {
         List<Lecturer> lecturersList = lecturerService.getAllLecturers();
         model.addAttribute("lecturersList", lecturersList);
         List<Student> studentsList = studentService.getAllStudents();
-//        model.addAttribute("studentsList", studentsList);
+        model.addAttribute("studentsList", studentsList);
         Counter counter = new Counter();
         model.addAttribute("counter", counter);
         return "users";
@@ -57,17 +67,23 @@ public class UserController {
         if(user.getRoles() == null)
             return "redirect:/users";
         if(user.getRoles().equals("ROLE_ADMIN")){
+            passwordGeneratorService.generateRandomPassword(user);
             Admin admin = new Admin(user);
             adminService.saveAdmin(admin);
         }
         else if(user.getRoles().equals("ROLE_STUDENT")){
+            passwordGeneratorService.generateRandomPassword(user);
             Student student = new Student(user);
             studentService.saveStudent(student);
         }
         else if(user.getRoles().equals("ROLE_LECTURER")){
+            passwordGeneratorService.generateRandomPassword(user);
             Lecturer lecturer = new Lecturer(user);
             lecturerService.saveLecturer(lecturer);
         }
+
+        MailThread mailThread = new MailThread(mailService, user);
+        mailThread.start();
         return "redirect:/users";
     }
 

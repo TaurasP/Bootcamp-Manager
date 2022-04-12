@@ -1,6 +1,8 @@
 package com.bootcamp.bootcampmanager.task;
 
+import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.filedb.FileDBService;
+import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,6 +24,9 @@ public class TaskController {
 
     @Autowired
     public StudentService studentService;
+
+    @Autowired
+    public LecturerService lecturerService;
 
     @GetMapping("/tasks")
     public String showAllTasks(Model model) {
@@ -39,6 +45,7 @@ public class TaskController {
 
     @PostMapping("/save-task")
     public String saveTask(@ModelAttribute("task") Task task, @RequestParam("file") MultipartFile[] files) {
+        /*fileDBService.saveFile(files[0]);*/
         task.setFileDB(fileDBService.saveFile(files[0], task));
         taskService.saveTask(task);
         return "redirect:/tasks";
@@ -51,11 +58,10 @@ public class TaskController {
         return "update-task";
     }
 
-    /* NEED TO FIX THIS */
     @GetMapping("/delete-task/{id}")
     public String deleteTask(@PathVariable (value = "id") long id) {
         this.taskService.deleteTaskById(id);
-        fileDBService.deleteFileById(taskService.getTaskById(id).getFileDB().getId());
+        //fileDBService.deleteFileById(taskService.getTaskById(id).getFileDB().getId());
         return "redirect:/tasks";
     }
 
@@ -72,5 +78,16 @@ public class TaskController {
         Task task = taskService.getTaskById(id);
         model.addAttribute("taskStatus", task);
         return "task";
+    }
+
+    @GetMapping("/lecturer-tasks/{id}")
+    public String showLecturerTasks(@PathVariable( value = "id") long id, Model model) {
+
+        List<Task> tasksList = new ArrayList<>();
+        for(Bootcamp bootcamp : lecturerService.getLecturerById(id).getJoinedBootcamp())
+                tasksList.addAll(bootcamp.getTasks());
+        model.addAttribute("tasksList", tasksList);
+        model.addAttribute("thisLecturer", lecturerService.getLecturerById(id));
+        return "lecturer-tasks";
     }
 }

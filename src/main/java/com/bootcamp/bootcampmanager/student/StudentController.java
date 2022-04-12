@@ -2,6 +2,8 @@ package com.bootcamp.bootcampmanager.student;
 
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.bootcamp.BootcampService;
+import com.bootcamp.bootcampmanager.lecturer.Lecturer;
+import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.task.Task;
 import com.bootcamp.bootcampmanager.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,27 +26,43 @@ import java.util.Optional;
 public class StudentController {
 
 
-    private final StudentService studentService;
-    private final BootcampService bootcampService;
-    private final TaskService taskService;
+    private StudentService studentService;
+    private BootcampService bootcampService;
+    private TaskService taskService;
+    private LecturerService lecturerService;
+
 
     @Autowired
     public StudentController(StudentService studentService,
                              BootcampService bootcampService,
-                             TaskService taskService) {
+                             TaskService taskService,
+                             LecturerService lecturerService) {
         this.studentService = studentService;
         this.bootcampService = bootcampService;
         this.taskService = taskService;
+        this.lecturerService = lecturerService;
     }
 
     @GetMapping("/students")
-    public String showAllStudents(Model model) {
-        model.addAttribute("bootcampList", bootcampService.getAllBootcamps());
-        model.addAttribute("taskList", taskService.getAllTasks());
-        model.addAttribute("studentsList", studentService.getAllStudents());
-        model.addAttribute("searchInfo", new SearchInfo());
-        return "students";
+    public String showAllStudents(Model model, Principal principal) {
 
+        List<Lecturer> allLecturers = lecturerService.getAllLecturers();
+        for(Lecturer lecturer : allLecturers)
+            if(lecturer.getEmail().equals(principal.getName())){
+                List<Student> studentsList = new ArrayList<>();
+                for(Bootcamp bootcamp : lecturer.getJoinedBootcamp())
+                        studentsList.addAll(bootcamp.getStudents());
+                model.addAttribute("bootcampsList", lecturer.getJoinedBootcamp());
+                model.addAttribute("studentsList", studentsList);
+                model.addAttribute("thisLecturer", lecturer);
+
+                return "students";
+            }
+
+        model.addAttribute("bootcampsList", bootcampService.getAllBootcamps());
+        model.addAttribute("studentsList", studentService.getAllStudents());
+        model.addAttribute("thisLecturer", lecturerService.getAllLecturers().get(0));
+        return "students";
     }
 
 
@@ -58,6 +77,15 @@ public class StudentController {
     public String saveStudent(@ModelAttribute("student") Student student) {
         student.setEnabled(true);
         student.setRoles("ROLE_STUDENT");
+        try{
+            long bootcampID = student.getBootcamp().getId();
+            if(bootcampID != 0)
+                student.setBootcamp(bootcampService.getBootcampById(bootcampID));
+        }
+        catch (Exception e){
+            studentService.saveStudent(student);
+            return "redirect:/students";
+        }
         studentService.saveStudent(student);
         return "redirect:/students";
     }
@@ -79,6 +107,7 @@ public class StudentController {
     public String showStudentInfo(@PathVariable(value = "id") long id, Model model) {
 
         model.addAttribute("student", studentService.getStudentById(id));
+        model.addAttribute("helper", new StudentHelper(studentService));
         return "student";
     }
 
