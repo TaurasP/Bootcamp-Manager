@@ -2,6 +2,7 @@ package com.bootcamp.bootcampmanager.user;
 
 import com.bootcamp.bootcampmanager.admin.Admin;
 import com.bootcamp.bootcampmanager.admin.AdminService;
+import com.bootcamp.bootcampmanager.config.encoder.Encoder;
 import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.mail.Mail;
@@ -65,34 +66,47 @@ public class UserController {
     @PostMapping("/save-user")
     public String saveUser(@ModelAttribute("user") User user, Model model) {
         user.setEnabled(true);
-        if(user.getRoles() == null)
+        if (user.getRoles() == null)
             return "redirect:/users";
-        for(User i : userService.getAllUsers())
-            if(i.getEmail().equals(user.getEmail()))
+        for (User i : userService.getAllUsers())
+            if (i.getEmail().equals(user.getEmail()))
                 return "redirect:/repeating-emails/" + user.getEmail();
-        for(Student i : studentService.getAllStudents())
-            if(i.getEmail().equals(user.getEmail()))
+        for (Student i : studentService.getAllStudents())
+            if (i.getEmail().equals(user.getEmail()))
                 return "redirect:/repeating-emails/" + user.getEmail();
-        for(Admin i : adminService.getAllAdmins())
-            if(i.getEmail().equals(user.getEmail()))
+        for (Admin i : adminService.getAllAdmins())
+            if (i.getEmail().equals(user.getEmail()))
                 return "redirect:/repeating-emails/" + user.getEmail();
-        for(Lecturer i : lecturerService.getAllLecturers())
-            if(i.getEmail().equals(user.getEmail()))
+        for (Lecturer i : lecturerService.getAllLecturers())
+            if (i.getEmail().equals(user.getEmail()))
                 return "redirect:/repeating-emails/" + user.getEmail();
 
-        if(user.getRoles().equals("ROLE_ADMIN")){
+        if (user.getRoles().equals("ROLE_ADMIN")) {
             passwordGeneratorService.generateRandomPassword(user);
             Admin admin = new Admin(user);
+
+//            Hashing password, Encoder gives customized passwordencoder
+            String encodedPassword = Encoder.get().encode(admin.getPassword());
+            admin.setPassword(encodedPassword);
+
             adminService.saveAdmin(admin);
-        }
-        else if(user.getRoles().equals("ROLE_STUDENT")){
+        } else if (user.getRoles().equals("ROLE_STUDENT")) {
             passwordGeneratorService.generateRandomPassword(user);
             Student student = new Student(user);
+
+            //            Hashing password, Encoder gives customized passwordencoder
+            String encodedPassword = Encoder.get().encode(student.getPassword());
+            student.setPassword(encodedPassword);
+
             studentService.saveStudent(student);
-        }
-        else if(user.getRoles().equals("ROLE_LECTURER")){
+        } else if (user.getRoles().equals("ROLE_LECTURER")) {
             passwordGeneratorService.generateRandomPassword(user);
             Lecturer lecturer = new Lecturer(user);
+
+            //           Hashing password, Encoder gives customized passwordencoder
+            String encodedPassword = Encoder.get().encode(lecturer.getPassword());
+            lecturer.setPassword(encodedPassword);
+
             lecturerService.saveLecturer(lecturer);
         }
 
@@ -108,14 +122,14 @@ public class UserController {
     }
 
     @GetMapping("/update-user/{id}")
-    public String showUserFormForUpdate(@PathVariable( value = "id") long id, Model model) {
+    public String showUserFormForUpdate(@PathVariable(value = "id") long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "update-user";
     }
 
     @GetMapping("/delete-user/{id}")
-    public String deleteUser(@PathVariable (value = "id") long id) {
+    public String deleteUser(@PathVariable(value = "id") long id) {
         this.userService.deleteUserById(id);
         return "redirect:/users";
     }
