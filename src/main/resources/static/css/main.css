@@ -19,14 +19,18 @@ body{
     transition: all 200ms linear;
 }
 ::selection {
-    color: #fff;
+    /*color: #fff;*/
+    color: #2b74ac;
     /*background-color: #8167a9;*/
-    background-color: #2b74ac !important;
+    /*background-color: #2b74ac !important;*/
+    background-color: #fff !important;
 }
 ::-moz-selection {
-    color: #fff;
+    /*color: #fff;*/
+    color: #2b74ac;
     /*background-color: #8167a9;*/
-    background-color: #2b74ac !important;
+    /*background-color: #2b74ac !important;*/
+    background-color: #fff !important;
 }
 
 
@@ -73,7 +77,8 @@ body{
     transition : all 0.3s ease-out;
 }
 .navbar-brand:hover {
-    color: #2b74ac !important;
+    /*color: #2b74ac !important;*/
+    color: #fff !important;
 }
 .navbar-toggler {
     float: right;
@@ -123,11 +128,13 @@ body{
 }
 .nav-item:hover .nav-link{
     /*color: #8167a9 !important;*/
-    color: #2b74ac !important;
+    /*color: #2b74ac !important;*/
+    color: #fff !important;
 }
 .nav-item.active .nav-link{
     /*color: #777 !important;*/
-    color: #2b74ac !important;
+    /*color: #2b74ac !important;*/
+    color: #fff !important;
 }
 .nav-link {
     position: relative;
@@ -142,7 +149,8 @@ body{
     height: 2px;
     content: '';
     /*background-color: #8167a9;*/
-    background-color: #2b74ac !important;
+    /*background-color: #2b74ac !important;*/
+    background-color: #fff !important;
     opacity: 0;
     transition: all 200ms linear;
 }
@@ -160,9 +168,19 @@ body{
 
 /* #Primary style
 ================================================== */
-
+/* ADMIN */
 .bg-light {
-    background-color: #fff !important;
+    background-color: #2B74AC !important;
+    transition: all 200ms linear;
+}
+/* LECTURER */
+.bg-light-lecturer {
+    background-color: #CBA135 !important;
+    transition: all 200ms linear;
+}
+/* STUDENT */
+.bg-light-student {
+    background-color: #2A7F62 !important;
     transition: all 200ms linear;
 }
 .section {
@@ -327,7 +345,8 @@ h1 span:nth-child(15){
     width: 60px;
     height: 8px;
     /*border: 2px solid #8167a9;*/
-    border: 2px solid #2b74ac !important;
+    /*border: 2px solid #2b74ac !important;*/
+    border: 2px solid #fff !important;
     border-radius: 27px;
     background: #000;
     position: relative;
@@ -356,14 +375,15 @@ body.hero-anime #switch{
 .switched {
     border-color: #000 !important;
     /*background: #8167a9 !important;*/
-    background: #2b74ac !important;
+    /*background: #2b74ac !important;*/
+    background: #fff !important;
 }
 .switched #circle {
     left: 43px;
     box-shadow: 0 4px 4px rgba(26,53,71,0.25), 0 0 0 1px rgba(26,53,71,0.07);
     background: #fff;
 }
-.nav-item .dropdown-menu {
+.nav-item .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
     transform: translate3d(0, 10px, 0);
     visibility: hidden;
     opacity: 0;
@@ -373,7 +393,7 @@ body.hero-anime #switch{
     margin: 0;
     transition: all 200ms linear;
 }
-.nav-item.show .dropdown-menu {
+.nav-item.show .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
     opacity: 1;
     visibility: visible;
     max-height: 999px;
@@ -387,7 +407,38 @@ body.hero-anime #switch{
     color: #212121;
     /* background-color: #fcfaff; */
     /*background-color: #2b74ac;*/
-    background-color: #4c91c6;
+    /*background-color: #4c91c6;*/
+    background-color: #2b74ac;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
+    transition: all 200ms linear;
+}
+.dropdown-menu-lecturer {
+    padding: 10px!important;
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #212121;
+    /* background-color: #fcfaff; */
+    /*background-color: #2b74ac;*/
+    /*background-color: #4c91c6;*/
+    background-color: #CBA135;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
+    transition: all 200ms linear;
+}
+.dropdown-menu-student {
+    padding: 10px!important;
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #212121;
+    /* background-color: #fcfaff; */
+    /*background-color: #2b74ac;*/
+    /*background-color: #4c91c6;*/
+    background-color: #2A7F62;
     border: none;
     border-radius: 3px;
     box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
@@ -403,17 +454,45 @@ body.hero-anime #switch{
     border-radius: 2px;
     transition: all 200ms linear;
 }
+/* ADMIN */
 .dropdown-item:hover,
 .dropdown-item:focus {
     color: #fff;
     /*background-color: rgba(129,103,169,.6);*/
     background-color: #4c91c6;
 }
+/* LECTURER */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: #fff;
+    /*background-color: rgba(129,103,169,.6);*/
+    background-color: #ac8f41;
+}
+/* STUDENT */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: #fff;
+    /*background-color: rgba(129,103,169,.6);*/
+    background-color: #249f76;
+}
 
 body.dark{
-    color: #fff;
+    color: #2b74ac;
     /*background-color: #1f2029;*/
-    background-color: #2b74ac;
+    /*background-color: #2b74ac;*/
+    background-color: #fff;
+}
+body.dark-lecturer{
+    color: #CBA135;
+    /*background-color: #1f2029;*/
+    /*background-color: #2b74ac;*/
+    background-color: #fff;
+}
+body.dark-student{
+    color: #2A7F62;
+    /*background-color: #1f2029;*/
+    /*background-color: #2b74ac;*/
+    background-color: #fff;
 }
 body.dark .navbar-brand img{
     filter: brightness(100%);
@@ -443,7 +522,7 @@ body.dark .nav-link{
 body.dark .nav-item.active .nav-link{
     color: #999 !important;
 }
-body.dark .dropdown-menu {
+body.dark .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
     color: #fff;
     background-color: #1f2029;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
@@ -503,13 +582,13 @@ body.dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
         transform: rotate(90deg);
         opacity: 0;
     }
-    .dropdown-menu {
+    .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
         padding: 0 !important;
         background-color: transparent;
         box-shadow: none;
         transition: all 200ms linear;
     }
-    .dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
+    .dropdown-toggle[aria-expanded="true"] + .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
         margin-top: 10px !important;
         margin-bottom: 20px !important;
     }
@@ -519,7 +598,7 @@ body.dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     body.dark .dropdown-toggle::after {
         background-color: #fff;
     }
-    body.dark .dropdown-menu {
+    body.dark .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
         background-color: transparent;
         box-shadow: none;
     }

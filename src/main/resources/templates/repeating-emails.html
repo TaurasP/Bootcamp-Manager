@@ -21,7 +21,8 @@
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-light">
 
-                        <a class="navbar-brand navbar-logo" href="/bootcamps">Bootcamp Manager</a>
+                        <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
+                        <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -32,7 +33,7 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="/bootcamps">Bootcamps</a>
                                 </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                     <a class="nav-link" href="/users">Users</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -41,7 +42,7 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/user">My profile</a>
+                                        <!--<a class="dropdown-item" href="/profile">My profile</a>-->
                                         <a class="dropdown-item" href="/logout">Logout</a>
                                     </div>
                                 </li>
@@ -60,42 +61,24 @@
         <div class="section" style="padding-top: 80px">
             <div class="container">
 
-                <!-- Title -->
                 <div>
-                    <h2> Add bootcamp </h2>
+                    <h2>User with email: "<td th:text="${email}"></td>" already exists.</h2>
+                    <br>
+                        <h4>Please return to NewUser form!</h4>
                 </div>
 
                 <br/>
 
-                <!-- Back button -->
+                <!-- Add button -->
                 <div>
-                    <a class="btn btn-warning" th:href="@{/bootcamps}" role="button"> Back </a>
+                    <a th:href = "@{/new-user}" class="btn btn-warning"> Back </a>
                 </div>
 
                 <br/>
 
-                <!-- Bootcamp creation form -->
-                <div>
-                    <form action="#" th:action="@{/save-bootcamp}" th:object="${bootcamp}" method="POST">
-                        <input type="text" th:field="${bootcamp.name}"
-                               placeholder="Name" required class="form-control mb-4 col-4">
-
-                        <input type="date" th:field="${bootcamp.dateFrom}"
-                               placeholder="Start date" required class="form-control mb-4 col-4">
-
-                        <input type="date" th:field="${bootcamp.dateTo}"
-                               placeholder="End date" required class="form-control mb-4 col-4">
-
-                        <!-- Save button -->
-                        <div >
-                            <button type="submit" class="btn btn-info col-2"> Save </button>
-                        </div>
-                    </form>
-                </div>
 
             </div>
         </div>
     </div>
-
 </body>
 </html>

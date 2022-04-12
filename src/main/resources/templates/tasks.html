@@ -99,6 +99,7 @@
                     <tr>
                         <th> # </th>
                         <th> Task </th>
+                        <th> Bootcamp </th>
                         <th> Description </th>
                         <th> Deadline </th>
                         <th> Actions </th>
@@ -109,6 +110,8 @@
                     <tr th:each="task : ${tasksList}">
                         <td th:text="${tasksList.indexOf(task)+1}"></td>
                         <td th:text="${task.name}"></td>
+                        <td th:if="${task.getBootcamp() != null}" th:text="${task.getBootcamp().getName()}"></td>
+                        <td th:if="${task.getBootcamp() == null}" th:text="'not assigned'"></td>
                         <td th:text="${task.description}"></td>
                         <td th:text="${#dates.format(task.deadline, 'yyyy-MM-dd')}"></td>
                         <td>

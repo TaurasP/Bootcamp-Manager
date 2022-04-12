@@ -53,3 +53,42 @@ $(document).ready(function(){
         /*alert("You have selected - " + value);*/
     });
 });
+
+/* bootcamp page */
+function showLecturers() {
+    var lecturersTable = document.getElementById("lecturers");
+    var studentsTable = document.getElementById("students");
+    var tasksTable = document.getElementById("tasks");
+
+    if (lecturersTable.style.display === "none") {
+        lecturersTable.style.display = "block";
+        studentsTable.style.display = "none";
+        tasksTable.style.display = "none";
+    }
+}
+
+/* bootcamp page */
+function showStudents() {
+    var lecturersTable = document.getElementById("lecturers");
+    var studentsTable = document.getElementById("students");
+    var tasksTable = document.getElementById("tasks");
+
+    if (studentsTable.style.display === "none") {
+        studentsTable.style.display = "block";
+        lecturersTable.style.display = "none";
+        tasksTable.style.display = "none";
+    }
+}
+
+/* bootcamp page */
+function showTasks() {
+    var lecturersTable = document.getElementById("lecturers");
+    var studentsTable = document.getElementById("students");
+    var tasksTable = document.getElementById("tasks");
+
+    if (tasksTable.style.display === "none") {
+        tasksTable.style.display = "block";
+        studentsTable.style.display = "none";
+        lecturersTable.style.display = "none";
+    }
+}

@@ -1,12 +1,16 @@
 package com.bootcamp.bootcampmanager.config;
 
+import com.bootcamp.bootcampmanager.config.encoder.Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -26,8 +30,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
     @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+    public BCryptPasswordEncoder passwordEncoder() {
+        return Encoder.get();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
@@ -38,6 +55,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/js/**").permitAll()
                 .antMatchers("/bootcamps").hasRole("ADMIN")
                 .antMatchers("/bootcamp").hasRole("ADMIN")
+                .antMatchers("/link-lecturer").hasRole("ADMIN")
+                .antMatchers("/enroll-lecturer").hasRole("ADMIN")
+                .antMatchers("/link-student").hasRole("ADMIN")
+                .antMatchers("/enroll-student").hasRole("ADMIN")
+                .antMatchers("/link-task").hasRole("ADMIN")
                 .antMatchers("/tasks").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
                 .antMatchers("/task").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
                 .antMatchers("/users").hasRole("ADMIN")
@@ -45,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/students").hasRole("LECTURER")
                 .antMatchers("/student").hasRole("LECTURER")
                 .antMatchers("/student-task").hasRole("STUDENT")
+                .antMatchers("/student-homepage").hasRole("STUDENT")
                 // .antMatchers("/groups").hasAnyRole("ADMIN", "LECTURER")
                 // .antMatchers("/group").hasAnyRole("ADMIN", "LECTURER")
                 // .antMatchers("/courses").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
