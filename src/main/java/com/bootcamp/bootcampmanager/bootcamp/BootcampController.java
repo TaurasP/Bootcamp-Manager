@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller()
@@ -70,7 +71,11 @@ public class BootcampController {
 
     @GetMapping(value = "/link-student/{id}")
     public String showStudentCheckbox(@PathVariable (value = "id") long id, Model model) {
-        model.addAttribute("students",  studentService.getAllStudents());
+        List<Student> students = new ArrayList<>();
+        for(Student student: studentService.getAllStudents())
+            if(student.getBootcamp() == null)
+                students.add(student);
+        model.addAttribute("students",  students);
         model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
         return "link-student";
     }
@@ -151,7 +156,11 @@ public class BootcampController {
 
     @GetMapping(value = "/link-task/{id}")
     public String showTaskCheckbox(@PathVariable (value = "id") long id, Model model) {
-        model.addAttribute("tasks", taskService.getAllTasks());
+        List<Task> tasks = new ArrayList<>();
+        for(Task task : taskService.getAllTasks())
+            if(task.getBootcamp() == null)
+                tasks.add(task);
+        model.addAttribute("tasks", tasks);
         model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
         return "link-task";
     }
