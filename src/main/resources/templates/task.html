@@ -121,7 +121,7 @@
 
                         <tr>
                             <td> File </td>
-                            <td>
+                            <td th:if="${task.getFileDB() != null}">
                                 <!-- File download button (if !null - show button) -->
                                 <!--<a th:if="${task.fileDB.data != null}" th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
                                    class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>-->
@@ -129,6 +129,15 @@
                                 <!-- Download file -->
                                 <a th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
                                    class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>
+                            </td>
+                            <td th:if="${task.getFileDB() == null}">
+                                <!-- File download button (if !null - show button) -->
+                                <!--<a th:if="${task.fileDB.data != null}" th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
+                                   class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>-->
+
+                                <!-- Download file -->
+                                <a th:text="'file not uploaded'"></a>
+
                             </td>
                         </tr>
                     </tbody>
