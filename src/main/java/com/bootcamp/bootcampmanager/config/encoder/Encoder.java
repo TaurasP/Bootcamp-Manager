@@ -9,7 +9,7 @@ public class Encoder {
     public static BCryptPasswordEncoder get() {
 
         BCryptPasswordEncoder.BCryptVersion version = BCryptPasswordEncoder.BCryptVersion.$2Y;
-        int strength = 4;
+        int strength = 12;
         SecureRandom random = new SecureRandom();
         byte salt[] = new byte[8];
         random.nextBytes(salt);
