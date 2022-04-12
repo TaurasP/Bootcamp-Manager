@@ -41,7 +41,7 @@
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/profile">My profile</a>
+                                    <a class="dropdown-item" href="/user">My profile</a>
                                     <a class="dropdown-item" href="/logout">Logout</a>
                                 </div>
                             </li>
@@ -61,8 +61,8 @@
         <div class="container">
 
             <div>
-                <!-- Add here actual student's firstName and lastName -->
-                <h2>Lecturer</h2>
+                <!-- Add here actual lecturer's firstName and lastName -->
+                <h2> Lecturer "<a th:text="${lecturer.firstName}"></a>" </h2>
             </div>
 
             <br/>
@@ -80,32 +80,25 @@
             <!-- Table -->
             <div th:object="${lecturer}">
                 <table border="1" class="table table-striped table-responsive-md">
-                    <!-- Table header -->
-                    <thead>
-                        <tr>
-                            <th> Title </th>
-                            <th> Value </th>
-                        </tr>
-                    </thead>
                     <!-- Table rows -->
                     <tbody>
                         <tr>
-                            <td> First name </td>
+                            <td class="font-weight-bold"> First name </td>
                             <td th:text="${lecturer.getFirstName()}"></td>
                         </tr>
 
                         <tr>
-                            <td> Last name </td>
+                            <td class="font-weight-bold"> Last name </td>
                             <td th:text="${lecturer.getLastName()}"></td>
                         </tr>
 
                         <tr>
-                            <td> Email </td>
+                            <td class="font-weight-bold"> Email </td>
                             <td th:text="${lecturer.getEmail()}"></td>
 
 
                         <tr>
-                            <td> Bootcamp </td>
+                            <td class="font-weight-bold"> Bootcamp </td>
                             <td th:text="${bootcamp.getName()}"></td>
                         </tr>
 
