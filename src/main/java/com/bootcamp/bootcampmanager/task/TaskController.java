@@ -51,13 +51,13 @@ public class TaskController {
     }
 
     @PostMapping("/save-task")
-    public String saveTask(@ModelAttribute("id") Bootcamp id, @ModelAttribute("task") Task task, @RequestParam("file") MultipartFile[] files) {
-        /*fileDBService.saveFile(files[0]);*/
+    public String saveTask(@ModelAttribute("bootcamp") Bootcamp bootcamp, @ModelAttribute("task") Task task, @RequestParam("file") MultipartFile[] files) {
         task.setFileDB(fileDBService.saveFile(files[0], task));
-        if(id.getId() != 0){
+        if(bootcamp.getId() != 0){
             try{
-                Bootcamp bootcamp = bootcampService.getBootcampById(id.getId());
-                task.setBootcamp(bootcamp);
+                Bootcamp camp = bootcampService.getBootcampById(bootcamp.getId());
+                task.setBootcamp(camp);
+
             }
             catch(Exception e){
                 System.out.println("\n\n\n\n Whoops!? Something went wrong!!!" + e.getMessage() + "\n\n\n\n");

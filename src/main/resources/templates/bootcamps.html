@@ -107,7 +107,7 @@
                                 <!-- Edit button -->
                                 <a th:href="@{/update-bootcamp/{id}(id=${bootcamp.id})}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                                 <!-- Delete button -->
-                                <a th:if="${bootcamp.students.isEmpty() || bootcamp.campLecturers.isEmpty()}" th:href="@{/delete-bootcamp/{id}(id=${bootcamp.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                <a th:if="${bootcamp.students.isEmpty() || bootcamp.campLecturers.isEmpty() || bootcamp.tasks.isEmpty()}" th:href="@{/delete-bootcamp/{id}(id=${bootcamp.id})}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         </tbody>

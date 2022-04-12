@@ -27,7 +27,7 @@ public class FileDB {
     @Lob
     private byte[] data;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "task_id", referencedColumnName = "id")
     private Task task;
 
