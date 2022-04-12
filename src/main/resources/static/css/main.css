@@ -448,7 +448,7 @@ body.hero-anime #switch{
     display: none;
 }
 
-.dropdown-item {
+.dropdown-item .dropdown-item-lecturer .dropdown-item-student {
     padding: 3px 15px;
     color: #212121;
     border-radius: 2px;
@@ -459,21 +459,21 @@ body.hero-anime #switch{
 .dropdown-item:focus {
     color: #fff;
     /*background-color: rgba(129,103,169,.6);*/
-    background-color: #4c91c6;
+    background-color: #4c91c6!important;
 }
 /* LECTURER */
-.dropdown-item:hover,
-.dropdown-item:focus {
+.dropdown-item-lecturer:hover,
+.dropdown-item-lecturer:focus {
     color: #fff;
     /*background-color: rgba(129,103,169,.6);*/
-    background-color: #ac8f41;
+    background-color: #ac8f41!important;
 }
 /* STUDENT */
-.dropdown-item:hover,
-.dropdown-item:focus {
+.dropdown-item-student:hover,
+.dropdown-item-student:focus {
     color: #fff;
     /*background-color: rgba(129,103,169,.6);*/
-    background-color: #249f76;
+    background-color: #249f76!important;
 }
 
 body.dark{
