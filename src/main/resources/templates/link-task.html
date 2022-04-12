@@ -21,8 +21,7 @@
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
 
-                    <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
-                    <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/bootcamps">Bootcamp Manager</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -30,22 +29,19 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasAnyRole('ADMIN')">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link" href="/bootcamps">Bootcamps</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link" href="/users">Users</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
-                                <a class="nav-link" href="/students">Students</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link" href="/tasks">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                 <div class="dropdown-menu">
-                                    <!--<a class="dropdown-item" href="/profile">My profile</a>-->
+                                    <a class="dropdown-item" href="/user">My profile</a>
                                     <a class="dropdown-item" href="/logout">Logout</a>
                                 </div>
                             </li>
@@ -66,14 +62,14 @@
 
             <!-- Title -->
             <div>
-                <h2> Add Tasks To Bootcamp: "<td th:text="${bootcamp.getName()}"></td>" </h2>
+                <h2> Add tasks to bootcamp "<td th:text="${bootcamp.getName()}"></td>" </h2>
             </div>
 
             <br/>
 
             <!-- Back button -->
             <div>
-                <a class="btn btn-warning" th:href="@{/bootcamp/{id}(id=${bootcamp.id})}" role="button" sec:authorize="hasRole('ADMIN')"> Back </a>
+                <a class="btn btn-warning" th:href="@{/bootcamp/{id}(id=${bootcamp.id})}"> Back </a>
 
             </div>
 
@@ -89,7 +85,7 @@
 
                     </tr>
                     <br>
-                    <button type="submit" class="btn btn-info col-2"> Submit </button>
+                    <button type="submit" class="btn btn-info col-2"> Save </button>
                 </form>
                 </form>
             </div>
