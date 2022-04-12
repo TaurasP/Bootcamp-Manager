@@ -110,6 +110,16 @@
                     <input type="file" name="file" />
                     <br/><br/>
 
+                    <div th:if="${bootcamps.size() > 0}" style="width: max-content; padding-bottom: 24px">
+                        <a> Select Bootcamp </a>
+                        <select type="number" th:field="${id.id}" class="dropdown form-control">
+                            <tr th:each="bootcamp : ${bootcamps}">
+                                <option th:value="${bootcamp.id}"><a th:text="${bootcamp.getName()}"></a></option>
+
+                            </tr>
+                        </select>
+                    </div>
+
                     <!-- Save button -->
                     <div>
                         <button type="submit" value="Upload" class="btn btn-info col-2"> Save </button>
