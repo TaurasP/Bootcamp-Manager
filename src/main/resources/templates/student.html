@@ -15,7 +15,7 @@
 <body class="hero-anime">
 
 <!-- Top navigation bar -->
-<div class="navigation-wrap bg-light start-header start-style">
+<div class="navigation-wrap bg-light-lecturer start-header start-style">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -34,16 +34,17 @@
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                 <a class="nav-link" href="/students">Students</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="/tasks">Tasks</a>
-                            </li>
+                            <!-- NEED TO FIX THIS -->
+                            <!--<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" th:href="@{/lecturer-tasks/{id}(id=${thisLecturer.id})}">Tasks</a>
+                            </li>-->
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="true" aria-expanded="false"><i
                                         class="fa-solid fa-circle-user"></i></a>
-                                <div class="dropdown-menu">
-                                    <!--<a class="dropdown-item" href="/profile">My profile</a>-->
-                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                <div class="dropdown-menu dropdown-menu-lecturer">
+                                    <a class="dropdown-item dropdown-item-lecturer" href="/user">My profile</a>
+                                    <a class="dropdown-item dropdown-item-lecturer" href="/logout">Logout</a>
                                 </div>
                             </li>
                         </ul>

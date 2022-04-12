@@ -34,8 +34,8 @@
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                 <div class="dropdown-menu dropdown-menu-student">
                                     <!-- redirect to logged-in user's user page-->
-                                    <a class="dropdown-item" href="/user">My profile</a>
-                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                    <a class="dropdown-item dropdown-item-student" href="/user">My profile</a>
+                                    <a class="dropdown-item dropdown-item-student" href="/logout">Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -54,7 +54,7 @@
         <div class="container">
 
             <div>
-                <h2>Tasks for student "<td th:text="${thisStudent.getFirstName()}" </h2>
+                <h2>Tasks for student "<a th:text="${thisStudent.getFirstName()}"></a>" </h2>
             </div>
 
             <br/>

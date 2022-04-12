@@ -15,40 +15,36 @@
 <body class="hero-anime">
 
 <!-- Top navigation bar -->
-<div class="navigation-wrap bg-light start-header start-style">
+<div class="navigation-wrap bg-light-lecturer start-header start-style">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
 
 
-                    <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager: Lecturer Profile</a>
+                    <a class="navbar-brand navbar-logo" href="/students">Bootcamp Manager</a>
 
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
-                                <a class="nav-link" href="/bootcamps">Bootcamps</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
-                                <a class="nav-link" href="/users">Users</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link" href="/students">Students</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
-                                <a class="nav-link" href="/tasks">Tasks</a>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                <a class="nav-link" th:href="@{/lecturer-tasks/{id}(id=${thisLecturer.id})}">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
-                                <div class="dropdown-menu">
-                                    <!-- redirect to logged-in user's user page-->
-                                    <!--<a class="dropdown-item" href="/user">My profile</a>-->
-                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="true" aria-expanded="false"><i
+                                        class="fa-solid fa-circle-user"></i></a>
+                                <div class="dropdown-menu dropdown-menu-lecturer">
+                                    <a class="dropdown-item dropdown-item-lecturer" href="/user">My profile</a>
+                                    <a class="dropdown-item dropdown-item-lecturer" href="/logout">Logout</a>
                                 </div>
                             </li>
                         </ul>

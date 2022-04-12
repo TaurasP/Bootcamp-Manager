@@ -15,15 +15,13 @@
 <body class="hero-anime">
 
 <!-- Top navigation bar -->
-<div class="navigation-wrap bg-light start-header start-style">
+<div class="navigation-wrap bg-light-student start-header start-style">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
 
-                    <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
-                    <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
-                    <a class="navbar-brand navbar-logo" href="/student-homepage" sec:authorize="hasRole('STUDENT')">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/student-homepage">Bootcamp Manager</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -31,23 +29,13 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
-                                <a class="nav-link" href="/bootcamps">Bootcamps</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
-                                <a class="nav-link" href="/users">Users</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
-                                <a class="nav-link" href="/students">Students</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
-                                <a class="nav-link" href="/tasks">Tasks</a>
-                            </li>
+
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
-                                <div class="dropdown-menu">
-                                    <!--<a class="dropdown-item" href="/profile">My profile</a>-->
-                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                <div class="dropdown-menu dropdown-menu-student">
+                                    <!-- redirect to logged-in user's user page-->
+                                    <a class="dropdown-item dropdown-item-student" href="/user">My profile</a>
+                                    <a class="dropdown-item dropdown-item-student" href="/logout">Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -66,7 +54,7 @@
         <div class="container">
 
             <div>
-                <h2>Task</h2>
+                <h2>Task "<a th:text="${task.name}"></a>" </h2>
             </div>
 
             <br/>
