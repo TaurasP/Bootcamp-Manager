@@ -31,7 +31,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link" href="/bootcamps">Bootcamps</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -72,21 +72,22 @@
             </div>
             <br>
 
-            <a th:href = "@{/bootcamps}" class="btn btn-warning"> Back </a>
+            <a th:href="@{/bootcamps}" class="btn btn-warning"> Back </a>
 
             <div class="btn-group" role="group">
-                <button onclick="showLecturers()" th:href = "@{/link-lecturer/{id}(id=${bootcamp.id})}" type="button" class="btn btn-success"> Lecturers </button>
-                <button onclick="showStudents()" th:href = "@{/link-student/{id}(id=${bootcamp.id})}" type="button" class="btn btn-success"> Students </button>
-                <button onclick="showTasks()" th:href = "@{/link-task/{id}(id=${bootcamp.id})}" type="button" class="btn btn-success"> Tasks </button>
+                <button onclick="showLecturers()" type="button" class="btn btn-success"> Lecturers </button>
+                <button onclick="showStudents()" type="button" class="btn btn-success"> Students </button>
+                <button onclick="showTasks()" type="button" class="btn btn-success"> Tasks </button>
             </div>
-
             <br><br>
 
             <div th:id="lecturers" style="display: block">
                 <div>
                     <h2>Lecturers</h2>
                 </div>
-                <br>
+
+                <a th:if="${!bootcamp.campLecturers.isEmpty()}" th:href="@{/link-lecturer/{id}(id=${bootcamp.id})}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add to bootcamp </a>
+                <br><br>
 
                 <table border="1" class="table table-striped table-responsive-md">
                     <!-- Table header -->
@@ -120,7 +121,9 @@
                 <div>
                     <h2>Students</h2>
                 </div>
-                <br>
+
+                <a th:if="${!bootcamp.students.isEmpty()}" th:href="@{/link-student/{id}(id=${bootcamp.id})}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add to bootcamp </a>
+                <br><br>
 
                 <table border="1" class="table table-striped table-responsive-md">
                     <!-- Table header -->
@@ -156,7 +159,9 @@
                 <div>
                     <h2>Tasks</h2>
                 </div>
-                <br>
+
+                <a th:if="${!bootcamp.tasks.isEmpty()}" th:href="@{/link-task/{id}(id=${bootcamp.id})}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add to bootcamp </a>
+                <br><br>
 
                 <table border="1" class="table table-striped table-responsive-md">
                     <!-- Table header -->
