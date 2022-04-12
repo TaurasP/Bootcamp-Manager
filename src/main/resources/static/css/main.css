@@ -383,7 +383,7 @@ body.hero-anime #switch{
     box-shadow: 0 4px 4px rgba(26,53,71,0.25), 0 0 0 1px rgba(26,53,71,0.07);
     background: #fff;
 }
-.nav-item .dropdown-menu {
+.nav-item .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
     transform: translate3d(0, 10px, 0);
     visibility: hidden;
     opacity: 0;
@@ -393,7 +393,7 @@ body.hero-anime #switch{
     margin: 0;
     transition: all 200ms linear;
 }
-.nav-item.show .dropdown-menu {
+.nav-item.show .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
     opacity: 1;
     visibility: visible;
     max-height: 999px;
@@ -454,11 +454,26 @@ body.hero-anime #switch{
     border-radius: 2px;
     transition: all 200ms linear;
 }
+/* ADMIN */
 .dropdown-item:hover,
 .dropdown-item:focus {
     color: #fff;
     /*background-color: rgba(129,103,169,.6);*/
     background-color: #4c91c6;
+}
+/* LECTURER */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: #fff;
+    /*background-color: rgba(129,103,169,.6);*/
+    background-color: #ac8f41;
+}
+/* STUDENT */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: #fff;
+    /*background-color: rgba(129,103,169,.6);*/
+    background-color: #249f76;
 }
 
 body.dark{
@@ -507,7 +522,7 @@ body.dark .nav-link{
 body.dark .nav-item.active .nav-link{
     color: #999 !important;
 }
-body.dark .dropdown-menu {
+body.dark .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
     color: #fff;
     background-color: #1f2029;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
@@ -567,13 +582,13 @@ body.dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
         transform: rotate(90deg);
         opacity: 0;
     }
-    .dropdown-menu {
+    .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
         padding: 0 !important;
         background-color: transparent;
         box-shadow: none;
         transition: all 200ms linear;
     }
-    .dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
+    .dropdown-toggle[aria-expanded="true"] + .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
         margin-top: 10px !important;
         margin-bottom: 20px !important;
     }
@@ -583,7 +598,7 @@ body.dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     body.dark .dropdown-toggle::after {
         background-color: #fff;
     }
-    body.dark .dropdown-menu {
+    body.dark .dropdown-menu .dropdown-menu-lecturer .dropdown-menu-student{
         background-color: transparent;
         box-shadow: none;
     }

@@ -24,7 +24,7 @@ public class StudentHelper {
                 continue;
             try{
                 if(Long.parseLong(id) == taskId)
-                    return "task completed!";
+                    return "completed";
             } catch (Exception e) {
                 return "not completed";
             }
