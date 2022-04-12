@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -62,10 +63,23 @@ public class UserController {
     }
 
     @PostMapping("/save-user")
-    public String saveUser(@ModelAttribute("user") User user) {
+    public String saveUser(@ModelAttribute("user") User user, Model model) {
         user.setEnabled(true);
         if(user.getRoles() == null)
             return "redirect:/users";
+        for(User i : userService.getAllUsers())
+            if(i.getEmail().equals(user.getEmail()))
+                return "redirect:/repeating-emails/" + user.getEmail();
+        for(Student i : studentService.getAllStudents())
+            if(i.getEmail().equals(user.getEmail()))
+                return "redirect:/repeating-emails/" + user.getEmail();
+        for(Admin i : adminService.getAllAdmins())
+            if(i.getEmail().equals(user.getEmail()))
+                return "redirect:/repeating-emails/" + user.getEmail();
+        for(Lecturer i : lecturerService.getAllLecturers())
+            if(i.getEmail().equals(user.getEmail()))
+                return "redirect:/repeating-emails/" + user.getEmail();
+
         if(user.getRoles().equals("ROLE_ADMIN")){
             passwordGeneratorService.generateRandomPassword(user);
             Admin admin = new Admin(user);
@@ -85,6 +99,12 @@ public class UserController {
         MailThread mailThread = new MailThread(mailService, user);
         mailThread.start();
         return "redirect:/users";
+    }
+
+    @GetMapping("/repeating-emails/{email}")
+    public String repeatingEmail(Model model, @ModelAttribute("email") String email) {
+        model.addAttribute("email", email);
+        return "repeating-emails";
     }
 
     @GetMapping("/update-user/{id}")
