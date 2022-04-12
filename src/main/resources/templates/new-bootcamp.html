@@ -77,12 +77,15 @@
                 <!-- Bootcamp creation form -->
                 <div>
                     <form action="#" th:action="@{/save-bootcamp}" th:object="${bootcamp}" method="POST">
+                        <a> Name </a>
                         <input type="text" th:field="${bootcamp.name}"
                                placeholder="Name" required class="form-control mb-4 col-4">
 
+                        <a> Date from </a>
                         <input type="date" th:field="${bootcamp.dateFrom}"
                                placeholder="Start date" required class="form-control mb-4 col-4">
 
+                        <a> Date to </a>
                         <input type="date" th:field="${bootcamp.dateTo}"
                                placeholder="End date" required class="form-control mb-4 col-4">
 
