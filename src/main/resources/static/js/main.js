@@ -65,13 +65,13 @@ function showLecturers() {
 
     if (lecturersTable.style.display === "none") {
         lecturersTable.style.display = "block";
-        lecturersActive.classList.add('active');
+        lecturersActive.classList.add('custom-tab-active');
 
         studentsTable.style.display = "none";
-        studentsActive.classList.remove('active');
+        studentsActive.classList.remove('custom-tab-active');
 
         tasksTable.style.display = "none";
-        tasksActive.classList.remove('active');
+        tasksActive.classList.remove('custom-tab-active');
     }
 }
 
@@ -86,13 +86,13 @@ function showStudents() {
 
     if (studentsTable.style.display === "none") {
         studentsTable.style.display = "block";
-        studentsActive.classList.add('active');
+        studentsActive.classList.add('custom-tab-active');
 
         lecturersTable.style.display = "none";
-        lecturersActive.classList.remove('active');
+        lecturersActive.classList.remove('custom-tab-active');
 
         tasksTable.style.display = "none";
-        tasksActive.classList.remove('active');
+        tasksActive.classList.remove('custom-tab-active');
     }
 }
 
@@ -107,13 +107,13 @@ function showTasks() {
 
     if (tasksTable.style.display === "none") {
         tasksTable.style.display = "block";
-        tasksActive.classList.add('active');
+        tasksActive.classList.add('custom-tab-active');
 
         studentsTable.style.display = "none";
-        studentsActive.classList.remove('active');
+        studentsActive.classList.remove('custom-tab-active');
 
         lecturersTable.style.display = "none";
-        lecturersActive.classList.remove('active');
+        lecturersActive.classList.remove('custom-tab-active');
     }
 }
 
