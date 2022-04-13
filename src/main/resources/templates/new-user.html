@@ -79,15 +79,15 @@
                 <form action="#" th:action="@{/save-user}" th:object="${user}" method="POST">
                     <a> First name </a>
                     <input type="text" th:field="*{firstName}"
-                           placeholder="First name" class="form-control mb-4 col-4">
+                           required placeholder="First name" class="form-control mb-4 col-4">
 
                     <a> Last name </a>
                     <input type="text" th:field="*{lastName}"
-                           placeholder="Last name" class="form-control mb-4 col-4">
+                           required placeholder="Last name" class="form-control mb-4 col-4">
 
                     <a> Email </a>
                     <input type="email" th:field="*{email}"
-                           placeholder="Email" class="form-control mb-4 col-4">
+                           required placeholder="Email" class="form-control mb-4 col-4">
 
                     <a> Role </a>
                     <div style="width: max-content; padding-bottom: 24px">
