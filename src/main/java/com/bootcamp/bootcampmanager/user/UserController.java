@@ -176,12 +176,21 @@ public class UserController {
         System.out.println("\n\n\n\nid" + dataContainer.getId());
         System.out.println("\n\n\n\nnewPassword" + dataContainer.getNewPassword());
         System.out.println("\n\n\n\nrole" + dataContainer.getRole());
-
-        //String encodedPassword = Encoder.get().encode(lecturer.getPassword());
-        //lecturer.setPassword(encodedPassword);
-
-        //MailThread mailThread = new MailThread(mailService, user);
-        //mailThread.start();
+        if(dataContainer.getRole().equals("admin")){
+            Admin admin = adminService.getAdminById(dataContainer.getId());
+            admin.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            adminService.saveAdmin(admin);
+        }
+        else if(dataContainer.getRole().equals("lecturer")){
+            Lecturer lecturer = lecturerService.getLecturerById(dataContainer.getId());
+            lecturer.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            lecturerService.saveLecturer(lecturer);
+        }
+        else if(dataContainer.getRole().equals("student")){
+            Student student = studentService.getStudentById(dataContainer.getId());
+            student.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            studentService.saveStudent(student);
+        }
         return "redirect:/users";
     }
 }
