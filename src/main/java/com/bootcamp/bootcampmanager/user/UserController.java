@@ -153,4 +153,35 @@ public class UserController {
             return "users";
         return "user";
     }
+
+    @GetMapping("/change-password/{id}/{role}")
+    public String showNewPasswordForm(@PathVariable(value = "id") long id, @PathVariable(value = "role") String role, Model model) {
+        String newPassword = new String("!!!!new password!!!");
+        DataContainer dataContainer = new DataContainer(newPassword, id, role);
+        model.addAttribute("dataContainer", dataContainer);
+        model.addAttribute("id", id);
+        if(role.equals("admin"))
+            model.addAttribute("role", 1);
+        else if(role.equals("lecturer"))
+            model.addAttribute("role", 2);
+        else
+            model.addAttribute("role", 3);
+        return "change-password";
+    }
+
+    @PostMapping("/save-password")
+    public String savePassword(@ModelAttribute("dataContainer") DataContainer dataContainer, Model model) {
+
+
+        System.out.println("\n\n\n\nid" + dataContainer.getId());
+        System.out.println("\n\n\n\nnewPassword" + dataContainer.getNewPassword());
+        System.out.println("\n\n\n\nrole" + dataContainer.getRole());
+
+        //String encodedPassword = Encoder.get().encode(lecturer.getPassword());
+        //lecturer.setPassword(encodedPassword);
+
+        //MailThread mailThread = new MailThread(mailService, user);
+        //mailThread.start();
+        return "redirect:/users";
+    }
 }
