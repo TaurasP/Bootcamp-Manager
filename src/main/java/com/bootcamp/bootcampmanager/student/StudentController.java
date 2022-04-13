@@ -4,6 +4,7 @@ import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.bootcamp.BootcampService;
 import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
+import com.bootcamp.bootcampmanager.task.FilterContainer;
 import com.bootcamp.bootcampmanager.task.Task;
 import com.bootcamp.bootcampmanager.task.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,8 @@ public class StudentController {
     @GetMapping("/students")
     public String showAllStudents(Model model, Principal principal) {
 
+        FilterContainer filterContainer = new FilterContainer(-1, -1);
+        filterContainer.unsetShow();
         List<Lecturer> allLecturers = lecturerService.getAllLecturers();
         for(Lecturer lecturer : allLecturers)
             if(lecturer.getEmail().equals(principal.getName())){

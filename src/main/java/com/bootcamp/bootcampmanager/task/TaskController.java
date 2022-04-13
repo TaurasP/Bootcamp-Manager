@@ -3,6 +3,7 @@ package com.bootcamp.bootcampmanager.task;
 import com.bootcamp.bootcampmanager.bootcamp.Bootcamp;
 import com.bootcamp.bootcampmanager.bootcamp.BootcampService;
 import com.bootcamp.bootcampmanager.filedb.FileDBService;
+import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
 @Controller
 public class TaskController {
@@ -99,11 +102,26 @@ public class TaskController {
     @GetMapping("/lecturer-tasks/{id}")
     public String showLecturerTasks(@PathVariable( value = "id") long id, Model model) {
 
+        Lecturer thisLecturer = lecturerService.getLecturerById(id);
         List<Task> tasksList = new ArrayList<>();
+        FilterContainer filterContainer = new FilterContainer(-1, -1);
         for(Bootcamp bootcamp : lecturerService.getLecturerById(id).getJoinedBootcamp())
                 tasksList.addAll(bootcamp.getTasks());
+        model.addAttribute("filterContainer", filterContainer);
+        model.addAttribute("id", id);
         model.addAttribute("tasksList", tasksList);
-        model.addAttribute("thisLecturer", lecturerService.getLecturerById(id));
+        model.addAttribute("bootcamps", thisLecturer.getJoinedBootcamp());
+        model.addAttribute("thisLecturer", thisLecturer);
         return "lecturer-tasks";
+    }
+
+    @PostMapping(path = "/filter/{id}")
+    public String Filter(@PathVariable( value = "id") long id, @ModelAttribute("FilterContainer") FilterContainer filterContainer) {
+
+        filterContainer.setShow();
+        System.out.println("\n\n\n\n poster \n\n\n\n\n\n");
+        System.out.println("\n\n\n\n" + filterContainer.getSelectedTask() + "\n" + filterContainer.getSelectedBootcamp() +  "\n\n\n\n\n\n");
+
+        return "redirect:/lecturer-tasks/" + id;
     }
 }
