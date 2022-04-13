@@ -156,7 +156,7 @@ public class UserController {
 
     @GetMapping("/change-password/{id}/{role}")
     public String showNewPasswordForm(@PathVariable(value = "id") long id, @PathVariable(value = "role") String role, Model model) {
-        String newPassword = new String("!!!!new password!!!");
+        String newPassword = new String("enter new password");
         DataContainer dataContainer = new DataContainer(newPassword, id, role);
         model.addAttribute("dataContainer", dataContainer);
         model.addAttribute("id", id);
