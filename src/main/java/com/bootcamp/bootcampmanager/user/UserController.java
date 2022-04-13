@@ -133,4 +133,64 @@ public class UserController {
         this.userService.deleteUserById(id);
         return "redirect:/users";
     }
+
+    @GetMapping("/user/{id}/{category}")
+    public String showThisUser(@PathVariable(value = "id") long id, @PathVariable(value = "category") long cat, Model model) {
+        if(cat == 1){
+
+            model.addAttribute("user", adminService.getAdminById(id));
+            model.addAttribute("role", "admin");
+        }
+        else if(cat == 2){
+            model.addAttribute("user", lecturerService.getLecturerById(id));
+            model.addAttribute("role", "lecturer");
+        }
+        else if(cat == 3){
+            model.addAttribute("user", studentService.getStudentById(id));
+            model.addAttribute("role", "student");
+        }
+        else
+            return "users";
+        return "user";
+    }
+
+    @GetMapping("/change-password/{id}/{role}")
+    public String showNewPasswordForm(@PathVariable(value = "id") long id, @PathVariable(value = "role") String role, Model model) {
+        String newPassword = new String("enter new password");
+        DataContainer dataContainer = new DataContainer(newPassword, id, role);
+        model.addAttribute("dataContainer", dataContainer);
+        model.addAttribute("id", id);
+        if(role.equals("admin"))
+            model.addAttribute("role", 1);
+        else if(role.equals("lecturer"))
+            model.addAttribute("role", 2);
+        else
+            model.addAttribute("role", 3);
+        return "change-password";
+    }
+
+    @PostMapping("/save-password")
+    public String savePassword(@ModelAttribute("dataContainer") DataContainer dataContainer, Model model) {
+
+
+        System.out.println("\n\n\n\nid" + dataContainer.getId());
+        System.out.println("\n\n\n\nnewPassword" + dataContainer.getNewPassword());
+        System.out.println("\n\n\n\nrole" + dataContainer.getRole());
+        if(dataContainer.getRole().equals("admin")){
+            Admin admin = adminService.getAdminById(dataContainer.getId());
+            admin.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            adminService.saveAdmin(admin);
+        }
+        else if(dataContainer.getRole().equals("lecturer")){
+            Lecturer lecturer = lecturerService.getLecturerById(dataContainer.getId());
+            lecturer.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            lecturerService.saveLecturer(lecturer);
+        }
+        else if(dataContainer.getRole().equals("student")){
+            Student student = studentService.getStudentById(dataContainer.getId());
+            student.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            studentService.saveStudent(student);
+        }
+        return "redirect:/users";
+    }
 }
