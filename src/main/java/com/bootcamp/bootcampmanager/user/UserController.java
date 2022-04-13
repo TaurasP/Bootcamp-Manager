@@ -172,10 +172,6 @@ public class UserController {
     @PostMapping("/save-password")
     public String savePassword(@ModelAttribute("dataContainer") DataContainer dataContainer, Model model) {
 
-
-        System.out.println("\n\n\n\nid" + dataContainer.getId());
-        System.out.println("\n\n\n\nnewPassword" + dataContainer.getNewPassword());
-        System.out.println("\n\n\n\nrole" + dataContainer.getRole());
         if(dataContainer.getRole().equals("admin")){
             Admin admin = adminService.getAdminById(dataContainer.getId());
             admin.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
