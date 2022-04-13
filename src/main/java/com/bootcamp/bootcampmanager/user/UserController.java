@@ -133,4 +133,24 @@ public class UserController {
         this.userService.deleteUserById(id);
         return "redirect:/users";
     }
+
+    @GetMapping("/user/{id}/{category}")
+    public String showThisUser(@PathVariable(value = "id") long id, @PathVariable(value = "category") long cat, Model model) {
+        if(cat == 1){
+
+            model.addAttribute("user", adminService.getAdminById(id));
+            model.addAttribute("role", "admin");
+        }
+        else if(cat == 2){
+            model.addAttribute("user", lecturerService.getLecturerById(id));
+            model.addAttribute("role", "lecturer");
+        }
+        else if(cat == 3){
+            model.addAttribute("user", studentService.getStudentById(id));
+            model.addAttribute("role", "student");
+        }
+        else
+            return "users";
+        return "user";
+    }
 }
