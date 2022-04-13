@@ -65,7 +65,29 @@ public class BootcampController {
 
     @GetMapping("/bootcamp/{id}")
     public String showBootcampLecturers(@PathVariable (value = "id") long id, Model model) {
-        model.addAttribute("bootcamp",  bootcampService.getBootcampById(id));
+        Bootcamp thisBootcamp = bootcampService.getBootcampById(id);
+        model.addAttribute("bootcamp", thisBootcamp);
+        boolean freeTasks = false;
+        boolean freeStudents = false;
+        boolean freeLecturers = false;
+        for (Task task : taskService.getAllTasks())
+            if(task.getBootcamp() == null){
+                freeTasks = true;
+                break;
+            }
+        for (Student student : studentService.getAllStudents())
+            if(student.getBootcamp() == null){
+                freeStudents = true;
+                break;
+            }
+        for (Lecturer lecturer : lecturerService.getAllLecturers())
+            if(!lecturer.getJoinedBootcamp().contains(thisBootcamp)){
+                freeLecturers = true;
+                break;
+            }
+        model.addAttribute("freeTasks",  freeTasks);
+        model.addAttribute("freeStudents",  freeStudents);
+        model.addAttribute("freeLecturers",  freeLecturers);
         return "bootcamp";
     }
 
