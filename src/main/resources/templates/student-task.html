@@ -34,7 +34,7 @@
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
                                 <div class="dropdown-menu dropdown-menu-student">
                                     <!-- redirect to logged-in user's user page-->
-                                    <a class="dropdown-item dropdown-item-student" href="/user">My profile</a>
+                                    <a class="dropdown-item dropdown-item-student" href="/profile">My profile</a>
                                     <a class="dropdown-item dropdown-item-student" href="/logout">Logout</a>
                                 </div>
                             </li>
@@ -85,35 +85,50 @@
                     <!-- Table rows -->
                     <tbody>
                         <tr>
-                            <td> Task </td>
+                            <td class="font-weight-bold"> Task </td>
                             <td th:text="${task.name}"></td>
                         </tr>
 
                         <tr>
-                            <td> Description </td>
-                            <td th:text="${task.description}"></td>
+                            <td class="font-weight-bold"> Description </td>
+                            <!-- Show description if it exists -->
+                            <td th:if="${task.description != ''}" th:text="${task.description}"></td>
+                            <!-- Show - if it does not exist -->
+                            <td th:unless="${task.description != ''}"> - </td>
                         </tr>
 
                         <tr>
-                            <td> Deadline </td>
-                            <td th:text="${#dates.format(task.deadline, 'yyyy-MM-dd')}"></td>
+                            <td class="font-weight-bold"> Deadline </td>
+                            <!-- Show deadline date if it exists -->
+                            <td th:if="${task.description != ''}" th:text="${#dates.format(task.deadline, 'yyyy-MM-dd')}"></td>
+                            <!-- Show - if it does not exist -->
+                            <td th:unless="${task.description != ''}"> - </td>
                         </tr>
 
                         <tr>
-                            <td> Status </td>
+                            <td class="font-weight-bold"> Status </td>
                             <td th:text="${helper.isTaskCompleted(task.getId(), thisStudent.getId())}"></td>
                         </tr>
 
                         <tr>
-                            <td th:text="${link + task.getLinkURL()}"></td>
-                            <td>
-                                <!-- Open link button -->
-                                <a th:href="@{${task.getLinkURL()}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning"> Open </a>
+                            <!-- Show link button if it exists -->
+                            <td class="font-weight-bold"> Link </td>
+                            <td th:if="${task.linkURL != ''}">
+                                <a th:href="@{${task.linkURL}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning" data-toggle="tooltip" data-placement="top" th:title="${task.linkURL}"> Open </a>
                             </td>
+                            <!-- Show - if it does not exist -->
+                            <td th:unless="${task.linkURL != ''}"> - </td>
+
+                            <!---->
+                            <!--<td th:text="${link + task.getLinkURL()}"></td>
+                            <td>
+                                &lt;!&ndash; Open link button &ndash;&gt;
+                                <a th:href="@{${task.getLinkURL()}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning"> Open </a>
+                            </td>-->
                         </tr>
 
                         <tr>
-                            <td> File </td>
+                            <td class="font-weight-bold"> File </td>
                             <td>
                                 <!-- File download button (if !null - show button) -->
                                 <!--<a th:if="${task.fileDB.data != null}" th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
@@ -121,7 +136,7 @@
 
                                 <!-- Download file -->
                                 <a th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
-                                   class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>
+                                   class="btn btn-warning" data-toggle="tooltip" data-placement="top" th:title="${task.fileDB.name}"><i class="fa-solid fa-download"></i> Download </a>
                             </td>
                         </tr>
                     </tbody>

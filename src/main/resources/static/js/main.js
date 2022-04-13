@@ -117,3 +117,6 @@ function showTasks() {
     }
 }
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
