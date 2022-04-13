@@ -63,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/tasks").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
                 .antMatchers("/task").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
                 .antMatchers("/users").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("ADMIN")
+                .antMatchers("/user").hasAnyRole("ADMIN", "LECTURER", "STUDENT")
                 .antMatchers("/students").hasRole("LECTURER")
                 .antMatchers("/student").hasRole("LECTURER")
                 .antMatchers("/student-task").hasRole("STUDENT")

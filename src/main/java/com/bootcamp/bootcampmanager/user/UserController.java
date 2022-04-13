@@ -66,19 +66,20 @@ public class UserController {
     @PostMapping("/save-user")
     public String saveUser(@ModelAttribute("user") User user, Model model) {
         user.setEnabled(true);
+        user.setEmail(user.getEmail().toLowerCase());
         if (user.getRoles() == null)
             return "redirect:/users";
         for (User i : userService.getAllUsers())
-            if (i.getEmail().equals(user.getEmail()))
+            if (i.getEmail().equalsIgnoreCase(user.getEmail()))
                 return "redirect:/repeating-emails/" + user.getEmail();
         for (Student i : studentService.getAllStudents())
-            if (i.getEmail().equals(user.getEmail()))
+            if (i.getEmail().equalsIgnoreCase(user.getEmail()))
                 return "redirect:/repeating-emails/" + user.getEmail();
         for (Admin i : adminService.getAllAdmins())
-            if (i.getEmail().equals(user.getEmail()))
+            if (i.getEmail().equalsIgnoreCase(user.getEmail()))
                 return "redirect:/repeating-emails/" + user.getEmail();
         for (Lecturer i : lecturerService.getAllLecturers())
-            if (i.getEmail().equals(user.getEmail()))
+            if (i.getEmail().equalsIgnoreCase(user.getEmail()))
                 return "redirect:/repeating-emails/" + user.getEmail();
 
         if (user.getRoles().equals("ROLE_ADMIN")) {
