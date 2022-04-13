@@ -63,35 +63,10 @@
         <div class="container">
 
             <div>
-                <h2>Select bootcamp and task to see the progress of students! </h2>
+                <h2>Select a task to see the progress of students! </h2>
             </div>
 
             <br/>
-
-<!--            <div>-->
-<!--                &lt;!&ndash; Select bootcamp button &ndash;&gt;-->
-<!--                <div th:object="${filterContainer.selectedBootcamp}" method="POST" style="width: max-content; padding-bottom: 24px">-->
-<!--                    <select class="dropdown form-control">-->
-<!--                        <option value=""> Select bootcamp </option>-->
-<!--                        <option th:each="bootcamp : ${bootcamps}"-->
-<!--                                th:value="${bootcamp}"-->
-<!--                                th:text="${bootcamp.getName()}">-->
-<!--                        </option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--                <div th:object="${filterContainer.selectedTask}" style="width: max-content; padding-bottom: 24px">-->
-<!--                    <select class="dropdown form-control">-->
-<!--                        <option value=""> Select task </option>-->
-<!--                        <option th:each="task : ${tasksList}"-->
-<!--                                th:value="${task}"-->
-<!--                                th:text="${task.name}">-->
-<!--                        </option>-->
-<!--                    </select>-->
-<!--                </div>-->
-                <!-- Apply filter button -->
-
-<!--                <a th:action="@{/filter/{id}(id = ${id})}" class="btn btn-success" sec:authorize="hasAnyRole('LECTURER')"><i class="fa-solid"></i> Select </a>-->
-<!--            </div>-->
 
             <div>
                 <form action="#" th:action="@{/filter/{id}(id = ${id})}" method="POST">
@@ -111,7 +86,7 @@
                         <a> Select Task </a>
                         <select type="number" th:field="${filterContainer.selectedTask}" class="dropdown form-control">
                             <tr th:each="task : ${tasksList}">
-                                <option th:value="${task.getId()}"><a th:text="${task.getName()}"></a></option>
+                                <option th:value="${task.getId()}"><a th:text="${'task: ' + task.getName() + '  in bootcamp: ' + task.getBootcamp().getName()}"></a></option>
                             </tr>
                         </select>
                     </div>
