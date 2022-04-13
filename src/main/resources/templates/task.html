@@ -73,7 +73,8 @@
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <!-- Need to redirect to this lecturer-tasks.html page -->
-                                <a class="nav-link" th:href="@{/lecturer-tasks/{id}(id=${thisLecturer.id})}">Tasks</a>
+                                <!--<a class="nav-link" th:href="@{/lecturer-tasks/{id}(id=${thisLecturer.id})}">Tasks</a>-->
+                                <a style="color: red!important;" class="nav-link">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
@@ -105,7 +106,9 @@
 
             <div>
                 <!-- Back button -->
-                <a th:href = "@{/tasks}" class="btn btn-warning"> Back </a>
+                <!-- Need to redirect to this lecturer-tasks.html page -->
+                <!--<a th:href = "@{/tasks}" class="btn btn-warning"> Back </a>-->
+                <a style="color: red!important;" class="btn btn-warning"> Back </a>
 
                 <!-- Mark as completed button -->
                 <!--<button type="button" class="btn btn-success"> Mark as completed </button>-->
