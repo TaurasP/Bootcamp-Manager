@@ -15,15 +15,13 @@
 <body class="hero-anime">
 
 <!-- Top navigation bar -->
-<!-- NEED TO ADD CUSTOM CSS FOR ADMIN AND LECTURER -->
-<div class="navigation-wrap bg-light start-header start-style">
+<div class="navigation-wrap bg-light start-header start-style" sec:authorize="hasRole('ADMIN')">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
 
-                    <a class="navbar-brand navbar-logo" href="/bootcamps" sec:authorize="hasRole('ADMIN')">Bootcamp Manager</a>
-                    <a class="navbar-brand navbar-logo" href="/students" sec:authorize="hasRole('LECTURER')">Bootcamp Manager</a>
+                    <a class="navbar-brand navbar-logo" href="/bootcamps">Bootcamp Manager</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -31,25 +29,57 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link" href="/bootcamps">Bootcamps</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('ADMIN')">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link" href="/users">Users</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" sec:authorize="hasRole('LECTURER')">
-                                <a class="nav-link" href="/students">Students</a>
-                            </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active" sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                 <a class="nav-link" href="/tasks">Tasks</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
-                                <!-- NEED TO ADD CUSTOM CSS FOR ADMIN AND LECTURER -->
                                 <div class="dropdown-menu">
-                                    <!-- NEED TO ADD CUSTOM CSS FOR ADMIN AND LECTURER -->
                                     <a class="dropdown-item" href="/profile">My profile</a>
                                     <a class="dropdown-item" href="/logout">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="navigation-wrap bg-light-lecturer start-header start-style" sec:authorize="hasRole('LECTURER')">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-md navbar-light">
+
+                    <a class="navbar-brand navbar-logo" href="/students">Bootcamp Manager</a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto py-4 py-md-0">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" >
+                                <a class="nav-link" href="/students">Students</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <!-- Need to redirect to this lecturer-tasks.html page -->
+                                <a class="nav-link" th:href="@{/lecturer-tasks/{id}(id=${thisLecturer.id})}">Tasks</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user"></i></a>
+                                <div class="dropdown-menu dropdown-menu-lecturer">
+                                    <a class="dropdown-item dropdown-item-lecturer" href="/profile">My profile</a>
+                                    <a class="dropdown-item dropdown-item-lecturer" href="/logout">Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -123,7 +153,7 @@
                             <td class="font-weight-bold"> Link </td>
                             <!-- Show link button if it exists -->
                             <td th:if="${task.linkURL != ''}">
-                                <a th:href="@{${task.linkURL}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning"> Open </a>
+                                <a th:href="@{${task.linkURL}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning" data-toggle="tooltip" data-placement="top" th:title="${task.linkURL}"> Open </a>
 
                             </td>
                             <!-- Show - if it does not exist -->
@@ -136,7 +166,7 @@
                             <!-- Show download button if file exists -->
                             <td th:if="${task.fileDB != null}">
                                 <a th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
-                                   class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>
+                                   class="btn btn-warning" data-toggle="tooltip" data-placement="top" th:title="${task.fileDB.name}"><i class="fa-solid fa-download"></i> Download </a>
                             </td>
                             <!-- Show - if it does not exist -->
                             <td th:unless="${task.fileDB != null}"> - </td>
