@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -188,5 +189,57 @@ public class UserController {
             studentService.saveStudent(student);
         }
         return "redirect:/users";
+    }
+
+    @GetMapping("/profile")
+    public String showProfile(Model model, Principal principal) {
+        UserContainer userContainer = new UserContainer(principal.getName(), adminService, lecturerService, studentService);
+        model.addAttribute("userContainer", userContainer);
+        model.addAttribute("role", userContainer.getRole());
+        if(userContainer.getRoleId() == 3)
+            model.addAttribute("user", studentService.getStudentById(userContainer.getId()));
+        if(userContainer.getRoleId() == 2)
+            model.addAttribute("user", lecturerService.getLecturerById(userContainer.getId()));
+        if(userContainer.getRoleId() == 1)
+            model.addAttribute("user", adminService.getAdminById(userContainer.getId()));
+
+
+        return "profile";
+    }
+
+    @GetMapping("/change-profile-password/{id}/{role}")
+    public String showNewProfilePasswordForm(@PathVariable(value = "id") long id, @PathVariable(value = "role") String role, Model model) {
+        String newPassword = new String("enter new password");
+        DataContainer dataContainer = new DataContainer(newPassword, id, role);
+        model.addAttribute("dataContainer", dataContainer);
+        model.addAttribute("id", id);
+        if(role.equals("admin"))
+            model.addAttribute("role", 1);
+        else if(role.equals("lecturer"))
+            model.addAttribute("role", 2);
+        else
+            model.addAttribute("role", 3);
+        return "change-profile-password";
+    }
+
+    @PostMapping("/save-profile-password")
+    public String saveProfilePassword(@ModelAttribute("dataContainer") DataContainer dataContainer, Model model) {
+
+        if(dataContainer.getRole().equals("admin")){
+            Admin admin = adminService.getAdminById(dataContainer.getId());
+            admin.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            adminService.saveAdmin(admin);
+        }
+        else if(dataContainer.getRole().equals("lecturer")){
+            Lecturer lecturer = lecturerService.getLecturerById(dataContainer.getId());
+            lecturer.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            lecturerService.saveLecturer(lecturer);
+        }
+        else if(dataContainer.getRole().equals("student")){
+            Student student = studentService.getStudentById(dataContainer.getId());
+            student.setPassword(Encoder.get().encode(dataContainer.getNewPassword()));
+            studentService.saveStudent(student);
+        }
+        return "redirect:/profile";
     }
 }
