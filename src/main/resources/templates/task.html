@@ -99,48 +99,53 @@
                     <!-- Table rows -->
                     <tbody>
                         <tr>
-                            <td> Task </td>
+                            <td class="font-weight-bold"> Task </td>
                             <td th:text="${task.name}"></td>
                         </tr>
 
                         <tr>
-                            <td> Description </td>
-                            <td th:text="${task.description}"></td>
+                            <td class="font-weight-bold"> Description </td>
+                            <!-- Show description if it exists -->
+                            <td th:if="${task.description != ''}" th:text="${task.description}"></td>
+                            <!-- Show - if it does not exist -->
+                            <td th:unless="${task.description != ''}"> - </td>
                         </tr>
 
                         <tr>
-                            <td> Deadline </td>
-                            <td th:text="${#dates.format(task.deadline, 'yyyy-MM-dd')}"></td>
+                            <td class="font-weight-bold"> Deadline </td>
+                            <!-- Show deadline date if it exists -->
+                            <td th:if="${task.description != ''}" th:text="${#dates.format(task.deadline, 'yyyy-MM-dd')}"></td>
+                            <!-- Show - if it does not exist -->
+                            <td th:unless="${task.description != ''}"> - </td>
                         </tr>
 
                         <tr>
-                            <td> Link </td>
-                            <td>
-                                <!-- Open link button -->
+                            <td class="font-weight-bold"> Link </td>
+                            <!-- Show link button if it exists -->
+                            <td th:if="${task.linkURL != ''}">
                                 <a th:href="@{${task.linkURL}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning"> Open </a>
+
                             </td>
+                            <!-- Show - if it does not exist -->
+                            <td th:unless="${task.linkURL != ''}"> - </td>
+
                         </tr>
 
                         <tr>
-                            <td> File </td>
-                            <td th:if="${task.getFileDB() != null}">
-                                <!-- File download button (if !null - show button) -->
-                                <!--<a th:if="${task.fileDB.data != null}" th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
-                                   class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>-->
-
-                                <!-- Download file -->
+                            <td class="font-weight-bold"> File </td>
+                            <!-- Show download button if file exists -->
+                            <td th:if="${task.fileDB != null}">
                                 <a th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
                                    class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>
                             </td>
-                            <td th:if="${task.getFileDB() == null}">
-                                <!-- File download button (if !null - show button) -->
-                                <!--<a th:if="${task.fileDB.data != null}" th:href="@{'/task/' + ${task.getId()} + '/file/' + ${task.getFileDB().getId()}}"
-                                   class="btn btn-warning"><i class="fa-solid fa-download"></i> Download </a>-->
+                            <!-- Show - if it does not exist -->
+                            <td th:unless="${task.fileDB != null}"> - </td>
 
-                                <!-- Download file -->
+                            <!--<td th:if="${task.getFileDB() == null}">
+                                &lt;!&ndash; Download file &ndash;&gt;
                                 <a th:text="'file not uploaded'"></a>
 
-                            </td>
+                            </td>-->
                         </tr>
                     </tbody>
                 </table>
