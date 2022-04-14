@@ -117,3 +117,38 @@ function showTasks() {
     }
 }
 
+/* students page */
+function showLecturerBootcamps() {
+    var bootcampsTable = document.getElementById("bootcamps");
+    var bootcampsActive = document.getElementById("active-b");
+    var studentsTable = document.getElementById("students");
+    var studentsActive = document.getElementById("active-s");
+
+    if (bootcampsTable.style.display === "none") {
+        bootcampsTable.style.display = "block";
+        bootcampsActive.classList.add('custom-tab-active');
+
+        studentsTable.style.display = "none";
+        studentsActive.classList.remove('custom-tab-active');
+    }
+}
+
+/* students page */
+function showLecturerBootcampStudents() {
+    var bootcampsTable = document.getElementById("bootcamps");
+    var bootcampsActive = document.getElementById("active-b");
+    var studentsTable = document.getElementById("students");
+    var studentsActive = document.getElementById("active-s");
+
+    if (studentsTable.style.display === "none") {
+        studentsTable.style.display = "block";
+        studentsActive.classList.add('custom-tab-active');
+
+        bootcampsTable.style.display = "none";
+        bootcampsActive.classList.remove('custom-tab-active');
+    }
+}
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
