@@ -108,8 +108,8 @@
             <div>
                 <!-- Back button -->
                 <!-- Need to redirect to this lecturer-tasks.html page -->
-                <!--<a th:href = "@{/tasks}" class="btn btn-warning"> Back </a>-->
-                <a style="color: red!important;" class="btn btn-warning"> Back </a>
+                <a th:href = "@{/tasks}" class="btn btn-warning"> Back </a>
+                <!--<a style="color: red!important;" class="btn btn-warning"> Back </a>-->
             </div>
 
             <br/>
@@ -147,7 +147,7 @@
 
                     <!-- Select a bootcamp -->
                     <div th:if="${bootcamps.size() > 0}" style="width: max-content; padding-bottom: 24px">
-                        <a> Select Bootcamp </a>
+                        <a> Bootcamp </a>
                         <select type="number" th:field="${task.bootcamp.id}" class="dropdown form-control">
                             <tr th:each="b : ${bootcamps}">
                                 <option th:value="${b.id}"><a th:text="${b.getName()}"></a></option>

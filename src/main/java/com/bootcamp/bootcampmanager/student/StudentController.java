@@ -97,6 +97,7 @@ public class StudentController {
     public String showStudentFormForUpdate(@PathVariable(value = "id") long id, Model model) {
         Student student = studentService.getStudentById(id);
         model.addAttribute("student", student);
+        model.addAttribute("bootcamps", bootcampService.getAllBootcamps());
         return "update-student";
     }
 
