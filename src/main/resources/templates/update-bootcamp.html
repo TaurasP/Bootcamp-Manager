@@ -80,13 +80,13 @@
                     <input type="hidden" th:field="*{id}"/>
 
                     <a> Name </a>
-                    <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
+                    <input type="text" th:field="*{name}" required class="form-control mb-4 col-4">
 
                     <a> Start date </a>
-                    <input type="date" th:field="*{dateFrom}" class="form-control mb-4 col-4">
+                    <input type="date" th:field="*{dateFrom}" required class="form-control mb-4 col-4">
 
                     <a> End date </a>
-                    <input type="date" th:field="*{dateTo}" class="form-control mb-4 col-4">
+                    <input type="date" th:field="*{dateTo}" required class="form-control mb-4 col-4">
 
                     <!-- Save button -->
                     <button type="submit" class="btn btn-info col-2"> Update </button>

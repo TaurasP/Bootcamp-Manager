@@ -80,16 +80,16 @@
                     <input type="hidden" th:field="*{id}"/>
 
                     <a> First name </a>
-                    <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
+                    <input type="text" th:field="*{firstName}" required class="form-control mb-4 col-4">
 
                     <a> Last name </a>
-                    <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
+                    <input type="text" th:field="*{lastName}" required class="form-control mb-4 col-4">
 
                     <a> Email </a>
-                    <input type="email" th:field="*{email}" class="form-control mb-4 col-4">
+                    <input type="email" th:field="*{email}" required class="form-control mb-4 col-4">
 
                     <a> Bootcamp id </a>
-                    <input type="text" th:field="${student.bootcamp.id}" class="form-control mb-4 col-4">
+                    <input type="text" th:field="${student.bootcamp.id}" required class="form-control mb-4 col-4">
 
                     <button type="submit" class="btn btn-info col-2"> Update </button>
                 </form>
