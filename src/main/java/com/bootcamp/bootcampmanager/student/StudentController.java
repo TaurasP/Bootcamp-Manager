@@ -47,7 +47,7 @@ public class StudentController {
     @GetMapping("/students")
     public String showAllStudents(Model model, Principal principal) {
 
-        FilterContainer filterContainer = new FilterContainer(-1, -1);
+        FilterContainer filterContainer = new FilterContainer( -1);
         filterContainer.unsetShow();
         List<Lecturer> allLecturers = lecturerService.getAllLecturers();
         for(Lecturer lecturer : allLecturers)

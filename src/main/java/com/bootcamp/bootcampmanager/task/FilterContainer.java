@@ -12,11 +12,13 @@ import java.util.List;
 public class FilterContainer {
 
     static boolean showTable;
-    private long selectedBootcamp;
+    //private long selectedBootcamp;
     private long selectedTask;
 
-    public FilterContainer(long selectedBootcamp, long selectedTask) {
-        this.selectedBootcamp = selectedBootcamp;
+    static long taskID;
+
+    public FilterContainer(long selectedTask) {
+        //this.selectedBootcamp = selectedBootcamp;
         this.selectedTask = selectedTask;
     }
 
@@ -30,5 +32,13 @@ public class FilterContainer {
 
     public void unsetShow() {
         showTable = false;
+    }
+
+    public long getTask(){
+        return taskID;
+    }
+
+    public void setId(long id) {
+        this.taskID = id;
     }
 }

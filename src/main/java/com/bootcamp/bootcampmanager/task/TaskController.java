@@ -5,6 +5,8 @@ import com.bootcamp.bootcampmanager.bootcamp.BootcampService;
 import com.bootcamp.bootcampmanager.filedb.FileDBService;
 import com.bootcamp.bootcampmanager.lecturer.Lecturer;
 import com.bootcamp.bootcampmanager.lecturer.LecturerService;
+import com.bootcamp.bootcampmanager.student.Student;
+import com.bootcamp.bootcampmanager.student.StudentHelper;
 import com.bootcamp.bootcampmanager.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -104,7 +106,17 @@ public class TaskController {
 
         Lecturer thisLecturer = lecturerService.getLecturerById(id);
         List<Task> tasksList = new ArrayList<>();
-        FilterContainer filterContainer = new FilterContainer(-1, -1);
+        FilterContainer filterContainer = new FilterContainer( -1);
+        System.out.println("\n\n From Getter!!!!" + filterContainer.getTask() + "\n\n\n\n");
+        if(filterContainer.showTable() && filterContainer.getTask() > 0){
+            Task task = taskService.getTaskById(filterContainer.getTask());
+            List<Student> students = task.getBootcamp().getStudents();
+            model.addAttribute("task", task);
+            model.addAttribute("students", students);
+            model.addAttribute("helper", new StudentHelper(studentService));
+        }
+
+
         for(Bootcamp bootcamp : lecturerService.getLecturerById(id).getJoinedBootcamp())
                 tasksList.addAll(bootcamp.getTasks());
         model.addAttribute("filterContainer", filterContainer);
@@ -116,11 +128,11 @@ public class TaskController {
     }
 
     @PostMapping(path = "/filter/{id}")
-    public String Filter(@PathVariable( value = "id") long id, @ModelAttribute("FilterContainer") FilterContainer filterContainer) {
+    public String Filter(@PathVariable( value = "id") long id, @ModelAttribute("FilterContainer") FilterContainer filterContainer, Model model) {
 
         filterContainer.setShow();
-        System.out.println("\n\n\n\n poster \n\n\n\n\n\n");
-        System.out.println("\n\n\n\n" + filterContainer.getSelectedTask() + "\n" + filterContainer.getSelectedBootcamp() +  "\n\n\n\n\n\n");
+        filterContainer.setId(filterContainer.getSelectedTask());
+        System.out.println("\n\n From poster!!!" + filterContainer.getSelectedTask() +  "\n\n\n\n");
 
         return "redirect:/lecturer-tasks/" + id;
     }
