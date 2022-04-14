@@ -68,7 +68,7 @@
     <div class="section" style="padding-top: 80px">
         <div class="container">
             <div>
-                <h2>Bootcamps assigned for lecturer <td th:text="${thisLecturer.getFirstName()}" </h2>
+                <h2>Bootcamps assigned for lecturer <td th:text="${thisLecturer.getFirstName()}"></td> </h2>
             </div>
 
 
@@ -122,6 +122,7 @@
                         <th> Start Date</th>
 
                         <th> End Date</th>
+                        <th> Number of students </th>
                     </tr>
                     </thead>
                     <!-- Table rows -->
@@ -133,6 +134,7 @@
 
                         <td th:text="${bootcamp.getDateFrom().toGMTString()}"></td>
                         <td th:text="${bootcamp.getDateTo().toGMTString()}"></td>
+                        <td th:text="${bootcamp.getStudents().size()}"></td>
 
 <!--                        <td>-->
 <!--                            &lt;!&ndash; Open student page button  &ndash;&gt;-->
