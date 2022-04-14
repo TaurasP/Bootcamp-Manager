@@ -109,14 +109,14 @@
                 <!-- Back button -->
                 <!-- Need to redirect to this lecturer-tasks.html page -->
                 <!--<a th:href = "@{/tasks}" class="btn btn-warning"> Back </a>-->
-                <a style="color: red!important;" class="btn btn-warning"> Back </a>
+                <a th:href="@{/students}" style="color: red!important;" class="btn btn-warning"> Back </a>
             </div>
 
             <br/>
 
             <!-- Task creation form -->
             <div>
-                <form action="/" th:action="@{/save-task}" th:object="${task}" encType="multipart/form-data" method="POST">
+                <form action="/" th:action="@{/save-lecturer-task}" th:object="${task}" encType="multipart/form-data" method="POST">
                     <!-- Add name -->
                     <a> Name </a>
                     <input type="text" th:field="${task.name}"
