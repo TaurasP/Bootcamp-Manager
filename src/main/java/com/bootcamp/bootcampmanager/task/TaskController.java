@@ -136,4 +136,31 @@ public class TaskController {
 
         return "redirect:/lecturer-tasks/" + id;
     }
+
+    @GetMapping("/new-lecturer-task")
+    public String showNewLecturerTaskForm(Model model) {
+        Bootcamp id = new Bootcamp();
+        Task task = new Task();
+        model.addAttribute("task", task);
+        model.addAttribute("id", id);
+        model.addAttribute("bootcamps", bootcampService.getAllBootcamps());
+        return "new-lecturer-task";
+    }
+
+    @PostMapping("/save-lecturer-task")
+    public String saveLecturerTask(@ModelAttribute("bootcamp") Bootcamp bootcamp, @ModelAttribute("task") Task task, @RequestParam("file") MultipartFile[] files) {
+        task.setFileDB(fileDBService.saveFile(files[0], task));
+        if(bootcamp.getId() != 0){
+            try{
+                Bootcamp camp = bootcampService.getBootcampById(bootcamp.getId());
+                task.setBootcamp(camp);
+
+            }
+            catch(Exception e){
+                System.out.println("\n\n\n\n Whoops!? Something went wrong!!!" + e.getMessage() + "\n\n\n\n");
+            }
+        }
+        taskService.saveTask(task);
+        return "redirect:/students";
+    }
 }

@@ -122,7 +122,8 @@
                         <th> Start Date</th>
 
                         <th> End Date</th>
-                        <th> Number of students </th>
+                        <th> Students </th>
+                        <th> Tasks </th>
                     </tr>
                     </thead>
                     <!-- Table rows -->
@@ -135,28 +136,15 @@
                         <td th:text="${bootcamp.getDateFrom().toGMTString()}"></td>
                         <td th:text="${bootcamp.getDateTo().toGMTString()}"></td>
                         <td th:text="${bootcamp.getStudents().size()}"></td>
-
-<!--                        <td>-->
-<!--                            &lt;!&ndash; Open student page button  &ndash;&gt;-->
-<!--                            <a th:href="@{/info-student/{id}(id=${student.id})}" class="btn btn-warning">Open</a>-->
-<!--                            &lt;!&ndash; Edit button &ndash;&gt;-->
-
-<!--                            &lt;!&ndash; <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-primary"><i &ndash;&gt;-->
-<!--                            &lt;!&ndash; class="fa-solid fa-pencil"></i></a> &ndash;&gt;-->
-<!--                            &lt;!&ndash; Delete button &ndash;&gt;-->
-<!--                            &lt;!&ndash; <a th:href="@{/delete-student/{id}(id=${student.id})}" class="btn btn-danger"><i &ndash;&gt;-->
-<!--                            &lt;!&ndash; class="fa-solid fa-trash-can"></i></a> &ndash;&gt;-->
-
-<!--                            <a th:href="@{/update-student/{id}(id=${student.id})}" class="btn btn-primary"><i-->
-<!--                                    class="fa-solid fa-pencil"></i></a>-->
-<!--                            &lt;!&ndash; Delete button &ndash;&gt;-->
-<!--                            <a th:href="@{/delete-student/{id}(id=${student.id})}" class="btn btn-danger"><i-->
-<!--                                    class="fa-solid fa-trash-can"></i></a>-->
+                        <td th:text="${bootcamp.getTasks().size()}"></td>
 
                         </td>
                     </tr>
                     </tbody>
                 </table>
+                <div sec:authorize="hasAnyRole('LECTURER')">
+                    <a th:href="@{/new-lecturer-task}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add Task</a>
+                </div>
             </div>
             <br/>
             <br/>
@@ -167,9 +155,7 @@
 
 
 <!--            &lt;!&ndash; Add button &ndash;&gt;-->
-<!--            <div sec:authorize="hasAnyRole('ADMIN', 'LECTURER')">-->
-<!--                <a th:href="@{/new-student}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add </a>-->
-<!--            </div>-->
+
 
 
 
