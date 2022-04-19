@@ -15,8 +15,6 @@ It's a web application for managing bootcamps.
 - MySQL
 - Thymeleaf
 - Bootstrap
-- JUnit
-- Log4j
 - Lombok
 - jQuery
 - JS
